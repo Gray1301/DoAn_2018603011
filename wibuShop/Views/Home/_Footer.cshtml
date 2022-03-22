@@ -1,0 +1,124 @@
+﻿
+<footer>
+
+    <div>
+        <table cellpadding="0px" cellspacing="0px" class="table1" style="margin-left:0px">
+            <tr>
+                <td>
+                    <img src="~/wwwroot/images/logo2.PNG" alt="Alternate Text" height="100px" width="300px" />
+                </td>
+
+                <td>
+                    <h4>DỊCH VỤ</h4>
+                </td>
+                <td>
+                    <h4>HỖ TRỢ</h4>
+                </td>
+                <td>
+                    <h4>TÀI KHOẢN CỦA TÔI</h4>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="abc">
+                <td class="abcd">
+                    <p style="font-family: Calibri; font-size: 15px; line-height:25px;margin-left:55px" class="content1" id="foo">
+                        Lầu 100, 187-189 Hai Bà Trưng Quận 7 TP HCM<br />
+                        Công Ty Cổ Phần Phát Hành Sách TP HCM - Kyotaka<br />
+                        60 - 62 Xuân Thanh, Quận 7, TP. HCM, Việt Nam <br />
+                        Waifu.com nhận đặt hàng trực tuyến và giao hàng tận nơi.<br />
+                        KHÔNG hỗ trợ đặt mua và nhận hàng trực tiếp tại văn phòng <br />
+                        cũng như tất cả Hệ Thống Kyotaka trên toàn quốc.
+                    </p>
+                </td>
+                <td>
+                    <li class="menu"><a href="@Url.Action("DieuKhoan","ChinhSach")" class="dieukhoan">Điều khoản sử dụng</a></li>
+                    <li class="menu"><a href="@Url.Action("BaoMat","ChinhSach")" class="dieukhoan">Chính sách bảo mật</a></li>
+                    <li class="menu"><a href="@Url.Action("GioiThieu","ChinhSach")" class="dieukhoan">Giới thiệu WaifuShop</a></li>
+                    <li class="menu"><a href="@Url.Action("HeThong","ChinhSach")" class="dieukhoan">Hệ thống trung tâm - Nhà sách</a></li>
+                </td>
+                <td>
+                    <li class="menu"><a href="@Url.Action("DoiTra","ChinhSach")" class="dieukhoan">Chính sách đổi - trả - hoàn tiền</a></li>
+                    <li class="menu"><a href="@Url.Action("KhachSi","ChinhSach")" class="dieukhoan">Chính sách khách sỉ</a></li>
+                    <li class="menu"><a href="@Url.Action("VanChuyen","ChinhSach")" class="dieukhoan">Phương thức vận chuyển</a></li>
+                    <li class="menu"><a href="@Url.Action("ThanhToan","ChinhSach")" class="dieukhoan">Phương thức thanh toán và xuất hóa đơn</a></li>
+                </td>
+                <td>
+                    <li class="menu"><a href="@Url.Action("Login","TaiKhoan")" class="dieukhoan">Đăng nhập/Tạo mới tài khoản</a></li>
+                    <li class="menu"><a href="@Url.Action("SuaTaiKhoan","TaiKhoan")" class="dieukhoan">Thay đổi địa chỉ khách hàng</a></li>
+                    <li class="menu"><a href="@Url.Action("ChiTiet","GioHang")" class="dieukhoan">Chi tiết mua hàng</a></li>
+                    <li class="menu"><a href="@Url.Action("XemHoaDon","GioHang")" class="dieukhoan">Lịch sử mua hàng</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">
+                    <img src="~/wwwroot/images/nav/chply.PNG" alt="Alternate Text" height="200px" width="330px" style="margin-top:25px; margin-left:30px" />
+                </td>
+                <td>
+                    <p><b>Address</b>: 60 - 62 Xuân Thanh, Quận 7</p>
+                </td>
+                <td>
+                    <h4></h4>
+                    <p><b>Gmail</b>: cskh@waifu.com.vn</p>
+                </td>
+                <td>
+
+                    <p><b>Hotline</b>: 1900636467</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <img src="~/wwwroot/images/nav/brand.PNG" alt="Alternate Text" height="100px" width="750px" />
+                </td>
+            </tr>
+
+        </table>
+        <marquee scrollamount="20" style="background-color:lightgoldenrodyellow; height:30px">
+            <p style="margin-top:5px">Hoàng Xuân Thanh - WaifuShop.com.vn</p>
+        </marquee>
+    </div>
+    <div class='lentop'>
+        <div>
+            <img src='https://1.bp.blogspot.com/-k6sikOdzFXQ/VwqCKDosmEI/AAAAAAAAKxE/nLxLhkTIO6o3iE5ZWmtxo2bf4QHdzPQNQ/s1600/top.png' />
+        </div>
+    </div>
+</footer>
+<style>
+    .lentop {
+        display: none;
+        bottom: 40%;
+        right: 10px;
+        cursor: pointer;
+        position: fixed;
+        z-index: 1000;
+    }
+
+        .lentop div {
+            background: crimson;
+            border: 2px solid #fff;
+            border-radius: 45px;
+            padding: 11px 12.5px;
+            box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.3)
+        }
+
+        .lentop img {
+            width: 16px;
+            height: 16px;
+        }
+   
+
+
+</style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) $(".lentop").fadeIn();
+            else $(".lentop").fadeOut();
+        });
+        $(".lentop").click(function () {
+            $("body,html").animate({ scrollTop: 0 }, "slow");
+        });
+    });
+</script>

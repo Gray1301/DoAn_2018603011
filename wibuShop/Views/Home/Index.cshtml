@@ -1,0 +1,171 @@
+﻿@model IEnumerable<wibuShop.Models.SanPham>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <style>
+        .mySlides {
+            display: none;
+        }
+
+        .bannerKM {
+            margin-left: 12px;
+        }
+
+        .product:hover {
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
+<body class="bodyIndexHome">
+    <div style="display:flex;background-color:gainsboro">
+        <div class="row" style="margin-top:18px;">
+            @{
+                Html.RenderAction("_Nav", "Home");
+            }
+
+        </div>
+        <div class="w3-content w3-section" style="width:50%;margin-left:150px;margin-bottom:50px">
+            <img class="mySlides" src="~/wwwroot/images/slide1.png" style="width:110%;height:377px">
+            <img class="mySlides" src="~/wwwroot/images/slide2.jpg" style="width: 110%;height:377px">
+            <img class="mySlides" src="~/wwwroot/images/slide3.jpg" style="width: 110%;height:377px">
+        </div>
+    </div>
+    <div class="khuyenMai" style="margin-left:80px;margin-top:30px">
+        <img src="~/wwwroot/images/bannerKhuyenMai/km1.jpg" alt="Alternate Text" class="bannerKM" width="22%" />
+        <img src="~/wwwroot/images/bannerKhuyenMai/km2.jpg" alt="Alternate Text" class="bannerKM" width="22%">
+        <img src="~/wwwroot/images/bannerKhuyenMai/km3.jpg" alt="Alternate Text" class="bannerKM" width="22%">
+        <img src="~/wwwroot/images/bannerKhuyenMai/km4.jpg" alt="Alternate Text" class="bannerKM" width="22%" />
+    </div>
+
+    <div class="row" style="margin-top: 30px; background-color: white; justify-content: right;">
+        @foreach (var item in Model)
+        {
+            double giagiam = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+            double giam = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+            double giamphantram = Math.Round(giam, 0);
+            <div class="col-md-4 col-xs-6" style="width:280px;margin-left:10px">
+                <div class="product" style="text-align:center;margin-top:20px;margin-bottom:20px;">
+                    <div class="absolute left top z-1">
+                        <div class="callout badge badge-circle" style="background-color:red;width:65px;margin-bottom:5px">
+                            <div class="badge-inner secondary on-sale" style="background-color: red; width: 50px"><span class="onsale" style="background-color:red;font-size:20px;width:50px">-@giamphantram %</span></div>
+                        </div>
+                    </div>
+                    <div class="product-img">
+                        @{
+                            string ImagePath = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                        }
+                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                            <img src="@Url.Content(ImagePath)" id="anhSP" alt="" width="70%" height="210" />
+                        </a>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-category" style="text-align:left;margin-top:15px;min-height:40px">
+                            @Html.DisplayFor(modelItem => item.TenSP)
+                        </p>
+                        <h4 class="product-price" style="text-align:left; color:red">
+                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                            @String.Format("{0:#,###}", @giagiam)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                        </h4>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+    <div>
+        @{
+            Html.RenderAction("_Footer", "Home");
+        }
+    </div>
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+        $(document).ready(function () {
+
+            $('#itemslider').carousel({ interval: 3000 });
+
+            $('.carousel-showmanymoveone .item').each(function () {
+                var itemToClone = $(this);
+
+                for (var i = 1; i < 6; i++) {
+                    itemToClone = itemToClone.next();
+
+                    if (!itemToClone.length) {
+                        itemToClone = $(this).siblings(':first');
+                    }
+
+                    itemToClone.children(':first-child').clone()
+                        .addClass("cloneditem-" + (i))
+                        .appendTo($(this));
+                }
+            });
+        });
+
+    </script>
+</body>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+   
+</script>
+<style>
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 8px;
+        width: 50%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+   
+</style>

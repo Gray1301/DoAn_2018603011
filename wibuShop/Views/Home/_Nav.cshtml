@@ -1,0 +1,98 @@
+﻿
+@model IEnumerable<wibuShop.Models.DanhMucSP>
+
+<div class="body">
+    <div class="menu1">
+        <div id="mega-menu-title">
+            <b>DANH MỤC SẢN PHẨM</b>
+        </div>
+        <ul class="listCategory">
+            @foreach (var item in Model)
+            {
+                <li class="categoryItem" style="align-content:center;vertical-align:middle">
+                    <a class="categorycustom" style="text-decoration:none;text-transform:capitalize" href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = item.MaDM })">
+                        @item.TenDM
+                    </a>
+                    @*<ul class="listMiniCategory">
+                            <li class="categoryMiniItem"><a href="#">@item.MaDM</a></li>
+                        </ul>*@
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<style>
+    #mega-menu-title {
+        width: 120%;
+        height: 40px;
+        color: white;
+        background-color: orange;
+        text-align: center;
+        padding-top: 7px;
+        margin-left:20px;
+    }
+
+    #mega_menu {
+        width: 120%;
+        color: white;
+        background-color: orange;
+        text-align: left;
+        
+    }
+
+    .categorycustom {
+        font-size: 20px;
+        font-family: Calibri;
+        color: black;
+        text-decoration: none;
+    }
+        .categorycustom:hover
+        {
+            background-color:navajowhite;
+        }
+        ul li {
+            width: 120%;
+            padding: 0;
+            display: block;
+            background-color: white;
+            margin-left: 20px;
+        }
+
+    ul {
+        padding: 0px;
+        display: block;
+        margin-top: 0px;
+    }
+
+        ul li a {
+            text-decoration:none;
+            margin-left: 20px;
+            width: 100%;
+        }
+
+    .menu1 {
+        margin-left: 30px;
+    }
+
+        .menu1 ul li {
+            display: block;
+        }
+
+    ul li:hover {
+       
+        color: gray;
+    }
+
+    li {
+        height: 48px;
+        margin-bottom: 0px;
+    }
+
+    .listCategory :hover {
+        background-color: navajowhite;
+    }
+    @*hover.categoryItem {
+        background-color: navajowhite;
+    }*@
+</style>

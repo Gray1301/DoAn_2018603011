@@ -1,0 +1,334 @@
+﻿
+@model PagedList.IPagedList<wibuShop.Models.SanPham>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "XemSanPhamTheoDanhMuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link herf="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    List<string> tacgia = ViewBag.tacgia as List<string>;
+    List<string> nxb = ViewBag.nxb as List<string>;
+    int maDM = int.Parse(ViewBag.MaDM);
+    string tes = ViewBag.test;
+
+}
+
+<div class="container1" style="margin-left:40%">
+
+    <nav class="woocommerce-pagination1">
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("XemSanPhamTheoDanhMuc", new { page, loc = ViewBag.Loc }), new PagedListRenderOptions()
+       {
+           LiElementClasses = new string[] { "page-number" },
+           UlElementClasses = new string[] { "page-numbers", "nav-pagination", "links", "text-center" }
+       })
+        </div>
+    </nav>
+</div>
+<div class="shop-page-title category-page-title page-title ">
+    <div class="page-title-inner flex-row  medium-flex-wrap container">
+      
+        <ul class="w_nav" style="display:flex">
+            <li>Sắp xếp : </li>
+            <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , sort = "asc"})" >Giá: Thấp -> Cao </a></li>
+            <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , sort = "desc"})">Giá: Cao -> Thấp </a></li>
+        </ul>
+    </div>
+</div>
+<div style="display:flex;width:110%">
+    <div style="margin-top:20px;width:20%;">
+        <div>
+            <button class="accordion1">Giá</button>
+            <!-- Default checkbox -->
+            <div class="panel1">
+                <div class="form-check">
+                    @if (ViewBag.CanhBao == true)
+                    {
+                        <input class="form-check-input price-check" type="checkbox" name="checkbox1" id="flexCheckChecked1" checked onclick="gia1(false)" />
+
+                    }
+                    else
+                    {
+                        <input class="form-check-input price-check" type="checkbox" name="checkbox1" id="flexCheckChecked1" onclick="gia1(true)" />
+                    }
+                    <label class="form-check-label" for="flexCheckDefault">0đ - 100,000đ</label>
+                </div>
+
+                <!-- Checked checkbox -->
+                <div class="form-check">
+                    @if (ViewBag.CanhBao1 == true)
+                    {
+                        <input class="form-check-input price-check" type="checkbox" name="checkbox1" id="flexCheckChecked1" checked onclick="gia2(false)" />
+
+                    }
+                    else
+                    {
+                        <input class="form-check-input price-check" type="checkbox" name="checkbox1" id="flexCheckChecked1" onclick="gia2(true)" />
+                    }
+                    <label class="form-check-label" for="flexCheckDefault">100,000đ - 200,000đ</label>
+                </div>
+                <div class="form-check">
+                    @if (ViewBag.CanhBao2 == true)
+                    {
+                        <input class="form-check-input price-check" type="checkbox" name="checkbox1" id="flexCheckChecked1" checked onclick="gia3(false)" />
+
+                    }
+                    else
+                    {
+                        <input class="form-check-input price-check" type="checkbox" name="checkbox1" id="flexCheckChecked1" onclick="gia3(true)" />
+                    }
+                    <label class="form-check-label" for="flexCheckDefault">200,000đ - 300,000đ</label>
+                </div>
+                <div class="form-check">
+                    @if (ViewBag.CanhBao3 == true)
+                    {
+                        <input class="form-check-input price-check" type="checkbox" name="checkbox1" id="flexCheckChecked1" checked onclick="gia4(false)" />
+
+                    }
+                    else
+                    {
+                        <input class="form-check-input price-check" type="checkbox" name="checkbox1" id="flexCheckChecked1" onclick="gia4(true)" />
+                    }
+                    <label class="form-check-label" for="flexCheckDefault">300,000đ - Trở lên</label>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:20px">
+            <button class="accordion">Nhà xuất bản</button>
+            <div class="panel">
+                <p>
+
+                    @foreach (var item in nxb)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <label class="form-check-label" for="flexCheckChecked">
+                                @item
+                            </label>
+                        </div>
+                    }
+                </p>
+            </div>
+
+        </div>
+        <div style="margin-top:20px">
+            <button class="accordion">Tác giả</button>
+            <div class="panel">
+                <p>
+                    @foreach (var item in tacgia)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" onc />
+                            <label class="form-check-label" for="flexCheckChecked">
+
+
+                                @item
+
+
+                            </label>
+                        </div>
+                    }
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div class="row" id="content" style=" background-color: white;width:110%;padding-left:0px">
+        @foreach (var item in Model)
+        {
+            double giagiam = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+            double giam = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+            double giamphantram = Math.Round(giam, 0);
+            <div class="col-md-4 col-xs-6" style="width:18%;margin-left: 30px;padding:20px;float:left">
+                <div class="product" style="text-align:center;margin-top:20px;margin-bottom:20px">
+                    <div class="absolute left top z-1">
+                        <div class="callout badge badge-circle" style="background-color:red;width:65px;margin-bottom:5px">
+                            <div class="badge-inner secondary on-sale" style="background-color: red; width: 50px"><span class="onsale" style="background-color:red;font-size:20px;width:50px">-@giamphantram %</span></div>
+                        </div>
+                    </div>
+                    <div class="product-img">
+                        @{
+                            string ImagePath = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                        }
+                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                            <img src="@Url.Content(ImagePath)" id="anhSP" alt="" width="70%" height="210" />
+                        </a>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-category" style="text-align:left;margin-top:15px;min-height:40px">
+                            @Html.DisplayFor(modelItem => item.TenSP)
+                        </p>
+                        <h4 class="product-price" style="text-align:left; color:red">
+                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                            @String.Format("{0:#,###}", @giagiam)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                        </h4>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+
+    </div>
+  
+</div>
+<div style="margin-left:100px">
+    @{
+        Html.RenderAction("_Footer", "Home");
+    }
+</div>
+
+<style>
+    .widget_shopping_cart_content a {
+        text-decoration: none;
+        font-size: 40px;
+        font-family: Calibri;
+        margin-left: 20px;
+    }
+    .pagination-container ul li a {
+        display: flex;
+        border: medium;
+        border-color: gainsboro;
+        text-decoration: none;
+        color: blue;
+        font-size: 25px;
+        padding-left: 18px;
+        margin: 0px;
+        padding-right: 0px;
+    }
+
+    .pagination-container ul {
+        text-align: center;
+        display: flex;
+    }
+
+        .pagination-container ul li {
+            text-align: center;
+            width: 50px;
+            border-color: gainsboro;
+            margin: 0px;
+            padding: 0px;
+        }
+
+            .pagination-container ul li:hover {
+                background-color: orange;
+            }
+
+    .active a {
+        background-color: cornflowerblue;
+        color: white;
+        margin: 100px;
+    }
+
+    .product:hover {
+        background-color: whitesmoke;
+    }
+
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 8px;
+        width: 50%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+    .accordion1 {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 8px;
+        width: 50%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+    .active, .accordion:hover {
+        background-color: #ccc;
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+    .w_nav li a{
+        text-decoration:none;
+       
+    }
+    .w_nav li {
+        margin-left:20px;
+    }
+</style>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+    var tam = 0;
+    function gia1(abc) {
+        tam++;
+        if (abc) {
+            window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 100000})'
+        }
+
+        else {
+            tam = 0;
+             window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 0})'
+        }
+    }
+    function gia2(abc1) {
+        tam++;
+        if (abc1) {
+            window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 200000})'
+        }
+
+        else {
+            tam = 0;
+             window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 0})'
+        }
+    }
+    function gia3(abc2) {
+        tam++;
+        if (abc2) {
+            window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 300000})'
+        }
+
+        else {
+            tam = 0;
+             window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 0})'
+        }
+    }
+    function gia4(abc3) {
+        tam++;
+        if (abc3) {
+            window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 300001})'
+        }
+
+        else {
+            tam = 0;
+             window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 0})'
+        }
+    }
+</script>
+
+
+

@@ -1,0 +1,63 @@
+﻿@model wibuShop.Models.TaiKhoan
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="d-flex justify-content-center" style="text-align:center;margin-left:500px;padding:30px">
+    <div class="auth-form-light text-left py-5 px-4 px-sm-5"style="border:solid;border-color:gainsboro;border-width:2px;width:400px;text-align:center">
+        <h2 class="font-weight-light">Đăng nhập để tiếp tục</h2>
+        @using (Html.BeginForm("Login", "TaiKhoan", FormMethod.Post))
+        {
+
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control1", @placeholder = "Email" })
+
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control1", @placeholder = "Password" })
+            </div>
+
+            <div class="form-group ">
+                <input type="submit" name="submit" class="btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="ĐĂNG NHẬP" style="background-color:orange;height:35px;width:120px;margin-top:20px;font-weight:bold" />
+            </div>
+            <div class="text-center mt-4 font-weight-light" style="margin-top:20px;margin-bottom:20px">
+                Không có tài khoản? <a href="@Url.Action("DangKy","TaiKhoan")" class="text-primary" style="color:blue;text-decoration:none">Đăng ký</a>
+            </div>
+            @Html.AntiForgeryToken() if (ViewBag.error != null)
+            {
+                <div class="form-group">
+                    <div class="alert alert-danger" style="margin-top:0px;background-color:red;height:20px;color:black;vertical-align:middle;padding-top:10px;padding-bottom:10px;font-size:18px;color:white">
+                    @ViewBag.error
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</main>
+<style>
+    .alert {
+        background: #ffdada;
+    }
+    #main{
+        text-align:center;
+    }
+    .form-control1{
+        background-color:white;
+        height:30px;
+        width:300px;
+        margin-top:20px;
+    }
+    .widget_shopping_cart_content a {
+        text-decoration: none;
+        font-size: 40px;
+        font-family: Calibri;
+        margin-left: 20px;
+    }
+</style>
+<div style="margin-left:140px">
+    @{
+        Html.RenderAction("_Footer", "Home");
+    }
+</div>
+
