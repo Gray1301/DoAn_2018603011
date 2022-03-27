@@ -8,9 +8,8 @@ namespace wibuShop.Models
     public partial class waifuShop : DbContext
     {
         public waifuShop()
-            : base("name=waifuShop2")
+            : base("name=waifuShop3")
         {
-
         }
 
         public virtual DbSet<Chi_Tiet_Gio_Hang> Chi_Tiet_Gio_Hang { get; set; }
@@ -19,6 +18,7 @@ namespace wibuShop.Models
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -37,6 +37,11 @@ namespace wibuShop.Models
                 .WithRequired(e => e.GioHang)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<GioHang>()
+                .HasMany(e => e.HoaDons)
+                .WithRequired(e => e.GioHang)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<HoaDon>()
                 .Property(e => e.SoDienThoai)
                 .IsFixedLength();
@@ -49,6 +54,11 @@ namespace wibuShop.Models
             modelBuilder.Entity<SanPham>()
                 .Property(e => e.Gia)
                 .HasPrecision(19, 4);
+
+            modelBuilder.Entity<SanPham>()
+                .HasMany(e => e.Chi_Tiet_Gio_Hang)
+                .WithRequired(e => e.SanPham)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TaiKhoan>()
                 .Property(e => e.SoDienThoai)

@@ -1,4 +1,5 @@
 ﻿
+
 @{
     Layout = null;
 }
@@ -30,29 +31,33 @@
 
     <link rel="stylesheet" href="~/Areas/plugins/daterangepicker/daterangepicker.css">
 
+    @*Vòng tròn ở index*@
+    @*<link href="~/Areas/dist/css/custom.min.css" rel="stylesheet">*@
+
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
     <script nonce="dd4bf294-36a6-41c6-8f5f-e693ab299781">(function (w, d) { !function (a, e, t, r, z) { a.zarazData = a.zarazData || {}, a.zarazData.executed = [], a.zarazData.tracks = [], a.zaraz = { deferred: [] }; var s = e.getElementsByTagName("title")[0]; s && (a.zarazData.t = e.getElementsByTagName("title")[0].text), a.zarazData.w = a.screen.width, a.zarazData.h = a.screen.height, a.zarazData.j = a.innerHeight, a.zarazData.e = a.innerWidth, a.zarazData.l = a.location.href, a.zarazData.r = e.referrer, a.zarazData.k = a.screen.colorDepth, a.zarazData.n = e.characterSet, a.zarazData.o = (new Date).getTimezoneOffset(), a.dataLayer = a.dataLayer || [], a.zaraz.track = (e, t) => { for (key in a.zarazData.tracks.push(e), t) a.zarazData["z_" + key] = t[key] }, a.zaraz._preSet = [], a.zaraz.set = (e, t, r) => { a.zarazData["z_" + e] = t, a.zaraz._preSet.push([e, t, r]) }, a.dataLayer.push({ "zaraz.start": (new Date).getTime() }), a.addEventListener("DOMContentLoaded", (() => { var t = e.getElementsByTagName(r)[0], z = e.createElement(r); z.defer = !0, z.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(a.zarazData))), t.parentNode.insertBefore(z, t) })) }(w, d, 0, "script"); })(window, document);</script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+    <div class="wrapper" >
 
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="~/wwwroot/images/LOGO.PNG" alt="AdminLTELogo" height="60" width="60">
         </div>
 
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="color:red;font-weight:bold;opacity:1">
 
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="@Url.Action("DangXuat","DangNhap")" class="nav-link" title="Đăng xuất" >
+                        <i class="mdi mdi-logout text-primary"></i>
+                        Đăng xuất
+                    </a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
+
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -78,22 +83,22 @@
                     </div>
                 </li>
 
-            
 
-              
+
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-               
+
             </ul>
         </nav>
 
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="#" class="brand-link">
+            <a href="@Url.Action("Index","Home")" class="brand-link">
                 <img src="~/Areas/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">Admin</span>
@@ -102,12 +107,12 @@
             <div class="sidebar">
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="~/Areas/dist/img/thanh.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Hoàng Xuân Thanh</a>
-                    </div>
+                    @{
+                        string img = "~/wwwroot/images/TaiKhoan/" + Session["AnhAdmin"];
+                    }
+                    <img src="@Url.Content(img)"
+                         alt="profile" />
+                    <span class="nav-profile-name" style="color:white">@Session["HoTenAdmin"]</span>
                 </div>
 
 
@@ -119,7 +124,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index","Home")" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Bảng điều khiển
@@ -128,7 +133,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index","SanPhams")" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
                                     Quản lí sản phẩm
@@ -138,7 +143,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index","DanhMucSPs")" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Quản lí danh mục
@@ -148,7 +153,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index","HoaDons")" class="nav-link">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>
                                     Quản lí hóa đơn
@@ -158,20 +163,10 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index","TaiKhoans")" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     Quản lí tài khoản
-
-                                </p>
-                            </a>
-
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Quản lí đơn hàng đã đặt
 
                                 </p>
                             </a>
@@ -187,107 +182,15 @@
 
         <div class="content-wrapper">
 
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Xin chào, Admin</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Bảng điều khiển</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @RenderBody()
 
 
-            <section class="content">
-                <div class="container-fluid">
-
-                    <div class="row">
-                        <div class="col-lg-3 col-6">
-
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3>150</h3>
-                                    <p>New Orders</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-6">
-
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-                                    <p>Bounce Rate</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-6">
-
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3>44</h3>
-                                    <p>User Registrations</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-6">
-
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3>65</h3>
-                                    <p>Unique Visitors</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row">
-
-
-
-                    </div>
-
-                </div>
-            </section>
 
         </div>
 
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2022 <a href="https://adminlte.io">Admin</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Đại học Công Nghiệp Hà Nội</b>
-            </div>
-        </footer>
 
-        <aside class="control-sidebar control-sidebar-dark">
-        </aside>
+
+
 
     </div>
 
@@ -320,7 +223,58 @@
 
     <script src="~/Areas/dist/js/adminlte.js?v=3.2.0"></script>
 
+    @*Lọc*@
+    <script src="~/Areas/dist/js/woocommerce.min287d.js"></script>
+    <script src="~/Areas/dist/js/dashboard.js"></script>
+    <script src="~/Areas/dist/js/data-table.js"></script>
+    <script src="~/Areas/dist/js/dataTables.bootstrap4.js"></script>
+    <script src="~/Areas/dist/js/jquery.dataTables.js"></script>
+
     <script src="~/Areas/dist/js/pages/dashboard.js"></script>
+    @*Thông báo xóa bằng ô thông báo*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
+    @*Làm vòng tròn ở index, hiện theo % số liệu bên cạnh*@
+    @*<script src="~/Areas/dist/js/custom.min.js"></script>*@
 </body>
 
 </html>
+<style>
+    .active a {
+       
+        color: white;
+        margin: 100px;
+    }
+    .page-number {
+        list-style: none;
+        float: left;
+        font-size: 25px;
+        color: white;
+    }
+        .page-number a {
+            background-color: cornflowerblue;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            margin: 5px;
+            border-radius: 50%;
+            color:white;
+        }
+    .luulai{
+        color:white;
+        background-color:cornflowerblue;
+    }
+    .luulai:hover{
+        color:white;
+        background-color:green;
+    }
+    .font-weight-bold bdi{
+        text-decoration:none
+    }
+    .col-md-3{
+        text-decoration:none
+    }
+   
+ 
+</style>

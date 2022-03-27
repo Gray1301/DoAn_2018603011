@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -156,8 +158,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\DanhMucSPController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DangNhapController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DanhMucSPsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HoaDonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
     <Compile Include="Controllers\ChinhSachController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -173,6 +180,7 @@
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\PhanQuyen.cs" />
     <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\waifuShop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -192,6 +200,9 @@
     <Content Include="Areas\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="Areas\dist\css\alt\adminlte.plugins.css" />
     <Content Include="Areas\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Areas\dist\css\custom.min.css" />
+    <Content Include="Areas\dist\css\font-awesome.min.css.css" />
+    <Content Include="Areas\dist\css\style.css" />
     <Content Include="Areas\dist\img\AdminLTELogo.png" />
     <Content Include="Areas\dist\img\anh.PNG" />
     <Content Include="Areas\dist\img\avatar.png" />
@@ -228,10 +239,30 @@
     <Content Include="Areas\dist\img\user8-128x128.jpg" />
     <Content Include="Areas\dist\js\adminlte.js" />
     <Content Include="Areas\dist\js\adminlte.min.js" />
+    <Content Include="Areas\dist\js\bootstrap.min.js" />
+    <Content Include="Areas\dist\js\dashboard.js" />
+    <Content Include="Areas\dist\js\data-table.js" />
+    <Content Include="Areas\dist\js\dataTables.bootstrap4.js" />
     <Content Include="Areas\dist\js\demo.js" />
+    <Content Include="Areas\dist\js\hoverable-collapse.js" />
+    <Content Include="Areas\dist\js\jquery.dataTables.js" />
+    <Content Include="Areas\dist\js\jquery.min.js" />
+    <Content Include="Areas\dist\js\main.js" />
+    <Content Include="Areas\dist\js\off-canvas.js" />
     <Content Include="Areas\dist\js\pages\dashboard.js" />
     <Content Include="Areas\dist\js\pages\dashboard2.js" />
     <Content Include="Areas\dist\js\pages\dashboard3.js" />
+    <Content Include="Areas\dist\js\popper.js" />
+    <Content Include="Areas\dist\js\template.js" />
+    <Content Include="Areas\dist\js\woocommerce.min287d.js" />
+    <Content Include="Areas\dist\vendors\base\vendor.bundle.base.css" />
+    <Content Include="Areas\dist\vendors\base\vendor.bundle.base.js" />
+    <Content Include="Areas\dist\vendors\chart.js\Chart.min.js" />
+    <Content Include="Areas\dist\vendors\datatables.net-bs4\dataTables.bootstrap4.css" />
+    <Content Include="Areas\dist\vendors\datatables.net-bs4\dataTables.bootstrap4.js" />
+    <Content Include="Areas\dist\vendors\datatables.net\jquery.dataTables.js" />
+    <Content Include="Areas\dist\vendors\mdi\css\materialdesignicons.min.css" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.svg" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
@@ -2119,6 +2150,7 @@
     <Content Include="wwwroot\images\hanhtrinh.jpg" />
     <Content Include="wwwroot\images\hcm.jpg" />
     <Content Include="wwwroot\images\images.jfif" />
+    <Content Include="wwwroot\images\khai-niem-ve-san-pham-product-va-nhung-cach-phan-loai-chung.jpg" />
     <Content Include="wwwroot\images\LOGO.PNG" />
     <Content Include="wwwroot\images\logo1.PNG" />
     <Content Include="wwwroot\images\logo2.PNG" />
@@ -2198,6 +2230,7 @@
     <Content Include="wwwroot\images\slide1.png" />
     <Content Include="wwwroot\images\slide2.jpg" />
     <Content Include="wwwroot\images\slide3.jpg" />
+    <Content Include="wwwroot\images\TaiKhoan\149071.png" />
     <Content Include="wwwroot\images\TaiKhoan\thanh.jpg" />
     <Content Include="wwwroot\images\TaiKhoan\vinh.jpg" />
     <Content Include="wwwroot\images\TaiKhoan\linh.jpg" />
@@ -2270,7 +2303,6 @@
     <Content Include="Views\GioHang\XemHoaDon.cshtml" />
     <Content Include="Views\GioHang\XacNhanThanhToan.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js.map" />
@@ -2404,6 +2436,36 @@
     <Content Include="Areas\dist\js\.eslintrc.json" />
     <Content Include="Areas\dist\js\adminlte.js.map" />
     <Content Include="Areas\dist\js\adminlte.min.js.map" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\dist\vendors\.DS_Store" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\DangNhap\DangNhap.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Index.cshtml" />
     <None Include="wwwroot\js\jquery-3.4.1.intellisense.js" />
     <Content Include="wwwroot\js\jquery-3.4.1.js" />
     <Content Include="wwwroot\js\jquery-3.4.1.min.js" />
@@ -2435,8 +2497,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\DanhMucSP\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\font\" />
   </ItemGroup>
@@ -2451,11 +2512,15 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

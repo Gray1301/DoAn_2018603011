@@ -1,0 +1,156 @@
+﻿@model wibuShop.Models.SanPham
+
+@{ ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
+
+@using (Html.BeginForm("Create", "SanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+@Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="content-wrapper" style="padding:10px;margin:10px">
+                                    <div class="row">
+                                        <div class="col-md-12 grid-margin">
+                                            <div class="d-flex justify-content-between flex-wrap">
+                                                <div class="d-flex align-items-end flex-wrap">
+                                                    <div class="mr-md-3 mr-xl-5">
+                                                        <h2>Xin chào, Admin</h2>
+                                                        <div class="d-flex">
+                                                            <i class="mdi mdi-home text-muted hover-cursor"></i>
+                                                            <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Quản lý sản phẩm&nbsp;&nbsp;/&nbsp;Thêm sản phẩm</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 grid-margin">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Thêm mới sản phẩm</h4>
+                                                <form class="form-sample">
+                                                    <p class="card-description">
+                                                        Nhập thông tin sản phẩm
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">@Html.LabelFor(model => model.AnhSP)</label>
+                                                                <div class="col-sm-9 d-flex justify-content-center align-items-center">
+                                                                    <img id="output" class="img-rounded" alt="Ảnh" width="150" height="auto"
+                                                                         src="~/wwwroot/images/khai-niem-ve-san-pham-product-va-nhung-cach-phan-loai-chung.jpg" />
+                                                                    <br />
+                                                                    <label for="ufile" style="cursor: pointer; text-transform: none;" class="btn btn-sm btn-primary ml-2">Chọn tệp</label>
+                                                                    <input name="ImageFile" id="ufile" type="file" style="display: none;" onchange="loadFile(event)" />
+
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">@Html.LabelFor(model => model.MaDM)</label>
+                                                                <div class="col-sm-9">
+
+                                                                    @Html.DropDownList("MaDM", null, htmlAttributes: new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.MaDM, "", new { @class = "text-danger" })
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">@Html.LabelFor(model => model.TenSP)</label>
+                                                                <div class="col-sm-9">
+                                                                    @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">@Html.LabelFor(model => model.Gia)</label>
+                                                                <div class="col-sm-9">
+                                                                    @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">@Html.LabelFor(model => model.SoLuongTon)</label>
+                                                                <div class="col-sm-9">
+                                                                    @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div class="row">
+                                                       
+                                                        
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">@Html.LabelFor(model => model.TacGia)</label>
+                                                                <div class="col-sm-9">
+                                                                    @Html.EditorFor(model => model.TacGia, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">@Html.LabelFor(model => model.NhaXuatBan)</label>
+                                                                <div class="col-sm-9">
+                                                                    @Html.EditorFor(model => model.NhaXuatBan, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    @Html.ValidationMessageFor(model => model.NhaXuatBan, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">@Html.LabelFor(model => model.GiamGia)</label>
+                                                                <div class="col-sm-9">
+                                                                    @Html.EditorFor(model => model.GiamGia, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    @Html.ValidationMessageFor(model => model.GiamGia, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center">
+                                                        <a class="nav-link mr-2" href="@Url.Action("Index","SanPhams")">
+                                                            <span class="menu-title btn btn-outline-danger btn-fw">QUAY LẠI</span>
+                                                        </a>
+                                                        <div class="nav-link ml-2">
+                                                            <input type="submit" value="THÊM" class="btn btn-default menu-title btn btn-outline-success btn-fw luulai" />
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>}
+@if (ViewBag.Error != null)
+{
+<div class="alert  alert-danger" role="alert">@ViewBag.Error</div>}
+<script>
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }</script>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

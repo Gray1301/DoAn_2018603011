@@ -10,6 +10,8 @@
     List<string> nxb = ViewBag.nxb as List<string>;
     int maDM = int.Parse(ViewBag.MaDM);
     string tes = ViewBag.test;
+    int x = ViewBag.cost;
+    string sort = ViewBag.sort;
 
 }
 
@@ -30,8 +32,8 @@
       
         <ul class="w_nav" style="display:flex">
             <li>Sắp xếp : </li>
-            <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , sort = "asc"})" >Giá: Thấp -> Cao </a></li>
-            <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , sort = "desc"})">Giá: Cao -> Thấp </a></li>
+            <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = x,sort = "asc" })" >Giá: Thấp -> Cao </a></li>
+            <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = x,sort = "desc" })">Giá: Cao -> Thấp </a></li>
         </ul>
     </div>
 </div>
@@ -287,12 +289,13 @@
     function gia1(abc) {
         tam++;
         if (abc) {
-            window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 100000})'
+            window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 100000, sort = sort})'
+
         }
 
         else {
             tam = 0;
-             window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 0})'
+             window.location = '@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = 0, sort = sort })'
         }
     }
     function gia2(abc1) {
