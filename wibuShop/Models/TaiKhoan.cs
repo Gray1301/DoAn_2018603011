@@ -37,10 +37,11 @@
         [DisplayName("Họ và tên")]
         public string HoTen { get; set; }
 
+        [Required(ErrorMessage = "Bạn chưa nhập địa chỉ")]
         [Column(TypeName = "ntext")]
         [DisplayName("Địa chỉ")]
         public string DiaChi { get; set; }
-
+        [Required(ErrorMessage = "Bạn chưa nhập SĐT")]
         [StringLength(10)]
         [DisplayName("Số điện thoại")]
         public string SoDienThoai { get; set; }

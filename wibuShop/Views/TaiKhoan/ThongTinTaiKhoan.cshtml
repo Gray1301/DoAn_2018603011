@@ -1,22 +1,30 @@
 ﻿
 @model wibuShop.Models.TaiKhoan
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @{
     ViewBag.Title = "ThongTinTaiKhoan";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-
-
-<main id="main" class="row d-flex justify-content-center align-items-center" style="text-align:center;margin-left:240px">
-    <div class="col-md-6 mt-5">
-        <h2>Thông tin tài khoản</h2>
+<style>
+    .col-main {
+        background-color:gainsboro
+    }
+    body, .container, bg-header-con, .ma-menu .container{
+        background-color:white
+    }
+    .col-md-41{
+        font-weight: bold;
+        font-size: 17px
+    }
+    
+</style>
+<main id="main" class="row d-flex justify-content-center align-items-center"  style="text-align:center;background-color:white;height:auto;width:60%;margin-left:35%;margin-bottom:100px">
+    <div class="col-md-6 mt-5" style="text-align:center">
+        <h1>THÔNG TIN TÀI KHOẢN</h1>
         <form class="pt-3">
             <div class="form-group row">
-                <div class="col-md-4">Ảnh</div>
+                <div class="col-md-4 col-md-41">Ảnh</div>
                 <div class="col-md-8">
                     @{ string image = "~/wwwroot/images/TaiKhoan/" + Model.Anh; }
                     @if (Session["Anh"] != null)
@@ -28,49 +36,34 @@
                 </div>
             </div>
             <div class="form-group row ">
-                <div class="col-md-4">Họ tên</div>
+                <div class="col-md-4 col-md-41">Họ tên</div>
                 <div class="col-md-8">@Html.DisplayFor(model => model.HoTen)</div>
             </div>
             <div class="form-group row ">
-                <div class="col-md-4 ">Email</div>
+                <div class="col-md-4 col-md-41">Email</div>
                 <div class="col-md-8">@Html.DisplayFor(model => model.Email)</div>
             </div>
 
             <div class="form-group row ">
-                <div class="col-md-4 ">Số điện thoại</div>
+                <div class="col-md-4 col-md-41">Số điện thoại</div>
                 <div class="col-md-8 ">@Html.DisplayFor(model => model.SoDienThoai)</div>
             </div>
             <div class="form-group row ">
-                <div class="col-md-4 ">Địa chỉ</div>
+                <div class="col-md-4 col-md-41">Địa chỉ</div>
                 <div class="col-md-8 ">@Html.DisplayFor(model => model.DiaChi)</div>
             </div>
             <div class="mt-1 d-flex justify-content-center align-items-center">
                 @{ string link = "/TaiKhoan/SuaTaiKhoan/" + Model.MaTK;
                     string linkHoaDon = "/GioHang/XemHoaDon/" + Model.MaTK; }
-                <a href="@Url.Content(link)" style="background-color: orange;color:black" class="btn btn-lg font-weight-medium auth-form-btn mr-5">Sửa Tài Khoản</a>
-                <a href="@Url.Content(linkHoaDon)" style="background-color: orange;; color: black" class="btn btn-lg font-weight-medium auth-form-btn">Đơn Mua</a>
+                <a href="@Url.Content(link)" style="background-color: orange;color:white" class="btn btn-lg font-weight-medium auth-form-btn mr-5">Sửa Tài Khoản</a>
+                <a href="@Url.Content(linkHoaDon)" style="background-color: orange;color: white" class="btn btn-lg font-weight-medium auth-form-btn">Đơn Mua</a>
 
             </div>
 
         </form>
 
     </div>
-
-
 </main>
-<div>
-    @{
-        Html.RenderAction("_Footer", "Home");
-    }
-</div>
-<!-- container-scroller -->
-<!-- plugins:js -->
-<script src="../../vendors/base/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- inject:js -->
-<script src="../../js/off-canvas.js"></script>
-<script src="../../js/hoverable-collapse.js"></script>
-<script src="../../js/template.js"></script>
-
+<hr />
 
 

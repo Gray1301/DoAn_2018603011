@@ -64,6 +64,19 @@ namespace wibuShop.Controllers
             tinhs2.Sort();
             return tinhs2;
         }
+        public List<string> NXB1(int id)
+        {
+            List<string> tinhs2 = new List<string>();
+            var nxb = db.SanPhams.Where(e => e.MaDM == id).Select(e => new { e.NhaXuatBan }).Distinct().ToList();
+            foreach (var item in nxb)
+            {
+                tinhs2.Add(item.NhaXuatBan);
+            }
+            tinhs2.Sort();
+            return tinhs2;
+        }
+        
+    
         public ActionResult XemSanPhamTheoDanhMuc(string id, int? page, string loc, int cost = 0, string sort = "")
         {
             ViewBag.tacgia = tacgia();
@@ -76,82 +89,68 @@ namespace wibuShop.Controllers
             bool abc2 = false;
             bool abc3 = false;
             var sanpham = db.SanPhams.Where(s => s.MaDM.ToString().Equals(id)).Select(s => s);
-
-
-            //if(cost == 100000 )
+            //if (cost == 100000 && sort == "asc")
             //{
             //    decimal a = Convert.ToDecimal(cost);
-            //    sanpham = sanpham.Where(s => s.Gia <= a).Select(s => s);
-            //    abc = true;                
+            //    sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
+            //    abc = true;
             //}
-            //else if (cost == 200000)
+            //else if (cost == 100000 && sort == "desc")
             //{
             //    decimal a = Convert.ToDecimal(cost);
-            //    sanpham = sanpham.Where(s => s.Gia > 100000 && s.Gia <= a).Select(s => s);
-            //    abc1 = true;
-
+            //    sanpham = sanpham.OrderByDescending(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
+            //    abc = true;
             //}
-            //else if (cost == 300000)
+            //else if (cost == 200000 && sort == "asc")
             //{
             //    decimal a = Convert.ToDecimal(cost);
-            //    sanpham = sanpham.Where(s => s.Gia > 200000 && s.Gia <= a).Select(s => s);
-            //    abc2 = true;
-
+            //    sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
+            //    abc = true;
             //}
-            //else if(cost == 300001)
+            //else if (cost == 200000 && sort == "desc")
             //{
             //    decimal a = Convert.ToDecimal(cost);
-            //    sanpham = sanpham.Where(s => s.Gia > a).Select(s => s);
-            //    abc3 = true;
-
+            //    sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
+            //    abc = true;
             //}
-
-            //if(sort == "asc")
+            //else if (cost == 300000 && sort == "asc")
             //{
-            //    sanpham = sanpham.OrderBy(s => s.Gia);
+            //    decimal a = Convert.ToDecimal(cost);
+            //    sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
+            //    abc = true;
             //}
-            //else if(sort == "desc")
+            //else if (cost == 300000 && sort == "desc")
             //{
-            //    sanpham = sanpham.OrderByDescending(s => s.Gia);
+            //    decimal a = Convert.ToDecimal(cost);
+            //    sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
+            //    abc = true;
             //}
-            if (cost == 100000 && sort == "asc")
-            {
-                decimal a = Convert.ToDecimal(cost);
-                sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
-                abc = true;
-            }
-            else if (cost == 100000 && sort == "desc")
-            {
-                decimal a = Convert.ToDecimal(cost);
-                sanpham = sanpham.OrderByDescending(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
-                abc = true;
-            }
-            else if (sort == "asc"&&cost == 100000)
-            {
-                decimal a = Convert.ToDecimal(cost);
-                sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
-                abc = true;
-            }
-            else if (sort == "desc"&&cost == 100000)
-            {
-                decimal a = Convert.ToDecimal(cost);
-                sanpham = sanpham.OrderByDescending(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
-                abc = true;
-            }
-            else if (cost == 100000)
+            //else if (cost == 300001 && sort == "asc")
+            //{
+            //    decimal a = Convert.ToDecimal(cost);
+            //    sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
+            //    abc = true;
+            //}
+            //else if (cost == 300001 && sort == "desc")
+            //{
+            //    decimal a = Convert.ToDecimal(cost);
+            //    sanpham = sanpham.OrderBy(s => s.Gia).Where(s => s.Gia <= a).Select(s => s);
+            //    abc = true;
+            //}
+            if (cost == 100000)
             {
                 decimal a = Convert.ToDecimal(cost);
                 sanpham = sanpham.Where(s => s.Gia <= a).Select(s => s);
                 abc = true;
             }
-            else if (sort == "desc")
-            {
-                sanpham = sanpham.OrderByDescending(s => s.Gia);
-            }
-            else if (sort == "asc")
-            {
-                sanpham = sanpham.OrderBy(s => s.Gia);
-            }
+            //else if (sort == "desc")
+            //{
+            //    sanpham = sanpham.OrderByDescending(s => s.Gia);
+            //}
+            //else if (sort == "asc")
+            //{
+            //    sanpham = sanpham.OrderBy(s => s.Gia);
+            //}
             else if (cost == 200000)
             {
                 decimal a = Convert.ToDecimal(cost);

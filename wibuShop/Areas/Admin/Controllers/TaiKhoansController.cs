@@ -177,34 +177,36 @@ namespace wibuShop.Areas.Admin.Controllers
 
         public ActionResult DeleteConfirmedCustom(int id)
         {
-            GioHang giohang = db.GioHangs.Where(g => g.MaTK == id).FirstOrDefault();
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            List<GioHang> giohang = db.GioHangs.Where(g => g.MaTK == id).ToList();
             if (giohang != null)
             {
-
-                var chiTietGioHang = db.Chi_Tiet_Gio_Hang.Where(c => c.MaGioHang == giohang.MaGioHang).ToList();
-                if (chiTietGioHang != null)
+                foreach (var item in giohang)
                 {
-                    foreach (var item in chiTietGioHang)
+                    var chiTietGioHang = db.Chi_Tiet_Gio_Hang.Where(c => c.MaGioHang ==item.MaGioHang).ToList();
+                    if (chiTietGioHang != null)
                     {
-                        db.Chi_Tiet_Gio_Hang.Remove(item);
-                        db.SaveChanges();
+                        foreach (var item1 in chiTietGioHang)
+                        {
+                            db.Chi_Tiet_Gio_Hang.Remove(item1);
+                            db.SaveChanges();
+                        }
                     }
-                }
-                var hoaDon = db.HoaDons.Where(c => c.MaGioHang == giohang.MaGioHang).ToList();
-                if (hoaDon != null)
-                {
-                    foreach (var item in hoaDon)
+                    var hoaDon = db.HoaDons.Where(c => c.MaGioHang == item.MaGioHang).ToList();
+                    if (hoaDon != null)
                     {
-                        db.HoaDons.Remove(item);
-                        db.SaveChanges();
+                        foreach (var item1 in hoaDon)
+                        {
+                            db.HoaDons.Remove(item1);
+                            db.SaveChanges();
+                        }
                     }
+                    db.GioHangs.Remove(item);
+                    db.SaveChanges();
                 }
-                db.GioHangs.Remove(giohang);
-                db.SaveChanges();
             }
             try
             {
+                TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
                 db.TaiKhoans.Remove(taiKhoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -214,7 +216,7 @@ namespace wibuShop.Areas.Admin.Controllers
                 return RedirectToAction("Index", "TaiKhoans", new { error = "Không  được  Xóa  tài  khoản  này ! " });
             }
         }
-     
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

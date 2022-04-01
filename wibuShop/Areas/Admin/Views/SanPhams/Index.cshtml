@@ -3,7 +3,9 @@
 
 @{ ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-<link herf="~/Content/PagedList.css" rel="stylesheet" type="text/css" /> List<wibuShop.Models.DanhMucSP> dm = (List<wibuShop.Models.DanhMucSP>)ViewBag.DanhMuc; }
+<link herf="~/Content/PagedList.css" rel="stylesheet" type="text/css" /> 
+List<wibuShop.Models.DanhMucSP> dm = (List<wibuShop.Models.DanhMucSP>)ViewBag.DanhMuc; 
+    }
 @if (ViewBag.Error != null)
 {
 @ViewBag.Error;

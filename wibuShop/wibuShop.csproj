@@ -184,8 +184,16 @@
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\waifuShop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\dist\css\abc.css" />
     <Content Include="Areas\dist\css\adminlte.css" />
     <Content Include="Areas\dist\css\adminlte.min.css" />
     <Content Include="Areas\dist\css\alt\adminlte.components.css" />
@@ -240,6 +248,7 @@
     <Content Include="Areas\dist\js\adminlte.js" />
     <Content Include="Areas\dist\js\adminlte.min.js" />
     <Content Include="Areas\dist\js\bootstrap.min.js" />
+    <Content Include="Areas\dist\js\custom.min.js" />
     <Content Include="Areas\dist\js\dashboard.js" />
     <Content Include="Areas\dist\js\data-table.js" />
     <Content Include="Areas\dist\js\dataTables.bootstrap4.js" />
@@ -251,16 +260,18 @@
     <Content Include="Areas\dist\js\off-canvas.js" />
     <Content Include="Areas\dist\js\pages\dashboard.js" />
     <Content Include="Areas\dist\js\pages\dashboard2.js" />
-    <Content Include="Areas\dist\js\pages\dashboard3.js" />
     <Content Include="Areas\dist\js\popper.js" />
     <Content Include="Areas\dist\js\template.js" />
     <Content Include="Areas\dist\js\woocommerce.min287d.js" />
     <Content Include="Areas\dist\vendors\base\vendor.bundle.base.css" />
     <Content Include="Areas\dist\vendors\base\vendor.bundle.base.js" />
+    <Content Include="Areas\dist\vendors\bootstrap.bundle.min.js" />
     <Content Include="Areas\dist\vendors\chart.js\Chart.min.js" />
+    <Content Include="Areas\dist\vendors\Chart.min.js" />
     <Content Include="Areas\dist\vendors\datatables.net-bs4\dataTables.bootstrap4.css" />
     <Content Include="Areas\dist\vendors\datatables.net-bs4\dataTables.bootstrap4.js" />
     <Content Include="Areas\dist\vendors\datatables.net\jquery.dataTables.js" />
+    <Content Include="Areas\dist\vendors\jquery.min.js" />
     <Content Include="Areas\dist\vendors\mdi\css\materialdesignicons.min.css" />
     <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.svg" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
@@ -1504,8 +1515,8 @@
     <Content Include="Areas\plugins\jquery-validation\localization\methods_nl.min.js" />
     <Content Include="Areas\plugins\jquery-validation\localization\methods_pt.js" />
     <Content Include="Areas\plugins\jquery-validation\localization\methods_pt.min.js" />
+    <Content Include="Areas\plugins\jquery\JavaScript.js" />
     <Content Include="Areas\plugins\jquery\jquery.js" />
-    <Content Include="Areas\plugins\jquery\jquery.min.js" />
     <Content Include="Areas\plugins\jquery\jquery.slim.js" />
     <Content Include="Areas\plugins\jquery\jquery.slim.min.js" />
     <Content Include="Areas\plugins\jqvmap\jquery.vmap.js" />
@@ -2140,11 +2151,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="WebForm1.aspx" />
     <Content Include="wwwroot\images\banner1.PNG" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km1.jpg" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km2.jpg" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km3.jpg" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km4.jpg" />
+    <Content Include="wwwroot\images\cap.PNG" />
     <Content Include="wwwroot\images\cuongyeu.jpg" />
     <Content Include="wwwroot\images\habermas.jpg" />
     <Content Include="wwwroot\images\hanhtrinh.jpg" />
@@ -2154,6 +2167,8 @@
     <Content Include="wwwroot\images\LOGO.PNG" />
     <Content Include="wwwroot\images\logo1.PNG" />
     <Content Include="wwwroot\images\logo2.PNG" />
+    <Content Include="wwwroot\images\logo3.PNG" />
+    <Content Include="wwwroot\images\logout.PNG" />
     <Content Include="wwwroot\images\lsth.jpg" />
     <Content Include="wwwroot\images\nav\brand.PNG" />
     <Content Include="wwwroot\images\nav\chply.PNG" />
@@ -2251,6 +2266,7 @@
     <Content Include="wwwroot\images\ThanhToan\anh8.png" />
     <Content Include="wwwroot\images\ThanhToan\anh9.png" />
     <Content Include="wwwroot\images\toituduy.jpg" />
+    <Content Include="wwwroot\images\tải xuống.png" />
     <Content Include="wwwroot\images\vng.jpg" />
     <Content Include="wwwroot\images\ytuong.jpg" />
     <Content Include="wwwroot\js\bootstrap.js" />
@@ -2258,7 +2274,6 @@
     <Content Include="Views\Home\_Nav.cshtml" />
     <Content Include="Views\SanPham\XemSanPhamTheoDanhMuc.cshtml" />
     <Content Include="Views\SanPham\SanPham.cshtml" />
-    <Content Include="Views\Home\_Footer.cshtml" />
     <Content Include="Views\ChinhSach\DieuKhoan.cshtml" />
     <Content Include="Views\ChinhSach\BaoMat.cshtml" />
     <Content Include="Views\ChinhSach\GioiThieu.cshtml" />
@@ -2301,7 +2316,6 @@
     <Content Include="Views\GioHang\ThanhToan.cshtml" />
     <Content Include="Views\GioHang\ChiTiet.cshtml" />
     <Content Include="Views\GioHang\XemHoaDon.cshtml" />
-    <Content Include="Views\GioHang\XacNhanThanhToan.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />

@@ -5,8 +5,6 @@
     double TongTien = 0;
 }
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 @if (Model == null || Model.Count == 0)
 {
     <p style="font-size: 20px; font-weight: 500; color:black;text-align:center" class="text-center mt-5 mb-5">
@@ -22,121 +20,100 @@ else
         <div class="row row-main">
             <div class="large-12 col">
                 <div class="col-inner">
-
-
-
                     <div class="woocommerce">
                         <div class="woocommerce-notices-wrapper"></div>
-                        <div class="woocommerce row row-large row-divided" >
+                        <div class="woocommerce row row-large row-divided">
                             <div class="col large-7 pb-0 ">
 
 
                                 <div class="cart-wrapper sm-touch-scroll">
 
-                                    <form id="delete-cart" style="text-align:end" method="post" action="@Url.Action("XoaKhoiGio", "GioHang", new { MaSP = -1})">
-                                        <button style="background: #f12323; color: #fff" type="submit" class="btn btn-sm" onclick="return functionConfirmDeleteCart(this)">Xóa giỏ hàng</button>
+                                    <form id="delete-cart" style="text-align:right" method="post" action="@Url.Action("XoaKhoiGio", "GioHang", new { MaSP = -1})">
+                                        <button style="background: #f12323;margin-left:80%;height:50px;font-size:18px;width:150px; color: #fff" type="submit" class="btn btn-sm" onclick="return functionConfirmDeleteCart(this)">Xóa giỏ hàng</button>
                                     </form>
-                                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="10px" cellpadding="10px">
+                                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0px" cellpadding="0px" border="0">
                                         <thead>
                                             <tr>
-                                                <th class="product-name" colspan="3">SẢN PHẨM</th>
+                                                <th class="product-price"></th>
+
+                                                <th class="product-name" colspan="3" style="font-weight:bold">SẢN PHẨM</th>
+                                                <th class="product-price">TÊN SẢN PHẨM</th>
                                                 <th class="product-price">GIÁ</th>
                                                 <th class="product-quantity">SỐ LƯỢNG</th>
                                                 <th class="product-subtotal">TẠM TÍNH</th>
                                             </tr>
                                         </thead>
-                                        <hr />
+
                                         <tbody>
                                             @foreach (var item in Model)
                                             {
                                                 double giagiam = Convert.ToDouble(@item.sanPham.Gia) - Convert.ToDouble(@item.sanPham.GiamGia);
                                                 String imagePath = "~/wwwroot/images/SanPham/" + item.sanPham.AnhSP;
                                                 TongTien += giagiam * item.soLuong;
-                                                <tr class="woocommerce-cart-form__cart-item cart_item" >
-                                                    <td style="padding: 20px;text-align: center">
+                                                <tr class="woocommerce-cart-form__cart-item cart_item" style="border-bottom: 1px solid #ececec">
+                                                    <td style="padding-left:4%;padding-top:3%">
                                                         <form id="deleteSP-@item.sanPham.MaSP" method="post" action="@Url.Action("XoaKhoiGio", "GioHang", new { MaSP = item.sanPham.MaSP})">
                                                             <button type="submit" style="background: #f12323; color: #fff; border-radius: 50%" class="btn btn-sm" onclick="return functionConfirm(this, @item.sanPham.MaSP)">X</button>
                                                         </form>
-                                                    </td> 
-                                                    <td class="product-thumbnail">
-                                                        <img width="90" height="auto" src="@Url.Content(imagePath)"
-                                                             class="img-custom" alt="" loading="lazy" />
                                                     </td>
-                                                    <td class="product-name" data-title="Sản phẩm">@item.sanPham.TenSP</td>
-                                                    <td style="padding: 20px;text-align: center;color:red">
+                                                    <td class="product-thumbnail">
+                                                        <img src="@Url.Content(imagePath)"
+                                                             class="img-custom" alt="" loading="lazy" style="width:80px;height:120px" />
+                                                    </td>
+                                                    <td class="product-name" data-title="Sản phẩm" style="font-size:15px;margin-top:14%">@item.sanPham.TenSP</td>
+                                                    <td style="padding: 20px;text-align: center;color:red;font-weight:bold">
                                                         <span class="woocommerce-Price-amount amount">
                                                             <bdi>@String.Format("{0:#,###}", giagiam)<span> <class ="woocommerce-Price-currencySymbol">₫</span></bdi>
                                                         </span>
                                                     </td>
-                                                    <td style="padding: 20px">
+                                                    <td style="padding: 10px">
                                                         <form id="SuaSL" method="post" enctype='multipart/form-data' action="@Url.Action("SuaSoLuong", "GioHang", new { MaSP = item.sanPham.MaSP })">
                                                             <div class="quantity buttons_added">
-                                                                <input style="background: #eee" type="submit" value="-" class="minus button is-form" onclick="giam()">
-                                                                <input type="number" id="quantity_60d19c138f0b1" class="input-text qty text" step="1" min="0" max="@item.sanPham.SoLuongTon" name="SoLuong" value="@item.soLuong" title="SL" size="4" placeholder="" inputmode="numeric" readonly/>
-                                                                <input style="background: #eee" type="submit" value="+" class="plus button is-form" onclick="tang()">
+                                                                <input style="background-color: gainsboro; color: black; width: 0.5px; height: 30px; border-right: none; border-color: gainsboro;border-radius:0px;font-size:20px;z-index:2" type="submit" value="-" class="minus button is-form abc " onclick="giam()">
+                                                                <input type="number" id="quantity_60d19c138f0b1" class="input-text qty text" step="1" min="0" max="@item.sanPham.SoLuongTon" name="SoLuong" value="@item.soLuong" title="SL" size="4" placeholder="" inputmode="numeric" readonly style="height: 30px;z-index:1; font-size: 15px;text-align:center" />
+                                                                <input style="background-color: gainsboro; color: black; width: 1px; height: 30px; border-left: none; border-color: gainsboro; border-radius: 0px;z-index:2" type="submit" value="+" class="plus button is-form abc " onclick="tang()">
                                                             </div>
                                                         </form>
                                                         @item.soLuong/@item.sanPham.SoLuongTon
                                                     </td>
 
-                                                    <td style="padding: 20px;text-align: center;color:red">
+                                                    <td style="padding: 20px;text-align: center;color:red;font-weight:bold">
                                                         <span class="woocommerce-Price-amount amount">
                                                             <bdi>@((giagiam*item.soLuong).ToString("N0"))<span class="woocommerce-Price-currencySymbol">₫</span></bdi>
                                                         </span>
 
                                                     </td>
-                                                    <td style="padding: 20px;text-align: center">
-                                                    </td>
+
+
 
                                                 </tr>
                                             }
 
                                             <tr>
-                                                <td colspan="6" class="actions clear">
-
-
+                                                <td>
                                                     <div class="continue-shopping pull-left text-left mt-2" style="margin-top:20px">
-                                                        <a class="xemtiep" href="@Url.Action("Index","Home")" style="border-color:orange;border:solid;padding:5px">
+                                                        <a class="xemtiep" href="@Url.Action("Index","Home")" style="padding:5px;color:white;background-color:orange">
                                                             ←&nbsp;TIẾP TỤC XEM SẢN PHẨM
                                                         </a>
                                                     </div>
-
                                                 </td>
                                             </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <style>
-                                .xemtiep:hover {
-                                    background-color:cornflowerblue;
-                                    color: white;
-                                }
-                            </style>
 
-                            <div class="cart-collaterals large-5 col pb-0" style="margin-top:40px;" >
+                            <div class="cart-collaterals large-5 col pb-0" style="margin-top:40px;margin-left:40px">
 
-                                <div class="cart-sidebar col-inner " >
-                                    <div class="cart_totals "style="border:solid;border-color:gainsboro;width:300px;background-color:antiquewhite;text-align:center;padding:25px">
-
-                                        <table cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th class="product-name" colspan="2" style="border-width:3px;">Cộng giỏ hàng</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-
-
-
+                                <div class="cart-sidebar col-inner ">
+                                    <div class="cart_totals " style="border:solid;border-color:gainsboro;width:300px;background-color:gainsboro;text-align:center;padding:25px">
                                         <table cellspacing="0" class="shop_table shop_table_responsive">
 
                                             <tbody>
                                                 <tr class="cart-subtotal">
-                                                    <th>Tổng Tiền :</th>
+                                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng Tiền :</th>
                                                     <td data-title="Tạm tính">
-                                                        <span class="woocommerce-Price-amount amount">
+                                                        <span class="woocommerce-Price-amount amount" style="color:red;font-weight:bold">
                                                             <bdi>@String.Format("{0:#,###}", @TongTien)<span class="woocommerce-Price-currencySymbol">₫</span></bdi>
                                                         </span>
                                                     </td>
@@ -167,20 +144,52 @@ else
             </div>
         </div>
     </div>}
-
-<div style="margin-top:20px">
-    @{
-        Html.RenderAction("_Footer", "Home");
-    }
-</div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<hr />
 <style>
     .widget_shopping_cart_content a {
         text-decoration: none;
         font-size: 20px;
         font-family: Calibri;
         margin-left: 20px;
+    }
+
+    .col-main {
+        background-color: gainsboro
+    }
+
+    .container {
+        background-color: white
+    }
+
+    th {
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle
+    }
+
+    td {
+        text-align: center;
+        vertical-align: middle
+    }
+
+    table {
+        border: none !important;
+        width: 80%;
+        height: auto
+    }
+
+        table tbody th, table tbody td {
+            border-bottom: 0px solid #d9dde3;
+            border-left: 0px solid #d9dde3;
+        }
+
+        table th {
+            border-right: 0px solid #d9dde3;
+            border-bottom: 1px solid #ececec;
+        }
+
+    .abc {
+        width: 1px
     }
 </style>
 <script type="text/javascript">
@@ -255,5 +264,15 @@ else
 
     }
 </script>
+@*Tăng giảm số lượng cho input*@
+<script type='text/javascript' src='~/wwwroot/js/hoverIntent.minc245.js' id='hoverIntent-js'></script>
+<script type='text/javascript' id='flatsome-js-js-extra'>
+    /* <![CDATA[ */
+    var flatsomeVars = { "ajaxurl": "https:\/\/lamdepz.com\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "45", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu" }, "options": { "cookie_notice_version": "1" } };
+        /* ]]> */
+</script>
+<script type='text/javascript' src='~/wwwroot/js/flatsome2916.js?ver=3.13.1' id='flatsome-js-js'></script>
+<script type='text/javascript' src='~/wwwroot/js/woocommerce2916.js?ver=3.13.1' id='flatsome-theme-woocommerce-js-js'></script>
+
 
 

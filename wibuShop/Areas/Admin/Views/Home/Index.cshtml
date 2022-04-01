@@ -1,8 +1,12 @@
 ﻿@{ ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
-
-@*Vòng tròn ở index*@
-<link href="~/Areas/dist/css/custom.min.css" rel="stylesheet">
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    double KM = Convert.ToDouble(ViewBag.all) - (ViewBag.DoanhThu);
+    double ALL = Convert.ToDouble(ViewBag.all);
+    double DT = Convert.ToDouble(ViewBag.DoanhThu);
+}
+<input type="hidden" name="name" id="KM" value="@KM" />
+<input type="hidden" name="name" id="ALL" value="@ALL" />
+<input type="hidden" name="name" id="DT" value="@DT" />
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -53,6 +57,7 @@
                 <div class="small-box bg-danger">
                     <div class="inner">
                         <h3>@String.Format("{0:#,###}", ViewBag.DoanhThu)</h3>
+
                         <p>Doanh thu</p>
                     </div>
                     <div class="icon">
@@ -65,68 +70,196 @@
         </div>
     </div>
 </section>
-<div class="col-md-4 col-sm-4 ">
-    <div class="x_panel tile fixed_height_320 overflow_hidden">
-        <div class="x_title">
-            <h2>Device Usage</h2>
+<div class="wrapper">
+    <div class="content-wrapper" style="padding:10px;margin:10px">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
 
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <table class="" style="width:100%">
-                <tr>
-                    <th style="width:37%;">
-                        <p>Top 5</p>
-                    </th>
-                    <th>
-                        <div class="col-lg-7 col-md-7 col-sm-7 ">
-                            <p class="">Device</p>
+                        <div class="card" style="width:140%;height:500px">
+                            <div class="card-header border-0">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Lượt truy cập</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-lg">820</span>
+                                        <span>Visitors Over Time</span>
+                                    </p>
+                                    <p class="ml-auto d-flex flex-column text-right">
+                                        <span class="text-success">
+                                            <i class="fas fa-arrow-up"></i> 12.5%
+                                        </span>
+                                        <span class="text-muted">Since last week</span>
+                                    </p>
+                                </div>
+                                <div style="height:330px"><canvas id="myChart" style="transform: scale(1, 0.7); "></canvas></div>
+                                
+                                @*<div class="d-flex flex-row justify-content-end">
+                                    <span class="mr-2">
+                                        <i class="fas fa-square text-primary"></i> This Week
+                                    </span>
+                                    <span>
+                                        <i class="fas fa-square text-gray"></i> Last Week
+                                    </span>
+                                </div>*@
+                            </div>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 ">
-                            <p class="">Progress</p>
+                        <div class="card" style="margin-top:5%;width:140%;height:450px">
+                            <div class="card-header border-0" style="display:flex">
+                                <div class="d-flex justify-content-between" style="margin-left:0%">
+                                    <h3 class="card-title">Tiền khuyến mãi</h3>
+                                </div>
+                                <div class="d-flex justify-content-between" style="margin-left:53%">
+                                    <h3 class="card-title">Doanh thu trước khuyến mãi</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+
+                                        <span class="text-bold text-lg">
+                                            <h3>@String.Format("{0:#,###}", KM)</h3>
+                                        </span>
+                                    </p>
+                                    <p class="ml-auto d-flex flex-column text-right">
+                                        <span class="text-bold text-lg">
+                                            <h3>@String.Format("{0:#,###}", ViewBag.all)</h3>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="position-relative mb-4">
+                                    <canvas id="sales-chart" style="margin-top:0px"></canvas>
+                                </div>
+                                @*Biểu đồ cột*@
+                                <div id="container" style="height: 400px;width:100%;margin-left:-2%;margin-top:-200px;padding-top:0px;"></div>
+                            </div>
                         </div>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-                    </td>
-                    <td>
-                        <table class="tile_info">
-                            <tr>
-                                <td>
-                                    <p><i class="fa fa-square blue"></i>IOS </p>
-                                </td>
-                                <td>30%</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p><i class="fa fa-square green"></i>Android </p>
-                                </td>
-                                <td>10%</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p><i class="fa fa-square purple"></i>Blackberry </p>
-                                </td>
-                                <td>20%</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p><i class="fa fa-square aero"></i>Symbian </p>
-                                </td>
-                                <td>15%</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p><i class="fa fa-square red"></i>Others </p>
-                                </td>
-                                <td>30%</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.1/dist/echarts.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.1/dist/extension/dataTool.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.1/map/js/china.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.1/map/js/world.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script>
+    //Biểu đồ parabol
+    var xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+
+    new Chart("myChart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+                borderColor: "blue",
+                fill: false
+            }]
+        },
+        options: {
+            legend: { display: false }
+        }
+    });
+    //BIểu đổ tròn
+    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    var yValues = [55, 49, 44, 24, 15];
+    var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+    ];
+
+    new Chart("myChart1", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "World Wide Wine Production 2018"
+            }
+        }
+    });
+    //Biểu đồ cột
+    const a = document.getElementById("DT").value ;
+    const b = document.getElementById("ALL").value;
+    const c = document.getElementById("KM").value;
+    var xValues = ["Doanh thu trước khuyến mại","Khuyến mại","Khuyến mại"];
+    var yValues = [3000000, 3000000, 3000000];
+    var barColors = ["grey", "blue", "red"];
+
+    new Chart("myChart2", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: ""
+            }
+        }
+    });
+
+
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+
+    var option;
+
+
+
+    option = {
+        xAxis: {
+            type: 'category',
+            data: ['Doanh thu trước khuyến mại', 'Doanh thu thực tế', 'Khuyến mại']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                data: [a,b,c],
+                type: 'bar'
+            }
+        ]
+    };
+
+    if (option && typeof option === 'object') {
+        myChart.setOption(option);
+    }
+
+</script>
+

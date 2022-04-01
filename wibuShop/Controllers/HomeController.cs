@@ -12,20 +12,35 @@ namespace wibuShop.Controllers
     public class HomeController : Controller
     {
         waifuShop db = new waifuShop();
-       
+
         public ActionResult Index()
         {
+
             List<SanPham> hangs = new List<SanPham>();
-            var sanphams = db.SanPhams.Select(h=>h);         
+            
+            var sanphams = db.SanPhams.Select(h => h).Take(15);
             ViewBag.tacgia = tacgia();
             ViewBag.nxb = NXB();
+            var danhmuc = db.DanhMucSPs.Select(h => h);
+           
             return View(sanphams);
+        }
+        public int DaBan(int id)
+        {
+            int all = 0;
+            var DaBan = db.Chi_Tiet_Gio_Hang.Where(s => s.MaSP == id).ToList();
+            foreach (var item in DaBan)
+            {
+                all += item.SoLuongMua;
+            }
+            ViewBag.all = all;
+            return all;
         }
         public List<string> tacgia()
         {
             List<string> tinhs1 = new List<string>();
             var tacgia = db.SanPhams.Select(e => new { e.TacGia }).Distinct().ToList();
-            foreach(var item in tacgia)
+            foreach (var item in tacgia)
             {
                 tinhs1.Add(item.TacGia);
             }
@@ -43,6 +58,23 @@ namespace wibuShop.Controllers
             tinhs2.Sort();
             return tinhs2;
         }
+        //public List<List<String>> NXB1()
+        //{
+        //    List<List<String>> listNXB = new List<List<string>>();
+        //    var danhmuc = db.DanhMucSPs.Select(n => n);
+        //    foreach (var item in danhmuc)
+        //    {
+        //        var nxb = db.SanPhams.Where(g => g.MaDM == item.MaDM).Distinct().ToList();
+        //        List<String> nxb1 = new List<string>();
+        //        foreach (var item1 in nxb)
+        //        {
+        //            nxb1.Add(item1.NhaXuatBan);
+        //        }
+        //        listNXB.Add(nxb1);
+        //    }
+        //    ViewBag.ListNXB = listNXB.Distinct();
+        //    return listNXB;
+        //}
         public ActionResult TimKiem(string strSearch, int? page)
         {
             var sanpham = db.SanPhams.ToList();
@@ -65,17 +97,19 @@ namespace wibuShop.Controllers
         }
         public PartialViewResult _Nav()
         {
-            var danhmuc = db.DanhMucSPs.Select(n => n);
+            ViewBag.tacgia = tacgia();
+            ViewBag.nxb = NXB();  
+            var danhmuc = db.DanhMucSPs.Select(n => n);          
             return PartialView(danhmuc);
         }
-        public PartialViewResult _Footer()
-        {        
-            return PartialView();
-        }
-        //public PatialViewResult _Footer()
+        //public PartialViewResult _NXB()
         //{
-        //    return PatialView();
+            
+        //    ViewBag.NhaXuatBan = NXB1();
+        //    var nxb = db.SanPhams.Select(n => n);
+        //    return PartialView(nxb);
         //}
+
         public ActionResult SanPham(string id)
         {
             if (id == null)
@@ -118,6 +152,42 @@ namespace wibuShop.Controllers
             s1 = db.DanhMucSPs.Where(h => h.MaDM == madm).ToList();
             ViewBag.TenDM = s1[0].TenDM;
 
+            return View(sanpham);
+        }
+        public ActionResult XemSanPhamTheoTacGia(string id)
+        {
+            List<SanPham> sanpham = new List<SanPham>();
+            if (id == null)
+            {
+
+            }
+            else
+            {
+                sanpham = db.SanPhams.Where(s => s.TacGia.ToString().Equals(id)).Select(s => s).ToList();
+            }
+            int madm = int.Parse(id);
+            List<DanhMucSP> s1 = new List<DanhMucSP>();
+            s1 = db.DanhMucSPs.Where(h => h.MaDM == madm).ToList();
+            ViewBag.TenDM = s1[0].TenDM;
+
+            return View(sanpham);
+        }
+        public ActionResult XemSanPhamTheoNXB(string id)
+        {
+            List<SanPham> sanpham = new List<SanPham>();
+            if (id == null)
+            {
+
+            }
+            else
+            {
+                sanpham = db.SanPhams.Where(s => s.NhaXuatBan.ToString().Equals(id)).Select(s => s).ToList();
+
+            }
+            int madm = int.Parse(id);
+            List<DanhMucSP> s1 = new List<DanhMucSP>();
+            s1 = db.DanhMucSPs.Where(h => h.MaDM == madm).ToList();
+            ViewBag.TenDM = s1[0].TenDM;
             return View(sanpham);
         }
     }

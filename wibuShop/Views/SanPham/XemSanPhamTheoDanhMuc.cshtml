@@ -15,28 +15,16 @@
 
 }
 
-<div class="container1" style="margin-left:40%">
-
-    <nav class="woocommerce-pagination1">
-        <div>
-            @Html.PagedListPager(Model, page => Url.Action("XemSanPhamTheoDanhMuc", new { page, loc = ViewBag.Loc }), new PagedListRenderOptions()
-       {
-           LiElementClasses = new string[] { "page-number" },
-           UlElementClasses = new string[] { "page-numbers", "nav-pagination", "links", "text-center" }
-       })
-        </div>
-    </nav>
-</div>
-<div class="shop-page-title category-page-title page-title ">
+@*<div class="shop-page-title category-page-title page-title ">
     <div class="page-title-inner flex-row  medium-flex-wrap container">
-      
+
         <ul class="w_nav" style="display:flex">
             <li>Sắp xếp : </li>
-            <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = x,sort = "asc" })" >Giá: Thấp -> Cao </a></li>
+            <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = x,sort = "asc" })">Giá: Thấp -> Cao </a></li>
             <li><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = maDM , cost = x,sort = "desc" })">Giá: Cao -> Thấp </a></li>
         </ul>
     </div>
-</div>
+</div>*@
 <div style="display:flex;width:110%">
     <div style="margin-top:20px;width:20%;">
         <div>
@@ -95,38 +83,18 @@
                 </div>
             </div>
         </div>
+        <hr />
         <div style="margin-top:20px">
             <button class="accordion">Nhà xuất bản</button>
-            <div class="panel">
+            <div class="panel1">
                 <p>
 
                     @foreach (var item in nxb)
                     {
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"/>
                             <label class="form-check-label" for="flexCheckChecked">
                                 @item
-                            </label>
-                        </div>
-                    }
-                </p>
-            </div>
-
-        </div>
-        <div style="margin-top:20px">
-            <button class="accordion">Tác giả</button>
-            <div class="panel">
-                <p>
-                    @foreach (var item in tacgia)
-                    {
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" onc />
-                            <label class="form-check-label" for="flexCheckChecked">
-
-
-                                @item
-
-
                             </label>
                         </div>
                     }
@@ -135,51 +103,59 @@
 
         </div>
     </div>
-    <div class="row" id="content" style=" background-color: white;width:110%;padding-left:0px">
+    <div class="row" id="content" style=" background-color: white;width:100%;margin-left:5%">
+        <img src="~/wwwroot/images/cap.PNG" style="width:80%" alt="Alternate Text" />
         @foreach (var item in Model)
         {
             double giagiam = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
             double giam = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
             double giamphantram = Math.Round(giam, 0);
-            <div class="col-md-4 col-xs-6" style="width:18%;margin-left: 30px;padding:20px;float:left">
+            <div class="col-md-4 col-xs-6" style="width:280px;margin-left:10px">
                 <div class="product" style="text-align:center;margin-top:20px;margin-bottom:20px">
                     <div class="absolute left top z-1">
-                        <div class="callout badge badge-circle" style="background-color:red;width:65px;margin-bottom:5px">
-                            <div class="badge-inner secondary on-sale" style="background-color: red; width: 50px"><span class="onsale" style="background-color:red;font-size:20px;width:50px">-@giamphantram %</span></div>
-                        </div>
+                        <div class="badge-inner secondary on-sale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram%</span></div>
                     </div>
                     <div class="product-img">
                         @{
                             string ImagePath = "~/wwwroot/images/SanPham/" + item.AnhSP;
                         }
                         <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
-                            <img src="@Url.Content(ImagePath)" id="anhSP" alt="" width="70%" height="210" />
+                            <img src="@Url.Content(ImagePath)" id="anhSP" alt="" style="width:140px;height:190px" />
                         </a>
                     </div>
                     <div class="product-body">
-                        <p class="product-category" style="text-align:left;margin-top:15px;min-height:40px">
+                        <p class="product-category" style="text-align: left; margin-top: 15px; min-height: 40px">
                             @Html.DisplayFor(modelItem => item.TenSP)
                         </p>
                         <h4 class="product-price" style="text-align:left; color:red">
-                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
-                            @String.Format("{0:#,###}", @giagiam)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                            <span style="  color: #F7941E;font-size:1.35em;font-weight:bold">@String.Format("{0:#,###}", @giagiam)</span><span class="woocommerce-Price-currencySymbol" style="color: #F7941E;font-size:1.35em">&#8363;</span><br />
+                            <span style="text-decoration-line: line-through; color: #888888; font-size: 1.35em ">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol" style=" color: #888888; text-decoration: none; font-size: 1.1em;">&#8363;</span>
                         </h4>
                     </div>
+                    <div class="progress" style="background-color:red!important">
+                        <span class="progress-value" style="color:white">
+                            Đã bán @{ Html.RenderAction("DaBan", "Home", new { id = item.MaSP }); }
+                        </span>
 
+                    </div>
                 </div>
             </div>
         }
-
-
     </div>
-  
 </div>
-<div style="margin-left:100px">
-    @{
-        Html.RenderAction("_Footer", "Home");
-    }
+<div class="container1" style="margin-left:40%">
+    <div class="phantrang">
+        <nav class="woocommerce-pagination1">
+            <div>
+                @Html.PagedListPager(Model, page => Url.Action("XemSanPhamTheoDanhMuc", new { page, loc = ViewBag.Loc }), new PagedListRenderOptions()
+           {
+               LiElementClasses = new string[] { "page-number" },
+               UlElementClasses = new string[] { "page-numbers", "nav-pagination", "links", "text-center" }
+           })
+            </div>
+        </nav>
+    </div>
 </div>
-
 <style>
     .widget_shopping_cart_content a {
         text-decoration: none;
@@ -187,7 +163,7 @@
         font-family: Calibri;
         margin-left: 20px;
     }
-    .pagination-container ul li a {
+    .phantrang .pagination-container ul li a {
         display: flex;
         border: medium;
         border-color: gainsboro;
@@ -199,12 +175,12 @@
         padding-right: 0px;
     }
 
-    .pagination-container ul {
+    .phantrang .pagination-container ul {
         text-align: center;
         display: flex;
     }
 
-        .pagination-container ul li {
+        .phantrang .pagination-container ul li {
             text-align: center;
             width: 50px;
             border-color: gainsboro;
@@ -212,20 +188,18 @@
             padding: 0px;
         }
 
-            .pagination-container ul li:hover {
+            .phantrang .pagination-container ul li:hover {
                 background-color: orange;
             }
 
-    .active a {
+    .phantrang .active a {
         background-color: cornflowerblue;
         color: white;
         margin: 100px;
     }
-
     .product:hover {
-        background-color: whitesmoke;
+        box-shadow: 1px 1px 1px 1px #AAA;
     }
-
     .accordion {
         background-color: #eee;
         color: #444;
@@ -265,26 +239,40 @@
     }
     .w_nav li a{
         text-decoration:none;
-       
+
     }
     .w_nav li {
         margin-left:20px;
     }
+    .col-main {
+        background-color: gainsboro
+    }
+
+    .container {
+        background-color: white
+    }
+    .progress {
+        background-image: -webkit-linear-gradient(top, red 0%, red 100%);
+        background-image: linear-gradient(to bottom, red 0%, red 100%);
+        border-radius: 25px
+    }
+    .form-check-label {
+        margin-top: 8px;
+        width: 150px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    #flexCheckChecked1{
+        margin-left:8%
+    }
+    #flexCheckChecked{
+        margin-left:8%
+    }
 </style>
 <script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        });
-    }
+</script>
+<script>  
     var tam = 0;
     function gia1(abc) {
         tam++;

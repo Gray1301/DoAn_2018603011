@@ -9,77 +9,71 @@
 
 @if (ViewBag.Thongbao != null)
 {
-    @ViewBag.Thongbao;
+    <p style="font-size: 20px; font-weight: 500; color:orange;text-align:center" class="text-center mt-5 mb-5">
+        @ViewBag.Thongbao
+    </p>
+    <div class="d-flex justify-content-center pb-5" style="text-align:center;margin:50px">
+
+        <a href="@Url.Action("Index","Home")" class="btn btn-lg font-weight-medium auth-form-btn justify-center" style="background-color:orange; color:white;text-decoration:none;padding:10px;margin-bottom:50px">Quay trở lại cửa hàng</a>
+    </div>
+
 }
 else
-{<div class="container">
-    <nav class="woocommerce-pagination">
-        @Html.PagedListPager(Model, page => Url.Action("TimKiem", new { ViewBag.strSearch, page }), new PagedListRenderOptions()
+{
+
+    <div class="tabslider-top-content" style="margin-bottom: 10px;text-align:center;margin-left:2%">
+        @foreach (var item in Model)
         {
-            LiElementClasses = new string[] { "page-number" },
-            UlElementClasses = new string[] { "page-numbers", "nav-pagination", "links", "text-center" }
-        })
-
-    </nav>
-</div>
-    <main id="main" class="">
-
-        <div class="row category-page-row" style="display: flex; justify-content: center;">
-            <div class="col large-9">
-                <div class="shop-container">
-
-                    <div class="woocommerce-notices-wrapper"></div>
-                    <div class="products row row-small large-columns-4 medium-columns-3 small-columns-2 has-equal-box-heights equalize-box">
-                        @foreach (var item in Model)
-                        {
-                            double giagiam = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
-                            double giam = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
-                            double giamphantram = Math.Round(giam, 0);
-                            <div class="col-md-4 col-xs-6" style="width:18%;margin-left: 30px;padding:30px;float:left">
-                                <div class="product" style="text-align:center;margin-top:20px;margin-bottom:20px">
-                                    <div class="absolute left top z-1">
-                                        <div class="callout badge badge-circle" style="background-color:red;width:65px;margin-bottom:5px">
-                                            <div class="badge-inner secondary on-sale" style="background-color: red; width: 50px"><span class="onsale" style="background-color:red;font-size:20px;width:50px">-@giamphantram %</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="product-img">
-                                        @{
-                                            string ImagePath = "~/wwwroot/images/SanPham/" + item.AnhSP;
-                                        }
-                                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
-                                            <img src="@Url.Content(ImagePath)" id="anhSP" alt="" width="70%" height="210" />
-                                        </a>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category" style="text-align:left;margin-top:15px;min-height:40px">
-                                            @Html.DisplayFor(modelItem => item.TenSP)
-                                        </p>
-                                        <h4 class="product-price" style="text-align:left; color:red">
-                                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
-                                            @String.Format("{0:#,###}", @giagiam)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
-                                        </h4>
-                                    </div>
-
-                                </div>
-                            </div>
-                        }
+            double giagiam = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+            double giam = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+            double giamphantram = Math.Round(giam, 0);
+            <div class="col-md-4 col-xs-6" style="width:280px;margin-left:10px">
+                <div class="product" style="text-align:center;margin-top:20px;margin-bottom:20px">
+                    <div class="absolute left top z-1">
+                        <div class="badge-inner secondary on-sale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram%</span></div>
                     </div>
-                    <!-- row -->
+                    <div class="product-img">
+                        @{
+                            string ImagePath = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                        }
+                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                            <img src="@Url.Content(ImagePath)" id="anhSP" alt="" style="width:140px;height:190px" />
+                        </a>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-category" style="text-align: left; margin-top: 15px; min-height: 40px">
+                            @Html.DisplayFor(modelItem => item.TenSP)
+                        </p>
+                        <h4 class="product-price" style="text-align:left; color:red">
+                            <span style="  color: #F7941E;font-size:1.35em;font-weight:bold">@String.Format("{0:#,###}", @giagiam)</span><span class="woocommerce-Price-currencySymbol" style="color: #F7941E;font-size:1.35em">&#8363;</span><br />
+                            <span style="text-decoration-line: line-through; color: #888888; font-size: 1.35em ">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol" style=" color: #888888; text-decoration: none; font-size: 1.1em;">&#8363;</span>
+                        </h4>
+                    </div>
+                    <div class="progress" style="background-color:red">
+                        <span class="progress-value" style="color:white">
+                            Đã bán @{ Html.RenderAction("DaBan", "Home", new { id = item.MaSP }); }
+                        </span>
 
+                    </div>
                 </div>
-                <!-- shop container -->
             </div>
-        </div>
         }
+    </div>
+    <br />
+    @*<div class="abc" style="">
+            <nav class="woocommerce-pagination">
+                @Html.PagedListPager(Model, page => Url.Action("TimKiem", new { ViewBag.strSearch, page }), new PagedListRenderOptions()
+                {
+                    LiElementClasses = new string[] { "page-number" },
+                    UlElementClasses = new string[] { "page-numbers", "nav-pagination", "links", "text-center" }
+                })
+            </nav>
+        </div>
+        <br />*@
 
-    </main>}
-<div style="margin-left:140px">
-    @{
-        Html.RenderAction("_Footer", "Home");
-    }
-</div>
+}
 <style>
-    .widget_shopping_cart_content a {
+    @*.widget_shopping_cart_content a {
         text-decoration: none;
         font-size: 40px;
         font-family: Calibri;
@@ -100,7 +94,7 @@ else
     .pagination-container ul {
         text-align: center;
         display: flex;
-    }
+    }*@
 
         .pagination-container ul li {
             text-align: center;
@@ -114,14 +108,28 @@ else
                 background-color: orange;
             }
 
-    .active a {
+    .text-center active {
         background-color: cornflowerblue;
         color: white;
         margin: 100px;
     }
 
+
+    .col-main {
+        background-color: gainsboro
+    }
+
+    .container {
+        background-color: white
+    }
+    .progress {
+         background-image: -webkit-linear-gradient(top, red 0%, red 100%);
+        background-image: linear-gradient(to bottom, red 0%, red 100%);
+       border-radius:25px
+
+    }
     .product:hover {
-        background-color: whitesmoke;
+        box-shadow: 1px 1px 1px 1px #AAA;
     }
 </style>
 
