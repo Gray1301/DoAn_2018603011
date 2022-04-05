@@ -170,39 +170,36 @@ else
 </style>
 <style>
 
-  .phantrang .pagination-container ul li a {
-        display: flex;
-        border: medium;
-        border-color: gainsboro;
-        text-decoration: none;
-        color: blue;
-        font-size: 25px;
-        padding-left: 18px;
-        margin: 0px;
-        padding-right: 0px;
-    }
-
-    .phantrang .pagination-container ul {
+    .pagination-container ul li {
         text-align: center;
-        display: flex;
+        width: 60px;
+        border-color: gainsboro;
+        margin: 0px;
+        padding: 5px;
+        height: 40px;
+        border-radius: 40%;
+        font-size: 25px;
+        border: medium;
+        margin-left: 10px;
+        background-color: none;
+        border: solid
     }
 
-        .phantrang .pagination-container ul li {
-            text-align: center;
-            width: 50px;
-            border-color: gainsboro;
-            margin: 0px;
-            padding: 0px;
+        .pagination-container ul li a {
+            color: red;
         }
 
-            .phantrang .pagination-container ul li:hover {
+            .pagination-container ul li a:hover {
                 background-color: orange;
+                color: blue
             }
 
-    .phantrang .active a {
-        background-color: cornflowerblue;
-        color: white;
-        margin: 100px;
+        .pagination-container ul li:hover {
+            background-color: orange;
+        }
+
+    .active {
+        background-color: yellow;
     }
 
     .product:hover {

@@ -57,24 +57,7 @@ namespace wibuShop.Controllers
             }
             tinhs2.Sort();
             return tinhs2;
-        }
-        //public List<List<String>> NXB1()
-        //{
-        //    List<List<String>> listNXB = new List<List<string>>();
-        //    var danhmuc = db.DanhMucSPs.Select(n => n);
-        //    foreach (var item in danhmuc)
-        //    {
-        //        var nxb = db.SanPhams.Where(g => g.MaDM == item.MaDM).Distinct().ToList();
-        //        List<String> nxb1 = new List<string>();
-        //        foreach (var item1 in nxb)
-        //        {
-        //            nxb1.Add(item1.NhaXuatBan);
-        //        }
-        //        listNXB.Add(nxb1);
-        //    }
-        //    ViewBag.ListNXB = listNXB.Distinct();
-        //    return listNXB;
-        //}
+        }     
         public ActionResult TimKiem(string strSearch, int? page)
         {
             var sanpham = db.SanPhams.ToList();
@@ -102,14 +85,6 @@ namespace wibuShop.Controllers
             var danhmuc = db.DanhMucSPs.Select(n => n);          
             return PartialView(danhmuc);
         }
-        //public PartialViewResult _NXB()
-        //{
-            
-        //    ViewBag.NhaXuatBan = NXB1();
-        //    var nxb = db.SanPhams.Select(n => n);
-        //    return PartialView(nxb);
-        //}
-
         public ActionResult SanPham(string id)
         {
             if (id == null)

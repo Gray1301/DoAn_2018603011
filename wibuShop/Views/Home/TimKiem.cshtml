@@ -60,7 +60,7 @@ else
         }
     </div>
     <br />
-    @*<div class="abc" style="">
+    <div class="abc" style="">
             <nav class="woocommerce-pagination">
                 @Html.PagedListPager(Model, page => Url.Action("TimKiem", new { ViewBag.strSearch, page }), new PagedListRenderOptions()
                 {
@@ -69,44 +69,43 @@ else
                 })
             </nav>
         </div>
-        <br />*@
+        <br />
 
 }
 <style>
-    @*.widget_shopping_cart_content a {
-        text-decoration: none;
-        font-size: 40px;
-        font-family: Calibri;
-        margin-left: 20px;
-    }
-    .pagination-container ul li a {
-        display: flex;
-        border: medium;
-        border-color: gainsboro;
-        text-decoration: none;
-        color: blue;
-        font-size: 25px;
-        padding-left: 18px;
-        margin: 0px;
-        padding-right: 0px;
-    }
 
-    .pagination-container ul {
+
+    .pagination-container ul li {
         text-align: center;
-        display: flex;
-    }*@
+        width: 60px;
+        border-color: gainsboro;
+        margin: 0px;
+        padding: 5px;
+        height: 40px;
+        border-radius: 40%;
+        font-size: 25px;
+        border: medium;
+        margin-left: 10px;
+        background-color: none;
+        border: solid
+    }
 
-        .pagination-container ul li {
-            text-align: center;
-            width: 50px;
-            border-color: gainsboro;
-            margin: 0px;
-            padding: 0px;
+        .pagination-container ul li a {
+            color: red;
         }
 
-            .pagination-container ul li:hover {
+            .pagination-container ul li a:hover {
                 background-color: orange;
+                color: blue
             }
+
+        .pagination-container ul li:hover {
+            background-color: orange;
+        }
+
+    .active {
+        background-color: yellow;
+    }
 
     .text-center active {
         background-color: cornflowerblue;
