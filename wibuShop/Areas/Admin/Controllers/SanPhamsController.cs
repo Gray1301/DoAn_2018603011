@@ -61,11 +61,11 @@ namespace wibuShop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaSP,TenSP,Gia,TacGia,SoLuongTon,NhaXuatBan,GiamGia,MaDM,AnhSP")] SanPham sanPham)
+        public ActionResult Create([Bind(Include = "MaSP,TenSP,Gia,NhaXuatBan,SoLuongTon,TacGia,GioiThieu,GiamGia,MaDM,AnhSP")] SanPham sanPham)
         {
             try
             {
-                if (ModelState.IsValid)
+                //if (ModelState.IsValid)
                 {
                     sanPham.AnhSP = "";
                     var f = Request.Files["ImageFile"];

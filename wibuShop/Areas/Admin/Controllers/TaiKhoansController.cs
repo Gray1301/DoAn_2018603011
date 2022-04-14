@@ -57,7 +57,7 @@ namespace wibuShop.Areas.Admin.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                //if (ModelState.IsValid)
                 {
                     taiKhoan.Anh = "";
                     var f = Request.Files["ImageFile"];

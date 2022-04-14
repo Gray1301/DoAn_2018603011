@@ -32,9 +32,11 @@ namespace wibuShop.Controllers
             }
             var sanpham = db.SanPhams.Find(MaSP);
             var gioHang = Session["GioHang"];
+            //Nếu giỏ đã có sản phẩm trong đó
             if (gioHang != null)
             {
                 var list = (List<Gio>)gioHang;
+                //Nếu sản phẩm có trong giỏ rồi thì chỉ update số lượng lên
                 if (list.Exists(x => x.sanPham.MaSP == MaSP))
                 {
                     foreach (var item in list)
@@ -51,6 +53,7 @@ namespace wibuShop.Controllers
                         }
                     }
                 }
+                //Sản phẩm chưa có trong giỏ
                 else
                 {
                     var item = new Gio();
@@ -72,6 +75,7 @@ namespace wibuShop.Controllers
                 }
                 Session["GioHang"] = list;
             }
+            // Giỏ chưa có sp j
             else
             {
                 var item = new Gio();

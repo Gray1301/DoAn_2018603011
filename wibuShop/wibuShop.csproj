@@ -230,8 +230,11 @@
     <Content Include="Areas\dist\js\dataTables.bootstrap4.js" />
     <Content Include="Areas\dist\js\demo.js" />
     <Content Include="Areas\dist\js\hoverable-collapse.js" />
+    <Content Include="Areas\dist\js\jquery-3.4.1.js" />
     <Content Include="Areas\dist\js\jquery.dataTables.js" />
     <Content Include="Areas\dist\js\jquery.min.js" />
+    <Content Include="Areas\dist\js\jquery.validate.js" />
+    <Content Include="Areas\dist\js\jquery.validate.unobtrusive.js" />
     <Content Include="Areas\dist\js\main.js" />
     <Content Include="Areas\dist\js\off-canvas.js" />
     <Content Include="Areas\dist\js\pages\dashboard.js" />
@@ -2127,6 +2130,30 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="wwwroot\css\StyleSheet1.css" />
+    <Content Include="wwwroot\css\StyleSheet10.css" />
+    <Content Include="wwwroot\css\StyleSheet11.css" />
+    <Content Include="wwwroot\css\StyleSheet12.css" />
+    <Content Include="wwwroot\css\StyleSheet13.css" />
+    <Content Include="wwwroot\css\StyleSheet14.css" />
+    <Content Include="wwwroot\css\StyleSheet15.css" />
+    <Content Include="wwwroot\css\StyleSheet16.css" />
+    <Content Include="wwwroot\css\StyleSheet17.css" />
+    <Content Include="wwwroot\css\StyleSheet18.css" />
+    <Content Include="wwwroot\css\StyleSheet19.css" />
+    <Content Include="wwwroot\css\StyleSheet2.css" />
+    <Content Include="wwwroot\css\StyleSheet20.css" />
+    <Content Include="wwwroot\css\StyleSheet21.css" />
+    <Content Include="wwwroot\css\StyleSheet22.css" />
+    <Content Include="wwwroot\css\StyleSheet23.css" />
+    <Content Include="wwwroot\css\StyleSheet24.css" />
+    <Content Include="wwwroot\css\StyleSheet3.css" />
+    <Content Include="wwwroot\css\StyleSheet4.css" />
+    <Content Include="wwwroot\css\StyleSheet5.css" />
+    <Content Include="wwwroot\css\StyleSheet6.css" />
+    <Content Include="wwwroot\css\StyleSheet7.css" />
+    <Content Include="wwwroot\css\StyleSheet8.css" />
+    <Content Include="wwwroot\css\StyleSheet9.css" />
     <Content Include="wwwroot\images\banner1.PNG" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km1.jpg" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km2.jpg" />
@@ -2534,7 +2561,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\font\" />
   </ItemGroup>
   <ItemGroup>

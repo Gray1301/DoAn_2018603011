@@ -17,11 +17,11 @@
         }
 
         [Key]
+        [DisplayName("Mã sản phẩm")]
         public int MaSP { get; set; }
 
         [Required(ErrorMessage = "Tên sản phẩm không được để trống!")]
         [DisplayName("Tên sản phẩm")]
-        [StringLength(80)]
         public string TenSP { get; set; }
 
         [Required(ErrorMessage = "Giá không được để trống!")]
@@ -33,7 +33,8 @@
         [DisplayName("Nhà xuất bản")]
         public string NhaXuatBan { get; set; }
 
-        [DisplayName("Số lượng tồn")]
+        [DisplayName("Số lượng")]
+        [Required(ErrorMessage = "Số lượng không được để trống!")]
         public int SoLuongTon { get; set; }
 
         [StringLength(80)]
