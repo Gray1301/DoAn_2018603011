@@ -57,8 +57,7 @@ function checkPass(){
 		error.innerHTML = message;
 		error.style.color = "red";
 	}
-	return validPass;
-	
+	return validPass;	
 }
 //----------------------------------------------------------
 function checkEmail(){
