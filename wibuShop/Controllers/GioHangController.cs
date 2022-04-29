@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using wibuShop.Models;
@@ -11,7 +12,7 @@ namespace wibuShop.Controllers
      public class GioHangController : Controller
     {
         waifuShop db = new waifuShop();
-
+        
         // GET: GioHang
         public ActionResult Index()
         {
@@ -200,7 +201,8 @@ namespace wibuShop.Controllers
             }
             return View(list);
         }
-
+        private static readonly string _from = "gray13012000@gmail.com"; // Email của Sender (của bạn)
+        private static readonly string _pass = "ThanhGmail031301"; // Mật khẩu Email của Sender (của bạn)
         public ActionResult XacNhanThanhToan(string email, string HoTen, string diachi, string sodienthoai, string GhiChu, string matkhau)
         {
             var list = new List<Gio>();
@@ -299,6 +301,27 @@ namespace wibuShop.Controllers
             ViewBag.HoaDon = hoaDon;
             var HoaDon = db.HoaDons.Where(s => s.MaGioHang == hoaDon.MaGioHang).FirstOrDefault();
             int mahd = HoaDon.MaHD;
+            //Gửi mail về thông báo đơn hàng
+            var chiTiet = db.Chi_Tiet_Gio_Hang.Where(s => s.MaGioHang == hoaDon.MaGioHang).Select(s => s).ToList();
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress(_from);
+            mail.To.Add("xuanthanh13012000@gmail.com");
+            mail.Subject = "Đơn hàng mới";
+            mail.IsBodyHtml = true;
+            mail.Body = HoTen;
+            foreach (var x in chiTiet)
+            {
+                mail.Body += "<br />" + x.SanPham.TenSP + " x " + x.SoLuongMua;
+            }
+            mail.Priority = MailPriority.High;
+
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential(_from, _pass);
+            SmtpServer.EnableSsl = true;
+
+            SmtpServer.Send(mail);
             return RedirectToAction("ChiTiet", new { id = mahd });
         }
 
