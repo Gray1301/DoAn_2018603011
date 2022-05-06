@@ -107,7 +107,6 @@ namespace wibuShop.Controllers
                 decimal a = Convert.ToDecimal(cost);
                 sanpham = sanpham.Where(s => s.Gia > 200000 && s.Gia <= a).Select(s => s);
                 abc2 = true;
-
             }
             else if (cost == 300001)
             {

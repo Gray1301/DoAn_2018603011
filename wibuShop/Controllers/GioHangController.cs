@@ -305,7 +305,6 @@ namespace wibuShop.Controllers
             var chiTiet = db.Chi_Tiet_Gio_Hang.Where(s => s.MaGioHang == hoaDon.MaGioHang).Select(s => s).ToList();
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
             mail.From = new MailAddress(_from);
             mail.To.Add("xuanthanh13012000@gmail.com");
             mail.Subject = "Đơn hàng mới";

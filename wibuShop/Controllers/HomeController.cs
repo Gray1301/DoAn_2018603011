@@ -22,7 +22,6 @@ namespace wibuShop.Controllers
             ViewBag.tacgia = tacgia();
             ViewBag.nxb = NXB();
             var danhmuc = db.DanhMucSPs.Select(h => h);
-           
             return View(sanphams);
         }
         public int DaBan(int id)
