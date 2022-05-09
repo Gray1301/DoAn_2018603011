@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     wibuShop.Models.TaiKhoan taiKhoan = new wibuShop.Models.TaiKhoan();
     double Tien = 0; }
-
+<title>Thanh Toán</title>
 @if (ViewBag.TaiKhoan != null)
 {
     taiKhoan = ViewBag.TaiKhoan;
@@ -51,19 +51,19 @@
 
                                                 <h1>Thông tin thanh toán</h1>
                                                 @*<table style="width:67%" align="center">
-                    <tr style="text-align:center">
-                        <td>Họ tên</td>
-                        <td>Địa chỉ</td>
-                        <td>SĐT</td>
-                        <td>Email</td>
-                    </tr>
-                    <tr>
-                        <td>@taiKhoan.HoTen</td>
-                        <td>@taiKhoan.DiaChi</td>
-                        <td>@taiKhoan.SoDienThoai</td>
-                        <td>@taiKhoan.Email</td>
-                    </tr>
-                </table>*@
+                                                        <tr style="text-align:center">
+                                                            <td>Họ tên</td>
+                                                            <td>Địa chỉ</td>
+                                                            <td>SĐT</td>
+                                                            <td>Email</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@taiKhoan.HoTen</td>
+                                                            <td>@taiKhoan.DiaChi</td>
+                                                            <td>@taiKhoan.SoDienThoai</td>
+                                                            <td>@taiKhoan.Email</td>
+                                                        </tr>
+                                                    </table>*@
                                                 <div class="form-group">
                                                     <div class="col-md-2">Tên : </div>
                                                     <div class="col-md-10">

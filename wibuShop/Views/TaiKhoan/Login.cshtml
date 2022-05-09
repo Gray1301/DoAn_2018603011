@@ -3,9 +3,9 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<title>Đăng nhập</title>
 <main id="main" class="d-flex justify-content-center" style="text-align:center;background-color:white;margin-left:0%;padding:30px">
-    <div class="auth-form-light text-left py-5 px-4 px-sm-5"style="text-align:center">
+    <div class="auth-form-light text-left py-5 px-4 px-sm-5" style="text-align:center">
         <h2 class="font-weight-light">Đăng nhập để tiếp tục</h2>
         @using (Html.BeginForm("Login", "TaiKhoan", FormMethod.Post))
         {
@@ -28,7 +28,7 @@
             {
                 <div class="form-group">
                     <div class="alert alert-danger" style="margin-top:0px;background-color:red;height:20px;color:black;vertical-align:middle;padding-top:10px;padding-bottom:10px;font-size:18px;color:white">
-                    @ViewBag.error
+                        @ViewBag.error
                     </div>
                 </div>
             }
@@ -39,23 +39,27 @@
     .alert {
         background: #ffdada;
     }
-    #main{
-        text-align:center;
+
+    #main {
+        text-align: center;
     }
+
     .form-control1 {
         background-color: white;
         height: 40px;
         width: 350px;
         margin-top: 20px;
     }
+
     .widget_shopping_cart_content a {
         text-decoration: none;
         font-size: 40px;
         font-family: Calibri;
         margin-left: 20px;
     }
+
     .col-main {
-       background-color:gainsboro;
+        background-color: gainsboro;
     }
 </style>
 

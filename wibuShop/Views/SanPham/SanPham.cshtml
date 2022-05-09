@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<wibuShop.Models.SanPham> abc = ViewBag.sp;
 }
+<title>Chi Tiết Sản Phẩm</title>
 <style>
     .product:hover {
         background-color: whitesmoke;
@@ -48,7 +49,7 @@
                             <div class="product-imag" data-columns="4" style="width:100%">
                                 <div class="woocommerce-product-gallery__image slide first">
                                     <a href="@Url.Content(ImagePath)">
-                                        <img  src="@Url.Content(ImagePath)" class="lazy-load wp-post-image skip-lazy"
+                                        <img src="@Url.Content(ImagePath)" class="lazy-load wp-post-image skip-lazy"
                                              alt="" loading="lazy" title="bo-hoang-cung-Danxuenilan-5in1-chinh-hang"
                                              style="width:400px;height:400px">
                                     </a>
@@ -265,7 +266,7 @@
     .swiper {
         width: 100%;
         height: 50%;
-        margin-left:-87px
+        margin-left: -87px
     }
 
     .swiper-slide {
@@ -298,24 +299,26 @@
         width: 130%;
         height: 30%;
     }
-    .container{
-        width:97%;
 
+    .container {
+        width: 97%;
     }
-   
-    .swiper-slide{
-        margin:0px;
+
+    .swiper-slide {
+        margin: 0px;
     }
+
     .swiper-slide-duplicate {
         margin: 0px;
     }
+
     .swiper-slide-active {
         margin: 0px;
     }
-   .style {
-        margin:0px !important;
-    }
 
+    .style {
+        margin: 0px !important;
+    }
 </style>
 @*Tăng giảm số lượng cho input*@
 <script type='text/javascript' src='~/wwwroot/js/hoverIntent.minc245.js' id='hoverIntent-js'></script>

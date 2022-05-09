@@ -6,7 +6,7 @@
     var ghiChu = Model.GhiChu;
     double tong = 0; }
 
-
+<title>Chi Tiết Giỏ Hàng</title>
 <main id="main" class="row d-flex justify-content-center align-items-center">
     <div class="col-12 grid-margin pt-5">
         <div class="card">
@@ -126,7 +126,7 @@
                         <tbody>
                             @foreach (var item in sp)
                             {
-                                
+
 
                                 double giagiam = Convert.ToDouble(@item.Gia);
                                 tong += giagiam * item.SoLuongTon;
@@ -140,20 +140,24 @@
                                         <img src="@Url.Content(ImagePath)" style="width:100px;height:auto;border-radius:0px" />
                                     </td>
                                     <td style="text-decoration:none">
-                                        <ins style="text-decoration:none"><span class="woocommerce-Price-amount amount" style="text-decoration:none">
-                                            <bdi style="text-decoration:none;color:red">@String.Format("{0:#,###}",item.Gia) 
-                                            <span class="woocommerce-Price-currencySymbol">&#8363;</span>
-                                                </bdi></span></ins>
-                                    </td>
-                                    <td>
-                                        @item.SoLuongTon
-                                    </td>
-                                    <td>
-                                        <ins style="text-decoration:none"><span class="woocommerce-Price-amount amount"><bdi style="color:red">@String.Format("{0:#,###}", (@giagiam * item.SoLuongTon)) <span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi></span></ins>
-                                    </td>
-                                </tr>
-                                                
-                            }
+                                        <ins style="text-decoration:none">
+                                            <span class="woocommerce-Price-amount amount" style="text-decoration:none">
+                                                <bdi style="text-decoration:none;color:red">
+                                                    @String.Format("{0:#,###}", item.Gia)
+                                                <span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                            </bdi>
+                                        </span>
+                                    </ins>
+                                </td>
+                                <td>
+                                    @item.SoLuongTon
+                                </td>
+                                <td>
+                                    <ins style="text-decoration:none"><span class="woocommerce-Price-amount amount"><bdi style="color:red">@String.Format("{0:#,###}", (@giagiam * item.SoLuongTon)) <span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi></span></ins>
+                                </td>
+                            </tr>
+
+                        }
                         </tbody>
                     </table>
                     <div class="row justify-end mt-3">
@@ -178,6 +182,7 @@
     th {
         text-transform: none !important;
     }
+
     .col-main {
         background-color: gainsboro
     }
@@ -185,16 +190,18 @@
     body, .container, bg-header-con, .ma-menu .container {
         background-color: white
     }
-    .row{
-        margin-left:5%
+
+    .row {
+        margin-left: 5%
     }
+
     th {
         text-align: center;
-        font-size:20px
+        font-size: 20px
     }
 
     td {
-        font-size:15px;
+        font-size: 15px;
         text-align: center
     }
 </style>
