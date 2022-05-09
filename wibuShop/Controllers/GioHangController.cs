@@ -9,10 +9,10 @@ using wibuShop.Models;
 
 namespace wibuShop.Controllers
 {
-     public class GioHangController : Controller
+    public class GioHangController : Controller
     {
         waifuShop db = new waifuShop();
-        
+
         // GET: GioHang
         public ActionResult Index()
         {
@@ -428,6 +428,14 @@ namespace wibuShop.Controllers
         public ActionResult HuyDonHang(int id)
         {
             var hoaDon = db.HoaDons.Find(id);
+            //hủy đơn thì update lại số lượng hàng tồn
+            var chiTiet = db.Chi_Tiet_Gio_Hang.Where(s => s.MaGioHang == hoaDon.MaGioHang).ToList();
+            foreach (var item in chiTiet)
+            {
+                var sp = db.SanPhams.Where(s => s.MaSP == item.MaSP).FirstOrDefault();
+                sp.SoLuongTon += item.SoLuongMua;
+                db.SaveChanges();
+            }
             hoaDon.TinhTrang = "Đơn hàng đã hủy";
             db.SaveChanges();
             int matk = (int)Session["idUser"];

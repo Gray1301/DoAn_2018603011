@@ -2,6 +2,12 @@
 @{
     wibuShop.Models.Chi_Tiet_Gio_Hang giohang = new wibuShop.Models.Chi_Tiet_Gio_Hang();
     double ALL = Convert.ToDouble(ViewBag.all);
+    List<wibuShop.Models.SanPham> abc = ViewBag.sp;
+    List<wibuShop.Models.SanPham> abc1 = ViewBag.sp1;
+    List<wibuShop.Models.SanPham> abc2 = ViewBag.sp2;
+    List<wibuShop.Models.SanPham> abc3 = ViewBag.sp3;
+    List<wibuShop.Models.SanPham> abc4 = ViewBag.sp4;
+    List<wibuShop.Models.SanPham> abc5 = ViewBag.sp5;
 }
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="vi" lang="vi">
@@ -1215,7 +1221,7 @@
                                                         <div class="banner-home-inner ">
                                                             <a class=" cursor-pointer "
                                                                href="#">
-                                                                <img src="https://cdn0.fahasa.com/media/wysiwyg/Thang-03-2022/VIB_Thang3_310 x 210_edit.jpg" alt="" />
+                                                                <img src="https://cdn0.fahasa.com/media/wysiwyg/Thang-05-2022/Moca_052022_310x210png.png" alt="" />
                                                             </a>
                                                         </div>
                                                     </div>
@@ -1245,7 +1251,7 @@
                                                     }
                                                 })
                                             </script>
-                                          
+
                                             <link rel="stylesheet" type="text/css" href="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/css/flashsale.css?q=10096" media="all" />
                                             <script type="text/javascript" src="https://cdn0.fahasa.com/js/lib/flashsale.js?q=10096"></script>
 
@@ -1304,45 +1310,7 @@
 
                                             </script>
                                             <div class="desktop_only" style="width: 100%;">
-                                                <div class="fhs_block" style="margin-top: 24px;">
-                                                    <div class="fhs_block_head fhs_center_left"><span class="ico_menu_red" style="margin-right: 8px;"></span><span class="fhs_block_head_title">Danh mục sản phẩm</span></div>
-                                                    <div class="fhs_block_line"><div></div></div>
-                                                    <div class="fhs_block_head">
-                                                        <div class="menu_category_block_content_list" style="display: grid;grid-template-columns: repeat(10, 1fr);">
-                                                            <a href="#" class="fhs_column_center">
-                                                                <img class="lazyload" src='~/wwwroot/images/SanPham/yourname1.jpg' />
-                                                                <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em;">Light Novel  </div>
-                                                            </a>
-
-                                                            <a href="#" class="fhs_column_center">
-                                                                <img class="lazyload" src='~/wwwroot/images/SanPham/tu-duy-nhanh-va-cham.jpg' />
-                                                                <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 56px; font-size: 1.23em;">Sách kinh tế, khởi nghiệp</div>
-                                                            </a>
-                                                            <a href="#" class="fhs_column_center">
-                                                                <img class="lazyload" src='~/wwwroot/images/SanPham/ca-phe-cung-tony.jpg' style="transform:scale(1.4);margin-top:20px" />
-                                                                <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 36px; font-size: 1.23em;">Sách kỹ năng sống</div>
-                                                            </a>
-                                                            <a href="#" class="fhs_column_center">
-                                                                <img class="lazyload" src='~/wwwroot/images/SanPham/1.jpg' />
-                                                                <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em;">Sách ngoại ngữ</div>
-                                                            </a>
-                                                            <a href="#" class="fhs_column_center">
-                                                                <img class="lazyload" src='~/wwwroot/images/SanPham/1a.jpg' />
-                                                                <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 56px; font-size: 1.23em;">Sách nuôi dạy con</div>
-                                                            </a>
-                                                            <a href="#" class="fhs_column_center">
-                                                                <img class="lazyload" src='~/wwwroot/images/SanPham/14a.jpg' />
-                                                                <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 56px; font-size: 1.23em;">Truyện tranh - manga - comic</div>
-                                                            </a>
-
-                                                            <a href="#" class="fhs_column_center">
-
-                                                                <img class="lazyload" src='~/wwwroot/images/SanPham/noiloau.jpg' style="transform:scale(1.4);margin-top:20px" />
-                                                                <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 36px; font-size: 1.23em;">Chính trị - triết học</div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            
                                             </div>
                                             <div id="categorytab-gia-noi-bat" class="categorytab-slider fhs-grid">
                                                 <div>
@@ -1388,9 +1356,9 @@
                                                                 </div>
                                                                 <div class="progress" style="background-color:red">
                                                                     <span class="progress-value" style="color:white">
-                                                                       Đã bán @{ Html.RenderAction("DaBan", "Home", new { id = item.MaSP }); }
+                                                                        Đã bán @{ Html.RenderAction("DaBan", "Home", new { id = item.MaSP }); }
                                                                     </span>
-                                                                  
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1399,8 +1367,379 @@
 
 
                                             </div>
-                                        </div>
+                                            <div>
+                                                <div class="tabslider-header">
+                                                    <div class="tabslider-title girdslider-title-aaa" style='background-color: #FCDDEF;padding-bottom: 12px;'>
+                                                        <div class="header-icon-gridslider">
+                                                            <img src="https://cdn0.fahasa.com/skin/frontend/base/default/images/ico_dealhot.png" class="center" />
+                                                        </div>
+                                                        <span>
+                                                            Light Novel
+                                                        </span>
+                                                    </div>
 
+                                                </div>
+                                            </div>
+                                            <div class="swiper mySwiper">
+                                                <div class="swiper-wrapper" style="padding:0px;height:330px;margin:0px">
+                                                    @foreach (var item in abc)
+                                                    {
+                                                        double giagiam1 = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+                                                        double giam1 = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+                                                        double giamphantram1 = Math.Round(giam1, 0);
+                                                        <div class="swiper-slide" style="margin-right:0px !important;background-color:ghostwhite;padding:0px;width:40%">
+                                                            <div class="co" style="">
+                                                                <div class="product1" style="text-align:center;margin-left:10px;margin-top:30px">
+
+                                                                    <div class="product-img">
+                                                                        @{
+                                                                            string ImagePath1 = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                                                                        }
+                                                                        <div class="badg" style="background-color: red"><span class="onsale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram1%</span></span></div>
+                                                                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                                                                            <img src="@Url.Content(ImagePath1)" id="anhSP" alt="" style="width: 140px; height: 190px;text-align:center;" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="produc">
+                                                                        <p class="produc" style="text-align: left; margin-top: 15px;width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:15px ">
+                                                                            @Html.DisplayFor(modelItem => item.TenSP)
+                                                                        </p>
+                                                                        <h4 class="produ" style="text-align:left; color:red">
+                                                                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                            @String.Format("{0:#,###}", @giagiam1)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                        </h4>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>}
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                            <div>
+                                                <div class="tabslider-header">
+                                                    <div class="tabslider-title girdslider-title-aaa" style='background-color: #FCDDEF;padding-bottom: 12px;'>
+                                                        <div class="header-icon-gridslider">
+                                                            <img src="https://cdn0.fahasa.com/skin/frontend/base/default/images/ico_dealhot.png" class="center" />
+                                                        </div>
+                                                        <span>
+                                                            Sách kỹ năng sống
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper mySwiper">
+                                                <div class="swiper-wrapper" style="padding:0px;height:330px;margin:0px">
+                                                    @foreach (var item in abc1)
+                                                    {
+                                                        double giagiam1 = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+                                                        double giam1 = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+                                                        double giamphantram1 = Math.Round(giam1, 0);
+                                                        <div class="swiper-slide" style="margin-right:0px !important;background-color:ghostwhite;padding:0px;width:40%">
+                                                            <div class="co" style="">
+                                                                <div class="product1" style="text-align:center;margin-left:10px;margin-top:30px">
+
+                                                                    <div class="product-img">
+                                                                        @{
+                                                                            string ImagePath1 = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                                                                        }
+                                                                        <div class="badg" style="background-color: red"><span class="onsale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram1%</span></span></div>
+                                                                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                                                                            <img src="@Url.Content(ImagePath1)" id="anhSP" alt="" style="width: 140px; height: 190px;text-align:center;" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="produc">
+                                                                        <p class="produc" style="text-align: left; margin-top: 15px;width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:15px ">
+                                                                            @Html.DisplayFor(modelItem => item.TenSP)
+                                                                        </p>
+                                                                        <h4 class="produ" style="text-align:left; color:red">
+                                                                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                            @String.Format("{0:#,###}", @giagiam1)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                        </h4>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>}
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                            <div>
+                                                <div class="tabslider-header">
+                                                    <div class="tabslider-title girdslider-title-aaa" style='background-color: #FCDDEF;padding-bottom: 12px;'>
+                                                        <div class="header-icon-gridslider">
+                                                            <img src="https://cdn0.fahasa.com/skin/frontend/base/default/images/ico_dealhot.png" class="center" />
+                                                        </div>
+                                                        <span>
+                                                           Sách ngoại ngữ
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper mySwiper">
+                                                <div class="swiper-wrapper" style="padding:0px;height:330px;margin:0px">
+                                                    @foreach (var item in abc2)
+                                                    {
+                                                        double giagiam1 = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+                                                        double giam1 = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+                                                        double giamphantram1 = Math.Round(giam1, 0);
+                                                        <div class="swiper-slide" style="margin-right:0px !important;background-color:ghostwhite;padding:0px;width:40%">
+                                                            <div class="co" style="">
+                                                                <div class="product1" style="text-align:center;margin-left:10px;margin-top:30px">
+
+                                                                    <div class="product-img">
+                                                                        @{
+                                                                            string ImagePath1 = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                                                                        }
+                                                                        <div class="badg" style="background-color: red"><span class="onsale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram1%</span></span></div>
+                                                                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                                                                            <img src="@Url.Content(ImagePath1)" id="anhSP" alt="" style="width: 140px; height: 190px;text-align:center;" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="produc">
+                                                                        <p class="produc" style="text-align: left; margin-top: 15px;width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:15px ">
+                                                                            @Html.DisplayFor(modelItem => item.TenSP)
+                                                                        </p>
+                                                                        <h4 class="produ" style="text-align:left; color:red">
+                                                                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                            @String.Format("{0:#,###}", @giagiam1)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                        </h4>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>}
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                            <div>
+                                                <div class="tabslider-header">
+                                                    <div class="tabslider-title girdslider-title-aaa" style='background-color: #FCDDEF;padding-bottom: 12px;'>
+                                                        <div class="header-icon-gridslider">
+                                                            <img src="https://cdn0.fahasa.com/skin/frontend/base/default/images/ico_dealhot.png" class="center" />
+                                                        </div>
+                                                        <span>
+                                                            Sách dạy con
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper mySwiper">
+                                                <div class="swiper-wrapper" style="padding:0px;height:330px;margin:0px">
+                                                    @foreach (var item in abc3)
+                                                    {
+                                                        double giagiam1 = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+                                                        double giam1 = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+                                                        double giamphantram1 = Math.Round(giam1, 0);
+                                                        <div class="swiper-slide" style="margin-right:0px !important;background-color:ghostwhite;padding:0px;width:40%">
+                                                            <div class="co" style="">
+                                                                <div class="product1" style="text-align:center;margin-left:10px;margin-top:30px">
+
+                                                                    <div class="product-img">
+                                                                        @{
+                                                                            string ImagePath1 = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                                                                        }
+                                                                        <div class="badg" style="background-color: red"><span class="onsale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram1%</span></span></div>
+                                                                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                                                                            <img src="@Url.Content(ImagePath1)" id="anhSP" alt="" style="width: 140px; height: 190px;text-align:center;" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="produc">
+                                                                        <p class="produc" style="text-align: left; margin-top: 15px;width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:15px ">
+                                                                            @Html.DisplayFor(modelItem => item.TenSP)
+                                                                        </p>
+                                                                        <h4 class="produ" style="text-align:left; color:red">
+                                                                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                            @String.Format("{0:#,###}", @giagiam1)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                        </h4>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>}
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                            <div>
+                                                <div class="tabslider-header">
+                                                    <div class="tabslider-title girdslider-title-aaa" style='background-color: #FCDDEF;padding-bottom: 12px;'>
+                                                        <div class="header-icon-gridslider">
+                                                            <img src="https://cdn0.fahasa.com/skin/frontend/base/default/images/ico_dealhot.png" class="center" />
+                                                        </div>
+                                                        <span>
+                                                            Truyện tranh
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper mySwiper">
+                                                <div class="swiper-wrapper" style="padding:0px;height:330px;margin:0px">
+                                                    @foreach (var item in abc4)
+                                                    {
+                                                        double giagiam1 = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+                                                        double giam1 = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+                                                        double giamphantram1 = Math.Round(giam1, 0);
+                                                        <div class="swiper-slide" style="margin-right:0px !important;background-color:ghostwhite;padding:0px;width:40%">
+                                                            <div class="co" style="">
+                                                                <div class="product1" style="text-align:center;margin-left:10px;margin-top:30px">
+
+                                                                    <div class="product-img">
+                                                                        @{
+                                                                            string ImagePath1 = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                                                                        }
+                                                                        <div class="badg" style="background-color: red"><span class="onsale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram1%</span></span></div>
+                                                                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                                                                            <img src="@Url.Content(ImagePath1)" id="anhSP" alt="" style="width: 140px; height: 190px;text-align:center;" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="produc">
+                                                                        <p class="produc" style="text-align: left; margin-top: 15px;width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:15px ">
+                                                                            @Html.DisplayFor(modelItem => item.TenSP)
+                                                                        </p>
+                                                                        <h4 class="produ" style="text-align:left; color:red">
+                                                                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                            @String.Format("{0:#,###}", @giagiam1)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                        </h4>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>}
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                            <div>
+                                                <div class="tabslider-header">
+                                                    <div class="tabslider-title girdslider-title-aaa" style='background-color: #FCDDEF;padding-bottom: 12px;'>
+                                                        <div class="header-icon-gridslider">
+                                                            <img src="https://cdn0.fahasa.com/skin/frontend/base/default/images/ico_dealhot.png" class="center" />
+                                                        </div>
+                                                        <span>
+                                                           Chính trị, triết học
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper mySwiper">
+                                                <div class="swiper-wrapper" style="padding:0px;height:330px;margin:0px">
+                                                    @foreach (var item in abc5)
+                                                    {
+                                                        double giagiam1 = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+                                                        double giam1 = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+                                                        double giamphantram1 = Math.Round(giam1, 0);
+                                                        <div class="swiper-slide" style="margin-right:0px !important;background-color:ghostwhite;padding:0px;width:40%">
+                                                            <div class="co" style="">
+                                                                <div class="product1" style="text-align:center;margin-left:5px;margin-top:30px">
+
+                                                                    <div class="product-img">
+                                                                        @{
+                                                                            string ImagePath1 = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                                                                        }
+                                                                        <div class="badg" style="background-color: red"><span class="onsale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram1%</span></span></div>
+                                                                        <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                                                                            <img src="@Url.Content(ImagePath1)" id="anhSP" alt="" style="width: 140px; height: 190px;text-align:center;" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="produc">
+                                                                        <p class="produc" style="text-align: left; margin-top: 15px;width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:15px ">
+                                                                            @Html.DisplayFor(modelItem => item.TenSP)
+                                                                        </p>
+                                                                        <h4 class="produ" style="text-align:left; color:red">
+                                                                            <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                            @String.Format("{0:#,###}", @giagiam1)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                        </h4>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>}
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                        </div>
+                                        <style>
+                                            .swiper-slide:hover {
+                                                border: solid;
+                                                border-width:1px;
+                                                border-color:lightgray;
+                                            }
+                                            .widget_shopping_cart_content a {
+                                                text-decoration: none;
+                                                font-size: 40px;
+                                                font-family: Calibri;
+                                                margin-left: 10px;
+                                            }
+
+                                            .swiper-button-next, .swiper-button-prev {
+                                                border: solid;
+                                                border-color: white;
+                                                background-color: white;
+                                                color: white;
+                                                margin-left: 20px;
+                                                border-radius: 65px;
+                                                transform: scale(0.5);
+                                                padding: 13px;
+                                                background-image:none !important;
+                                                padding:30px
+                                            }
+                                            .swiper-slide{
+                                                margin-right:29px !important
+                                            }
+                                            :root {
+                                                --swiper-theme-color: gray !important;
+                                            }
+
+                                                .swiper-button-prev:hover {
+                                                    transform: scale(1.1);
+                                                }
+
+                                                .swiper-button-next:hover {
+                                                    transform: scale(1.1);
+                                                }
+                                        </style>
+                                        <link rel="stylesheet"
+                                              href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+                                        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+                                        <script>
+                                            var swiper = new Swiper(".mySwiper", {
+                                                slidesPerView: 5,
+                                                spaceBetween: 30,
+                                                slidesPerGroup: 5,
+                                                loop: true,
+                                                loopFillGroupWithBlank: true,
+                                                pagination: {
+                                                    el: ".swiper-pagination",
+                                                    clickable: true,
+                                                },
+                                                navigation: {
+                                                    nextEl: ".swiper-button-next",
+                                                    prevEl: ".swiper-button-prev",
+                                                },
+                                            });
+                                        </script>
                                         <script type="text/javascript" src="https://cdn0.fahasa.com/js/lib/tabslider.js?q=10096"></script>
                                         <script type="text/javascript">
                                             /*
@@ -1851,6 +2190,7 @@
                     .cms-horizontal-slider .swiper-container {
                         padding: 15px 20px
                     }
+                    
             </style>
 
 
@@ -2103,57 +2443,7 @@
                 }
             </style>
             <div class="fhs-asidebar">
-                <div class="fhs-asidebar-tab">
-                    <ul class="fhs-asidebar-tab-items">
-                        <li class="productviewed fhs_center_center">
-                            <span class="fhs_center_center">
-                                <img class="icon" src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/asidebar/ico_noun_clock_white.svg?q=10096" />
-                            </span>
-                            <div class="fhs_tooltip_asidebar left">
-                                <div>
-                                    <svg class="fhs_tooltip_asidebar_bg" xmlns="http://www.w3.org/2000/svg" viewBox="-8 0 174 30"><path d="M 0 30 a 8 8 0 0 1 -8 -8 v -14 a 8 8 0 0 1 8 -8 h 153 a 8 8 0 0 1 8 8 v 3.568 l 5 3.932 l -5 3.93 v 2.57 a 8 8 0 0 1 -8 8 Z" fill="#c92127" /></svg>
-                                    Sản phẩm đã xem
-                                </div>
-                            </div>
-                        </li>
-                        <li class="suggestion fhs_center_center">
-                            <span class="fhs_center_center">
-                                <img class="icon" src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/asidebar/ico_like_white.svg?q=10096" />
-                            </span>
-                            <div class="fhs_tooltip_asidebar left">
-                                <div>
-                                    <svg class="fhs_tooltip_asidebar_bg" xmlns="http://www.w3.org/2000/svg" viewBox="-8 0 174 30"><path d="M 0 30 a 8 8 0 0 1 -8 -8 v -14 a 8 8 0 0 1 8 -8 h 153 a 8 8 0 0 1 8 8 v 3.568 l 5 3.932 l -5 3.93 v 2.57 a 8 8 0 0 1 -8 8 Z" fill="#c92127" /></svg>
-                                    Gợi ý dành riêng cho bạn
-                                </div>
-                            </div>
-                        </li>
-                        <li class="seriesbook fhs_center_center">
-                            <span class="fhs_center_center">
-                                <img class="icon" src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/asidebar/ico_book_fill_white.svg?q=10096" />
-                            </span>
-                            <div class="fhs_tooltip_asidebar left">
-                                <div>
-                                    <svg class="fhs_tooltip_asidebar_bg" xmlns="http://www.w3.org/2000/svg" viewBox="-8 0 174 30"><path d="M 0 30 a 8 8 0 0 1 -8 -8 v -14 a 8 8 0 0 1 8 -8 h 153 a 8 8 0 0 1 8 8 v 3.568 l 5 3.932 l -5 3.93 v 2.57 a 8 8 0 0 1 -8 8 Z" fill="#c92127" /></svg>
-                                    Sách đang theo dõi
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="fhs-asidebar-content">
-                    <div class="fhs-asidebar-content-item ">
-                        <div class="fhs-product-grid-content fhs_scrollbar">
-                            <ul class="fhs-product-grid-list"></ul>
-                        </div>
-                        <div class="fhs-asidebar-content-item-bottom">
-                            <a href="/productviewed">
-                                <button type="button" is_buynow="true" class="">
-                                    <span>Xem thêm</span>
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
             <script type="text/javascript">
                 var product_viewed_asidebar = new ProductViewed();
@@ -2285,7 +2575,9 @@
         font-size: 14px;
         color: #333333;
     }
-
+    #myBtn {
+        background-color: #f1f1f1 !important;
+    }
     .progress-value {
         position: absolute;
         right: 0;

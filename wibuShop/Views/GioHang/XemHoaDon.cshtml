@@ -170,38 +170,44 @@ else
 </style>
 <style>
 
-    .pagination-container ul li {
+    .pagination-container ul {
         text-align: center;
-        width: 60px;
-        border-color: gainsboro;
-        margin: 0px;
-        padding: 5px;
-        height: 40px;
-        border-radius: 40%;
-        font-size: 25px;
-        border: medium;
-        margin-left: 10px;
-        background-color: none;
-        border: solid
+        display: flex;
     }
 
-        .pagination-container ul li a {
-            color: red;
+        .pagination-container ul li {
+            text-align: center;
+            width: 38px;
+            border-color: orangered !important;
+            margin: 0px;
+            padding: 2px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 25px;
+            border: medium;
+            margin-left: 10px;
+            background-color: none;
+            border: solid
         }
 
-            .pagination-container ul li a:hover {
-                background-color: orange;
-                color: blue
+            .pagination-container ul li a {
+                color: red;
             }
 
-        .pagination-container ul li:hover {
-            background-color: orange;
-        }
+    @*.pagination-container ul li a:hover {
+        background-color: orange;
+        color: blue
+    }
+
+    *@
+
+    .pagination-container ul li:hover {
+        background-color: orange;
+    }
 
     .active {
         background-color: yellow;
     }
-
     .product:hover {
         background-color: whitesmoke;
     }

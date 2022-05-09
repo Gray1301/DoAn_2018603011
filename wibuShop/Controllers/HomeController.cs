@@ -16,13 +16,40 @@ namespace wibuShop.Controllers
         public ActionResult Index()
         {
 
+            //Danh sách sản phẩm đã mua
             List<SanPham> hangs = new List<SanPham>();
-            
-            var sanphams = db.SanPhams.Select(h => h).Take(15);
+            var spDaMua = db.Chi_Tiet_Gio_Hang.ToList();
+            foreach (var item in spDaMua)
+            {
+               var sanphams = db.SanPhams.Where(s => s.MaSP == item.MaSP).FirstOrDefault();
+                hangs.Add(sanphams);
+            }
+            //chỉ xuất ra màn hình 10sp đã được mua 
+            List<SanPham> XuatIndex = new List<SanPham>();
+            XuatIndex = hangs.Take(10).ToList();
+
             ViewBag.tacgia = tacgia();
             ViewBag.nxb = NXB();
             var danhmuc = db.DanhMucSPs.Select(h => h);
-            return View(sanphams);
+            List<SanPham> Sp = new List<SanPham>();
+            Sp = db.SanPhams.Where(h => h.MaDM.Equals(1)).OrderByDescending(h => h.Gia).ToList();
+            ViewBag.sp = Sp;
+            List<SanPham> Sp1 = new List<SanPham>();
+            Sp1 = db.SanPhams.Where(h => h.MaDM.Equals(3)).OrderByDescending(h => h.Gia).ToList();
+            ViewBag.sp1 = Sp1;
+            List<SanPham> Sp2 = new List<SanPham>();
+            Sp2 = db.SanPhams.Where(h => h.MaDM.Equals(4)).OrderByDescending(h => h.Gia).ToList();
+            ViewBag.sp2 = Sp2;
+            List<SanPham> Sp3 = new List<SanPham>();
+            Sp3 = db.SanPhams.Where(h => h.MaDM.Equals(5)).OrderByDescending(h => h.Gia).ToList();
+            ViewBag.sp3 = Sp3;
+            List<SanPham> Sp4 = new List<SanPham>();
+            Sp4 = db.SanPhams.Where(h => h.MaDM.Equals(6)).OrderByDescending(h => h.Gia).ToList();
+            ViewBag.sp4 = Sp4;
+            List<SanPham> Sp5 = new List<SanPham>();
+            Sp5 = db.SanPhams.Where(h => h.MaDM.Equals(7)).OrderByDescending(h => h.Gia).ToList();
+            ViewBag.sp5 = Sp5;
+            return View(XuatIndex);
         }
         public int DaBan(int id)
         {

@@ -2154,6 +2154,7 @@
     <Content Include="wwwroot\css\StyleSheet7.css" />
     <Content Include="wwwroot\css\StyleSheet8.css" />
     <Content Include="wwwroot\css\StyleSheet9.css" />
+    <Content Include="wwwroot\images\2.PNG" />
     <Content Include="wwwroot\images\banner1.PNG" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km1.jpg" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km2.jpg" />
@@ -2316,6 +2317,9 @@
     <Content Include="wwwroot\images\toituduy.jpg" />
     <Content Include="wwwroot\images\tải xuống.png" />
     <Content Include="wwwroot\images\vng.jpg" />
+    <Content Include="wwwroot\images\x.jpg" />
+    <Content Include="wwwroot\images\x.png" />
+    <Content Include="wwwroot\images\xx.PNG" />
     <Content Include="wwwroot\images\ytuong.jpg" />
     <Content Include="wwwroot\js\bootstrap.js" />
     <Content Include="wwwroot\js\bootstrap.min.js" />

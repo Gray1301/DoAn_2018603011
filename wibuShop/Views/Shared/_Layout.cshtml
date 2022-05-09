@@ -1941,17 +1941,52 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <button id="myBtn" title="Lên đầu trang"><img src="~/wwwroot/images/x.png" width="44px" title='lên đầu trang' onclick="GoTop()" /></button>
                                                 <div class="ma-footer">
                                                     <div class="footer">
                                                         <div id="back-top" class="hidden-xs"></div>
                                                     </div>
+
+
                                                 </div>
 
+                                                <script>
+
+                                                    function GoTop() {
+                                                        window.scrollTo({
+                                                            top: 100,
+                                                            left: 100,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                </script>
+                                                <style>
+                                                    /* Mui ten lên dau trang */
+                                                    #myBtn {
+                                                        position: fixed;
+                                                        bottom: 60px;
+                                                        right: 40px;
+                                                        z-index: 99;
+                                                        border: none;
+                                                        outline: none;
+                                                        background-color: #E0E0E0;
+                                                        color: white;
+                                                        cursor: pointer;
+                                                        border-radius: 30px;
+                                                        opacity: 0.7;
+                                                    }
+
+                                                        #myBtn:hover {
+                                                            background-color: #E0E0E0;
+                                                            transform: scale(1.1);
+                                                        }
+                                                </style>
                                                 @Scripts.Render("~/bundles/jquery")
                                                 @Scripts.Render("~/bundles/bootstrap")
                                                 @RenderSection("scripts", required: false)
-    </body>
+</body>
 </html>
+
 <script type='text/javascript' src='~/wwwroot/js/flatsome2916.js?ver=3.13.1' id='flatsome-js-js'></script>
 <script type='text/javascript' src='~/wwwroot/js/flatsome-lazy-load2916.js?ver=3.13.1' id='flatsome-lazy-js'></script>
 <script type='text/javascript' src='~/wwwroot/js/woocommerce2916.js?ver=3.13.1' id='flatsome-theme-woocommerce-js-js'></script>
