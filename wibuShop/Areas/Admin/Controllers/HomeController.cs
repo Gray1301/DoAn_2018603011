@@ -83,7 +83,6 @@ namespace wibuShop.Areas.Admin.Controllers
             {
                 ListDoanhThu.Add(DoanhThuNgay);
             }
-
             if (a == 0)
             {
                 ListDoanhThu.Add(0);
@@ -226,11 +225,14 @@ namespace wibuShop.Areas.Admin.Controllers
             {
                 ListDoanhThu.Add(0);
             }
+            double DoanhThuTuan = 0;
             List<double> ListView = new List<double>();
             foreach (var item in ListDoanhThu)
             {
                 ListView.Add(item);
+                DoanhThuTuan += item;
             }
+            ViewBag.DTTuan = DoanhThuTuan;
             ViewBag.View = ListView;
             ViewBag.DoanhThu = doanht;
             ViewBag.TonKho = slton;

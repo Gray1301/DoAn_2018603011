@@ -16,13 +16,23 @@ namespace wibuShop.Areas.Admin.Controllers
         private waifuShop db = new waifuShop();
 
         // GET: Admin/SanPhams
-        public ActionResult Index(int? page, string error, string maDM)
+        public ActionResult Index(int? page, string error, string maDM,string Name)
         {
 
             if (error != null)
                 ViewBag.Error = error;
             var sanPham = db.SanPhams.Include(s => s.DanhMucSP);
             ViewBag.DanhMuc = db.DanhMucSPs.ToList();
+            ViewBag.TK = db.SanPhams.Where(s => s.TenSP == Name).ToList();
+            if(Name != null)
+            {
+                sanPham = sanPham.Where(s => s.TenSP == Name);
+                ViewBag.Name = Name;
+            }
+            if(Name == " ")
+            {
+                sanPham = sanPham.OrderBy(s => s.MaSP);
+            }
             if (maDM != null && maDM != "macdinh")
             {
                 sanPham = sanPham.Where(s => s.MaDM.ToString().Equals(maDM));

@@ -4,7 +4,8 @@
 @{ ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 <link herf="~/Content/PagedList.css" rel="stylesheet" type="text/css" /> 
-List<wibuShop.Models.DanhMucSP> dm = (List<wibuShop.Models.DanhMucSP>)ViewBag.DanhMuc; 
+    List<wibuShop.Models.DanhMucSP> dm = (List<wibuShop.Models.DanhMucSP>)ViewBag.DanhMuc;
+    List<wibuShop.Models.SanPham> sp = (List<wibuShop.Models.SanPham>)ViewBag.TK;
     }
 @if (ViewBag.Error != null)
 {
@@ -42,7 +43,14 @@ List<wibuShop.Models.DanhMucSP> dm = (List<wibuShop.Models.DanhMucSP>)ViewBag.Da
                             Danh sách sản phẩm
                         </h4><br />
                     </div>
-                    <div class="flex-col medium-text-center" style="margin-left:65%">
+                    <div style="margin-left:25%">
+                        <form action="@Url.Action("Index","SanPhams")" method="post">
+                            <label>Tìm sản phẩm theo tên:</label>
+                            <div><input type="text" name="name" value="@ViewBag.Name" placeholder="Tìm kiếm" id="TimTheoTen" /></div>
+                        </form>
+                        
+                    </div>
+                    <div class="flex-col medium-text-center" style="margin-left:20%">
                         <p class="woocommerce-result-count hide-for-medium">
                             Lọc theo
                         </p>
