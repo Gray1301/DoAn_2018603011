@@ -3,8 +3,8 @@
     ViewBag.Title = "HeThong";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h3 style="margin-left:40px">HỆ THỐNG TRUNG TÂM - NHÀ SÁCH</h3>
-<table class="table" style="text-align:left; margin-left:40px" cellpadding="10px" border="1" cellspacing="0px">
+<h3 style="">HỆ THỐNG TRUNG TÂM - NHÀ SÁCH</h3>
+<table class="table" style="text-align:left; " cellpadding="10px" border="1" cellspacing="0px">
     <thead>
         <tr style="text-align:center" class="bodytable">
             <th scope="col">Tên</th>
@@ -74,9 +74,14 @@
         </tr>
     </tbody>
 </table>
-<div style="margin-left:140px">
-    @{
-        Html.RenderAction("_Footer", "Home");
+<style>
+    .col-main {
+        background-color: gainsboro
     }
-</div>
+
+    .container {
+        background-color: white
+    }
+</style>
+
 

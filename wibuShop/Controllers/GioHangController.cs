@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using wibuShop.Models;
 
 namespace wibuShop.Controllers
 {
-     public class GioHangController : Controller
+    public class GioHangController : Controller
     {
         waifuShop db = new waifuShop();
 
@@ -32,9 +33,11 @@ namespace wibuShop.Controllers
             }
             var sanpham = db.SanPhams.Find(MaSP);
             var gioHang = Session["GioHang"];
+            //Nếu giỏ đã có sản phẩm trong đó
             if (gioHang != null)
             {
                 var list = (List<Gio>)gioHang;
+                //Nếu sản phẩm có trong giỏ rồi thì chỉ update số lượng lên
                 if (list.Exists(x => x.sanPham.MaSP == MaSP))
                 {
                     foreach (var item in list)
@@ -51,6 +54,7 @@ namespace wibuShop.Controllers
                         }
                     }
                 }
+                //Sản phẩm chưa có trong giỏ
                 else
                 {
                     var item = new Gio();
@@ -72,6 +76,7 @@ namespace wibuShop.Controllers
                 }
                 Session["GioHang"] = list;
             }
+            // Giỏ chưa có sp j
             else
             {
                 var item = new Gio();
@@ -94,7 +99,7 @@ namespace wibuShop.Controllers
                 Session["GioHang"] = list;
             }
             UpdateSL();
-            String thongbao = "Đã thêm " + sanpham.TenSP + " số lượng " + SoLuong + " vào giỏ hàng !";
+            string thongbao = "Đã thêm " + sanpham.TenSP + " số lượng " + SoLuong + " vào giỏ hàng !";
             return RedirectToAction("SanPham", "SanPham", new { id = MaSP, ThongBao = thongbao });
         }
 
@@ -196,7 +201,8 @@ namespace wibuShop.Controllers
             }
             return View(list);
         }
-
+        private static readonly string _from = "gray13012000@gmail.com"; // Email của Sender (của bạn)
+        private static readonly string _pass = "ThanhGmail031301"; // Mật khẩu Email của Sender (của bạn)
         public ActionResult XacNhanThanhToan(string email, string HoTen, string diachi, string sodienthoai, string GhiChu, string matkhau)
         {
             var list = new List<Gio>();
@@ -295,6 +301,27 @@ namespace wibuShop.Controllers
             ViewBag.HoaDon = hoaDon;
             var HoaDon = db.HoaDons.Where(s => s.MaGioHang == hoaDon.MaGioHang).FirstOrDefault();
             int mahd = HoaDon.MaHD;
+
+            //Gửi mail về thông báo đơn hàng
+            var chiTiet = db.Chi_Tiet_Gio_Hang.Where(s => s.MaGioHang == hoaDon.MaGioHang).Select(s => s).ToList();
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+            mail.From = new MailAddress(_from);
+            mail.To.Add("xuanthanh13012000@gmail.com");
+            mail.Subject = "Đơn hàng mới";
+            mail.IsBodyHtml = true;
+            mail.Body = "Tên khách: " + HoTen + "<br />" + "Sản phẩm đặt hàng:";
+            foreach (var x in chiTiet)
+            {
+                mail.Body += "<br />" + x.SanPham.TenSP + " x " + x.SoLuongMua;
+            }
+            mail.Priority = MailPriority.High;
+
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential(_from, _pass);
+            SmtpServer.EnableSsl = true;
+
+            SmtpServer.Send(mail);
             return RedirectToAction("ChiTiet", new { id = mahd });
         }
 
@@ -402,6 +429,14 @@ namespace wibuShop.Controllers
         public ActionResult HuyDonHang(int id)
         {
             var hoaDon = db.HoaDons.Find(id);
+            //hủy đơn thì update lại số lượng hàng tồn
+            var chiTiet = db.Chi_Tiet_Gio_Hang.Where(s => s.MaGioHang == hoaDon.MaGioHang).ToList();
+            foreach (var item in chiTiet)
+            {
+                var sp = db.SanPhams.Where(s => s.MaSP == item.MaSP).FirstOrDefault();
+                sp.SoLuongTon += item.SoLuongMua;
+                db.SaveChanges();
+            }
             hoaDon.TinhTrang = "Đơn hàng đã hủy";
             db.SaveChanges();
             int matk = (int)Session["idUser"];

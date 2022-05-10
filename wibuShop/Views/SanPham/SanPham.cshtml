@@ -4,26 +4,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<wibuShop.Models.SanPham> abc = ViewBag.sp;
 }
+<title>Chi Tiết Sản Phẩm</title>
 <style>
     .product:hover {
         background-color: whitesmoke;
     }
+
+    .col-main {
+        background-color: gainsboro
+    }
+
+    .container {
+        background-color: white
+    }
+
+    .swiper-slide {
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+    }
+
+    element .style {
+        margin-right: 0px !important
+    }
+
+    .style {
+        margin-right: 0px !important
+    }
 </style>
-<div style="margin-left: 174.6px; margin-right: 174.6px">
-    <div class="page-title shop-page-title product-page-title">
-        <div class="page-title-inner flex-row medium-flex-wrap container">
-            <div class="flex-col flex-grow medium-text-center">
-                <div class="is-small">
-                    <nav class="woocommerce-breadcrumb breadcrumbs uppercase"><a href="@Url.Action("Index","Home")" style="text-decoration:none;color:orange">Trang chủ</a> <span class="divider">&#47;</span> <a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new{ id = ViewBag.ma })" style="text-decoration: none; color: orange">@ViewBag.TenDM</a></nav>
-                </div>
-            </div>
-            <div class="flex-col medium-text-center">
-            </div>
-        </div>
-    </div>
-    <div class="shop-container" style="margin-top:30px">
+<div style="">
+    <div class="shop-container">
         <div id="product-6932" class="produ">
-            <div class="product-container">
+            <div class="product-container" style="margin-left:2%;margin-top:3%">
                 @{ string ImagePath = "~/wwwroot/images/SanPham/" + Model.AnhSP;
 
                     double giagiam = Convert.ToDouble(Model.Gia) - Convert.ToDouble(Model.GiamGia);
@@ -35,17 +46,17 @@
 
                         <div class="product-gallery col large-5">
 
-                            <div class="product-imag" data-columns="4">
+                            <div class="product-imag" data-columns="4" style="width:100%">
                                 <div class="woocommerce-product-gallery__image slide first">
                                     <a href="@Url.Content(ImagePath)">
-                                        <img width="410" height="510" src="@Url.Content(ImagePath)" class="lazy-load wp-post-image skip-lazy"
+                                        <img src="@Url.Content(ImagePath)" class="lazy-load wp-post-image skip-lazy"
                                              alt="" loading="lazy" title="bo-hoang-cung-Danxuenilan-5in1-chinh-hang"
-                                             sizes="(max-width: 400px) 100vw, 410px" />
+                                             style="width:400px;height:400px">
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="product-info summary col-fit col entry-summary product-summary" style="margin-left:60px">
+                        <div class="product-info summary col-fit col entry-summary product-summary" style="margin-left:5%;width:30%">
                             <h1 class="product-title product_title entry-title">
                                 @Html.DisplayFor(Model => Model.TenSP)
                             </h1>
@@ -54,8 +65,8 @@
                             <div class="price-wrapper">
                                 <p class="price product-page-price price-on-sale">
                                     <del><span class="woocommerce-Price-amount amount" style="color:red"><bdi>@String.Format("{0:#,###}", Model.Gia)<span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi></span></del>
-                                    <ins style="text-decoration: none;margin-bottom:20px"><span class="woocommerce-Price-amount amount" style="text-decoration: none;margin-bottom:20px; list-style: none"><bdi style="font-size: 35px; color: red;text-decoration:none">@String.Format("{0:#,###}", @giagiam)<span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi></span></ins>
-                                    <span class="onsale" style="margin-left: 5px;margin-top:90px; font-size: .75rem; color: #fff !important; background: #ee4d2d; border-radius: 2px; padding: 5px 10px; font-weight: 600; line-height: 1; white-space: nowrap;">Giảm @String.Format("{0:#,###}", @giam)%</span>
+                                    <ins style="text-decoration: none;margin-bottom:20px"><span class="woocommerce-Price-amount amount" style="text-decoration: none;margin-bottom:10px; list-style: none"><bdi style="font-size: 35px; color: red;text-decoration:none">@String.Format("{0:#,###}", @giagiam)<span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi></span></ins>
+                                    <span class="onsale" style="margin-left: 5px;margin-top:20px; font-size: .75rem; color: #fff !important; background: #ee4d2d; border-radius: 2px; padding: 5px 10px; font-weight: 600; line-height: 1; white-space: nowrap;">Giảm @String.Format("{0:#,###}", @giam)%</span>
                                 </p>
                                 <p>	&#10025;	&#10025;	&#10025;	&#10025;	&#10025; </p>
                             </div>
@@ -71,24 +82,24 @@
                             </div>
 
                             <form class="cart mb-2" method="post" enctype='multipart/form-data' action="@Url.Action("ThemSP", "GioHang", new { MaSP = Model.MaSP })">
-                                <div class="row pb-2">
-                                    <div class="col-md-3 pt-3 ml-2">Số lượng</div>
-                                    <div class="col-md-5 quantity buttons_added">
-                                        <input type="button" value="-" class="minus button is-form">
-                                        <input type="number" id="quantity_60d19c138f0b1" class="input-text qty text" step="1" min="1" max="@Model.SoLuongTon" name="SoLuong" value="1" title="SL" size="4" placeholder="" inputmode="numeric" readonly />
-                                        <input type="button" value="+" class="plus button is-form">
+                                <div class="row pb-2" style="display:flex">
+                                    <div style="margin-left:5%">Số lượng</div>
+                                    <div class="col-md-5 quantity buttons_added" style="margin-left:5%;display:flex;border-color:red">
+                                        <input type="button" value="-" class="minus button is-form" style="background-color: white; color: black; width: 1px; height: 30px; border-right: none; border-color: red;border-radius:0px;font-size:20px">
+                                        <input type="number" id="quantity_60d19c138f0b1" class="input-text qty text" step="1" min="1" max="@Model.SoLuongTon" name="SoLuong" value="1" title="SL" size="4" placeholder="" inputmode="numeric" readonly style="height: 30px; font-size: 15px; border-left: none; border-right: none; border-color: red; margin: 0px; padding: 0px" />
+                                        <input type="button" value="+" class="plus button is-form" style="background-color: white; color: black; width: 1px; height: 30px; border-left: none; border-color: red; margin: 0px; margin: 0px; border-radius: 0px ">
                                     </div>
                                 </div>
-                                <button type="submit" name="add-to-cart" value="6932" class="single_add_to_cart_button button alt" style="border-color:orange;color:white;border-radius:10px;background-color:orangered;width:250px;height:40px;font-size:16px;font-weight:bold;margin-top:20px;margin-bottom:20px">THÊM VÀO GIỎ</button><hr />
+                                <button type="submit" name="add-to-cart" value="6932" class="single_add_to_cart_button button alt" style="border-color: orange; color: white; border-radius: 10px; background-color: orangered; width: 250px; height: 40px; font-size: 16px; font-weight: bold; margin-top: 20px; margin-bottom: 20px; font-size: 16px">THÊM VÀO GIỎ</button><hr />
                             </form>
 
                         </div>
-                        <div id="product-sidebar" class="col large-3 hide-for-medium product-sidebar-small" style="margin-left:60px">
+                        <div id="product-sidebar" class="col large-3 hide-for-medium product-sidebar-small" style="margin-left:5%;width:40%">
                             <div class="row tieu-chi-sidebar" id="row-1179559846">
                                 <div id="col-1076857932" class="col div-cam-ket small-12 large-12">
                                     <div class="col-inner">
                                         <aside id="custom_html-13" class="widget_text widget widget_custom_html">
-                                            <div style="height:50px;background-color:orange;width:320px;border-radius:10px;padding-left:30px">
+                                            <div style="height:50px;background-color:orange;width:320px;border-radius:10px;padding-left:30px;margin-bottom:20px">
                                                 <p style="color:white;text-align:center;padding-top:13px;font-weight:bold;padding-left:-10px">CAM KẾT MUA HÀNG</p>
                                             </div>
                                             <div class="is-divider small"></div>
@@ -97,9 +108,9 @@
                                                     <li><i class="fa fa-check-circle" aria-hidden="true"></i>&#10004; Cam kết 100% hàng chính hãng. </li>
                                                     <li><i class="fa fa-check-circle" aria-hidden="true"></i>&#10004; Nhân viên tư vấn tận tình, chu đáo. </li>
                                                     <li><i class="fa fa-check-circle" aria-hidden="true"></i>&#10004; Xem hàng kiểm tra hàng trước khi thanh toán. </li>
-                                                    <li><i class="fa fa-check-circle" aria-hidden="true"></i>&#10004; Cam kết bồi hoàn 200% nếu sản phẩm kém chất lượng, ko rõ nguồn gốc . </li>
+                                                    <li><i class="fa fa-check-circle" aria-hidden="true"></i>&#10004; Cam kết bồi hoàn 200% nếu sản phẩm kém chất lượng. </li>
                                                 </ul>
-                                                <div class="vt-vanc" style="text-align:center">
+                                                <div class="vt-vanc" style="">
                                                     <strong>Đơn vị vận chuyển</strong><br />
                                                     <img src="~/wwwroot/images/ship.PNG">
                                                 </div>
@@ -119,9 +130,9 @@
                                 <div class="product-page-accordian">
                                     <div class="san-pham-tab">
                                         <div>
-                                            <h3 class="tab-thong-tin">
+                                            <h1 class="tab-thong-tin">
                                                 Mô tả
-                                            </h3>
+                                            </h1>
                                         </div>
                                         <div class="tab-thong-tin-trong">
                                             @if (Model.TacGia != null)
@@ -129,62 +140,57 @@
 
                                             @if (Model.GioiThieu != null)
                                             {<p><strong>Chi tiết sản phẩm:</strong> @Html.DisplayFor(Model => Model.GioiThieu)</p>}
-                                            
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="related related-products-wrapper product-section" style="height:auto">
 
-                                    <h3 class="product-section-title product-section-title-related pt-half pb-half uppercase">
+                                    <h2 class="product-section-title product-section-title-related pt-half pb-half uppercase">
                                         Sản phẩm tương tự
-                                    </h3>
-                                 
-                                        <!-- Swiper -->
-                                        <div class="swiper mySwiper">
-                                            <div class="swiper-wrapper" style="margin-left:40px">
-                                                @foreach (var item in abc)
-                                                {
-                                                    double giagiam1 = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
-                                                    double giam1 = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
-                                                    double giamphantram1 = Math.Round(giam1, 0);
-                                                    <div class="swiper-slide">
+                                    </h2>
 
-                                                        
-                                                        <div class="co" style="width:380px;margin-left:10px">
-                                                            <div class="product1" style="text-align:center;margin-top:20px;margin-bottom:20px">
-                                                                <div class="absolute left top z-1">
-                                                                    <div class="call" style="background-color:red;width:45px;margin-bottom:5px">
-                                                                        <div class="badg" style="background-color: red; width: 50px"><span class="onsale" style="background-color:red;font-size:15px;width:20px">-@giamphantram1 %</span></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="product-img">
-                                                                    @{
-                                                                        string ImagePath1 = "~/wwwroot/images/SanPham/" + item.AnhSP;
-                                                                    }
-                                                                    <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
-                                                                        <img src="@Url.Content(ImagePath1)" id="anhSP" alt="" width="90%" height="10px" />
-                                                                    </a>
-                                                                </div>
-                                                                <div class="produc">
-                                                                    <p class="produc" style="text-align: left; margin-top: 15px; min-height: 40px">
-                                                                        @Html.DisplayFor(modelItem => item.TenSP)
-                                                                    </p>
-                                                                    <h4 class="produ" style="text-align:left; color:red">
-                                                                        <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
-                                                                        @String.Format("{0:#,###}", @giagiam1)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
-                                                                    </h4>
-                                                                </div>
+                                    <!-- Swiper -->
+                                    <div class="swiper mySwiper" style="width:75%;margin-left:10px">
+                                        <div class="swiper-wrapper" style="padding:0px;height:330px;margin:0px">
+                                            @foreach (var item in abc)
+                                            {
+                                                double giagiam1 = Convert.ToDouble(@item.Gia) - Convert.ToDouble(@item.GiamGia);
+                                                double giam1 = Convert.ToDouble(@item.GiamGia) / Convert.ToDouble(item.Gia) * 100;
+                                                double giamphantram1 = Math.Round(giam1, 0);
+                                                <div class="swiper-slide" style="margin-right:0px !important;background-color:ghostwhite;padding:0px;width:40%">
+                                                    <div class="co" style="">
+                                                        <div class="product1" style="text-align:center;margin-left:10px">
 
+                                                            <div class="product-img">
+                                                                @{
+                                                                    string ImagePath1 = "~/wwwroot/images/SanPham/" + item.AnhSP;
+                                                                }
+                                                                <div class="badg" style="background-color: red"><span class="onsale" style="background-color: red; width: 50px"><span class="onsale" style="background-color: #F7941E; color: white; width: 40px; font-size: 15px; border-radius: 50%; height: 40px; padding-top: 10px">@giamphantram1%</span></div>
+                                                                <a href="@Url.Action("SanPham","SanPham", new { id = item.MaSP })">
+                                                                    <img src="@Url.Content(ImagePath1)" id="anhSP" alt="" style="width: 140px; height: 190px;text-align:center;" />
+                                                                </a>
                                                             </div>
+                                                            <div class="produc">
+                                                                <p class="produc" style="text-align: left; margin-top: 15px;width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:15px ">
+                                                                    @Html.DisplayFor(modelItem => item.TenSP)
+                                                                </p>
+                                                                <h4 class="produ" style="text-align:left; color:red">
+                                                                    <span style="text-decoration-line:line-through;opacity:0.5">@String.Format("{0:#,###}", @item.Gia)</span><span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                    @String.Format("{0:#,###}", @giagiam1)<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                                                </h4>
+                                                            </div>
+
                                                         </div>
-                                                        
-                                                    </div>}
-                                                </div>
-                                            <div class="swiper-button-next"></div>
-                                            <div class="swiper-button-prev"></div>
-                                            <div class="swiper-pagination"></div>
+                                                    </div>
+
+                                                </div>}
                                         </div>
-</div>
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -198,11 +204,6 @@
 
     </div>
 </div>
-<div style="margin-left:140px">
-    @{
-        Html.RenderAction("_Footer", "Home");
-    }
-</div>
 <link rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <style>
@@ -212,19 +213,24 @@
         font-family: Calibri;
         margin-left: 20px;
     }
+
     .swiper-button-next, .swiper-button-prev {
         border: solid;
-        border-color:white;
-        background-color:white;
+        border-color: white;
+        background-color: white;
         color: gray;
         margin-left: 20px;
         border-radius: 65px;
-        transform:scale(0.5);
-        padding:13px;
+        transform: scale(0.5);
+        padding: 13px;
+        background-image: none !important;
+        padding: 30px
     }
-         .swiper-button-prev:hover {
+
+        .swiper-button-prev:hover {
             transform: scale(1.1);
         }
+
         .swiper-button-next:hover {
             transform: scale(1.1);
         }
@@ -248,20 +254,19 @@
     });
 </script>
 <style>
-    
+
 
     body {
-       
         font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
         font-size: 14px;
-        
         margin: 0;
         padding: 0;
     }
 
     .swiper {
         width: 100%;
-        height: 70%;
+        height: 50%;
+        margin-left: -87px
     }
 
     .swiper-slide {
@@ -289,9 +294,39 @@
             height: 50%;
             object-fit: cover;
         }
-        .related{
-            width:130%;
-            height:150%;
-        }
+
+    .related {
+        width: 130%;
+        height: 30%;
+    }
+
+    .container {
+        width: 97%;
+    }
+
+    .swiper-slide {
+        margin: 0px;
+    }
+
+    .swiper-slide-duplicate {
+        margin: 0px;
+    }
+
+    .swiper-slide-active {
+        margin: 0px;
+    }
+
+    .style {
+        margin: 0px !important;
+    }
 </style>
+@*Tăng giảm số lượng cho input*@
+<script type='text/javascript' src='~/wwwroot/js/hoverIntent.minc245.js' id='hoverIntent-js'></script>
+<script type='text/javascript' id='flatsome-js-js-extra'>
+    /* <![CDATA[ */
+    var flatsomeVars = { "ajaxurl": "https:\/\/lamdepz.com\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "45", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu" }, "options": { "cookie_notice_version": "1" } };
+        /* ]]> */
+</script>
+<script type='text/javascript' src='~/wwwroot/js/flatsome2916.js?ver=3.13.1' id='flatsome-js-js'></script>
+<script type='text/javascript' src='~/wwwroot/js/woocommerce2916.js?ver=3.13.1' id='flatsome-theme-woocommerce-js-js'></script>
 

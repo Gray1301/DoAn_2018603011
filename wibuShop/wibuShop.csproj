@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -14,7 +20,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>wibuShop</RootNamespace>
     <AssemblyName>wibuShop</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +31,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +41,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,6 +81,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.SQLite, Version=1.0.115.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -82,11 +92,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -131,6 +138,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UrlHelper, Version=1.0.10.22, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UrlHelper.1.0.10.22\lib\net40\UrlHelper.dll</HintPath>
     </Reference>
@@ -156,8 +164,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\DanhMucSPController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DangNhapController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DanhMucSPsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HoaDonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
     <Compile Include="Controllers\ChinhSachController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -173,11 +186,15 @@
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\PhanQuyen.cs" />
     <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\waifuShop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Data\imagebackground.PNG" />
+    <Content Include="Areas\Admin\Data\logo3.png" />
+    <Content Include="Areas\dist\css\abc.css" />
     <Content Include="Areas\dist\css\adminlte.css" />
     <Content Include="Areas\dist\css\adminlte.min.css" />
     <Content Include="Areas\dist\css\alt\adminlte.components.css" />
@@ -192,13 +209,10 @@
     <Content Include="Areas\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="Areas\dist\css\alt\adminlte.plugins.css" />
     <Content Include="Areas\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Areas\dist\css\custom.min.css" />
+    <Content Include="Areas\dist\css\font-awesome.min.css.css" />
+    <Content Include="Areas\dist\css\style.css" />
     <Content Include="Areas\dist\img\AdminLTELogo.png" />
-    <Content Include="Areas\dist\img\anh.PNG" />
-    <Content Include="Areas\dist\img\avatar.png" />
-    <Content Include="Areas\dist\img\avatar2.png" />
-    <Content Include="Areas\dist\img\avatar3.png" />
-    <Content Include="Areas\dist\img\avatar4.png" />
-    <Content Include="Areas\dist\img\avatar5.png" />
     <Content Include="Areas\dist\img\boxed-bg.jpg" />
     <Content Include="Areas\dist\img\boxed-bg.png" />
     <Content Include="Areas\dist\img\credit\american-express.png" />
@@ -209,29 +223,38 @@
     <Content Include="Areas\dist\img\credit\visa.png" />
     <Content Include="Areas\dist\img\default-150x150.png" />
     <Content Include="Areas\dist\img\icons.png" />
-    <Content Include="Areas\dist\img\photo1.png" />
-    <Content Include="Areas\dist\img\photo2.png" />
-    <Content Include="Areas\dist\img\photo3.jpg" />
-    <Content Include="Areas\dist\img\photo4.jpg" />
-    <Content Include="Areas\dist\img\prod-1.jpg" />
-    <Content Include="Areas\dist\img\prod-2.jpg" />
-    <Content Include="Areas\dist\img\prod-3.jpg" />
-    <Content Include="Areas\dist\img\prod-4.jpg" />
-    <Content Include="Areas\dist\img\prod-5.jpg" />
-    <Content Include="Areas\dist\img\user1-128x128.jpg" />
-    <Content Include="Areas\dist\img\user2-160x160.jpg" />
-    <Content Include="Areas\dist\img\user3-128x128.jpg" />
-    <Content Include="Areas\dist\img\user4-128x128.jpg" />
-    <Content Include="Areas\dist\img\user5-128x128.jpg" />
-    <Content Include="Areas\dist\img\user6-128x128.jpg" />
-    <Content Include="Areas\dist\img\user7-128x128.jpg" />
-    <Content Include="Areas\dist\img\user8-128x128.jpg" />
     <Content Include="Areas\dist\js\adminlte.js" />
     <Content Include="Areas\dist\js\adminlte.min.js" />
+    <Content Include="Areas\dist\js\bootstrap.min.js" />
+    <Content Include="Areas\dist\js\custom.min.js" />
+    <Content Include="Areas\dist\js\dashboard.js" />
+    <Content Include="Areas\dist\js\data-table.js" />
+    <Content Include="Areas\dist\js\dataTables.bootstrap4.js" />
     <Content Include="Areas\dist\js\demo.js" />
+    <Content Include="Areas\dist\js\hoverable-collapse.js" />
+    <Content Include="Areas\dist\js\jquery-3.4.1.js" />
+    <Content Include="Areas\dist\js\jquery.dataTables.js" />
+    <Content Include="Areas\dist\js\jquery.min.js" />
+    <Content Include="Areas\dist\js\jquery.validate.js" />
+    <Content Include="Areas\dist\js\jquery.validate.unobtrusive.js" />
+    <Content Include="Areas\dist\js\main.js" />
+    <Content Include="Areas\dist\js\off-canvas.js" />
     <Content Include="Areas\dist\js\pages\dashboard.js" />
     <Content Include="Areas\dist\js\pages\dashboard2.js" />
-    <Content Include="Areas\dist\js\pages\dashboard3.js" />
+    <Content Include="Areas\dist\js\popper.js" />
+    <Content Include="Areas\dist\js\template.js" />
+    <Content Include="Areas\dist\js\woocommerce.min287d.js" />
+    <Content Include="Areas\dist\vendors\base\vendor.bundle.base.css" />
+    <Content Include="Areas\dist\vendors\base\vendor.bundle.base.js" />
+    <Content Include="Areas\dist\vendors\bootstrap.bundle.min.js" />
+    <Content Include="Areas\dist\vendors\chart.js\Chart.min.js" />
+    <Content Include="Areas\dist\vendors\Chart.min.js" />
+    <Content Include="Areas\dist\vendors\datatables.net-bs4\dataTables.bootstrap4.css" />
+    <Content Include="Areas\dist\vendors\datatables.net-bs4\dataTables.bootstrap4.js" />
+    <Content Include="Areas\dist\vendors\datatables.net\jquery.dataTables.js" />
+    <Content Include="Areas\dist\vendors\jquery.min.js" />
+    <Content Include="Areas\dist\vendors\mdi\css\materialdesignicons.min.css" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.svg" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
@@ -1473,8 +1496,8 @@
     <Content Include="Areas\plugins\jquery-validation\localization\methods_nl.min.js" />
     <Content Include="Areas\plugins\jquery-validation\localization\methods_pt.js" />
     <Content Include="Areas\plugins\jquery-validation\localization\methods_pt.min.js" />
+    <Content Include="Areas\plugins\jquery\JavaScript.js" />
     <Content Include="Areas\plugins\jquery\jquery.js" />
-    <Content Include="Areas\plugins\jquery\jquery.min.js" />
     <Content Include="Areas\plugins\jquery\jquery.slim.js" />
     <Content Include="Areas\plugins\jquery\jquery.slim.min.js" />
     <Content Include="Areas\plugins\jqvmap\jquery.vmap.js" />
@@ -2109,19 +2132,49 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="wwwroot\css\StyleSheet1.css" />
+    <Content Include="wwwroot\css\StyleSheet10.css" />
+    <Content Include="wwwroot\css\StyleSheet11.css" />
+    <Content Include="wwwroot\css\StyleSheet12.css" />
+    <Content Include="wwwroot\css\StyleSheet13.css" />
+    <Content Include="wwwroot\css\StyleSheet14.css" />
+    <Content Include="wwwroot\css\StyleSheet15.css" />
+    <Content Include="wwwroot\css\StyleSheet16.css" />
+    <Content Include="wwwroot\css\StyleSheet17.css" />
+    <Content Include="wwwroot\css\StyleSheet18.css" />
+    <Content Include="wwwroot\css\StyleSheet19.css" />
+    <Content Include="wwwroot\css\StyleSheet2.css" />
+    <Content Include="wwwroot\css\StyleSheet20.css" />
+    <Content Include="wwwroot\css\StyleSheet21.css" />
+    <Content Include="wwwroot\css\StyleSheet22.css" />
+    <Content Include="wwwroot\css\StyleSheet23.css" />
+    <Content Include="wwwroot\css\StyleSheet24.css" />
+    <Content Include="wwwroot\css\StyleSheet3.css" />
+    <Content Include="wwwroot\css\StyleSheet4.css" />
+    <Content Include="wwwroot\css\StyleSheet5.css" />
+    <Content Include="wwwroot\css\StyleSheet6.css" />
+    <Content Include="wwwroot\css\StyleSheet7.css" />
+    <Content Include="wwwroot\css\StyleSheet8.css" />
+    <Content Include="wwwroot\css\StyleSheet9.css" />
+    <Content Include="wwwroot\imagebackground.PNG" />
+    <Content Include="wwwroot\images\2.PNG" />
     <Content Include="wwwroot\images\banner1.PNG" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km1.jpg" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km2.jpg" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km3.jpg" />
     <Content Include="wwwroot\images\bannerKhuyenMai\km4.jpg" />
+    <Content Include="wwwroot\images\cap.PNG" />
     <Content Include="wwwroot\images\cuongyeu.jpg" />
     <Content Include="wwwroot\images\habermas.jpg" />
     <Content Include="wwwroot\images\hanhtrinh.jpg" />
     <Content Include="wwwroot\images\hcm.jpg" />
     <Content Include="wwwroot\images\images.jfif" />
+    <Content Include="wwwroot\images\khai-niem-ve-san-pham-product-va-nhung-cach-phan-loai-chung.jpg" />
     <Content Include="wwwroot\images\LOGO.PNG" />
     <Content Include="wwwroot\images\logo1.PNG" />
     <Content Include="wwwroot\images\logo2.PNG" />
+    <Content Include="wwwroot\images\logo3.PNG" />
+    <Content Include="wwwroot\images\logout.PNG" />
     <Content Include="wwwroot\images\lsth.jpg" />
     <Content Include="wwwroot\images\nav\brand.PNG" />
     <Content Include="wwwroot\images\nav\chply.PNG" />
@@ -2135,47 +2188,90 @@
     <Content Include="wwwroot\images\noiloau.jpg" />
     <Content Include="wwwroot\images\SanPham\1.jpg" />
     <Content Include="wwwroot\images\SanPham\10.jpg" />
+    <Content Include="wwwroot\images\SanPham\10a.jpg" />
     <Content Include="wwwroot\images\SanPham\11.jpg" />
+    <Content Include="wwwroot\images\SanPham\11a.jpg" />
     <Content Include="wwwroot\images\SanPham\12.jpg" />
+    <Content Include="wwwroot\images\SanPham\12a.jpg" />
     <Content Include="wwwroot\images\SanPham\13.jpg" />
+    <Content Include="wwwroot\images\SanPham\13a.jpg" />
     <Content Include="wwwroot\images\SanPham\14.jpg" />
+    <Content Include="wwwroot\images\SanPham\14a.jpg" />
     <Content Include="wwwroot\images\SanPham\15.jpg" />
+    <Content Include="wwwroot\images\SanPham\15a.jpg" />
     <Content Include="wwwroot\images\SanPham\16.jpg" />
+    <Content Include="wwwroot\images\SanPham\16a.jpg" />
     <Content Include="wwwroot\images\SanPham\17.jpg" />
+    <Content Include="wwwroot\images\SanPham\17a.jpg" />
     <Content Include="wwwroot\images\SanPham\18.jpg" />
+    <Content Include="wwwroot\images\SanPham\18a.jpg" />
     <Content Include="wwwroot\images\SanPham\19.jpg" />
+    <Content Include="wwwroot\images\SanPham\19a.jpg" />
+    <Content Include="wwwroot\images\SanPham\1a.jpg" />
     <Content Include="wwwroot\images\SanPham\2.jpg" />
     <Content Include="wwwroot\images\SanPham\20.jpg" />
+    <Content Include="wwwroot\images\SanPham\20a.jpg" />
+    <Content Include="wwwroot\images\SanPham\2a.jpg" />
     <Content Include="wwwroot\images\SanPham\3.jpg" />
     <Content Include="wwwroot\images\SanPham\300.PNG" />
+    <Content Include="wwwroot\images\SanPham\3a.jpg" />
     <Content Include="wwwroot\images\SanPham\4.jpg" />
+    <Content Include="wwwroot\images\SanPham\4a.jpg" />
     <Content Include="wwwroot\images\SanPham\5.jpg" />
+    <Content Include="wwwroot\images\SanPham\5a.jpg" />
     <Content Include="wwwroot\images\SanPham\5_centimet_trên_giây.jpg" />
     <Content Include="wwwroot\images\SanPham\6.jpg" />
+    <Content Include="wwwroot\images\SanPham\6a.jpg" />
     <Content Include="wwwroot\images\SanPham\7.jpg" />
+    <Content Include="wwwroot\images\SanPham\7a.jpg" />
     <Content Include="wwwroot\images\SanPham\8.jpg" />
+    <Content Include="wwwroot\images\SanPham\8a.jpg" />
     <Content Include="wwwroot\images\SanPham\9.jpg" />
+    <Content Include="wwwroot\images\SanPham\9a.jpg" />
+    <Content Include="wwwroot\images\SanPham\a.PNG" />
+    <Content Include="wwwroot\images\SanPham\aa.PNG" />
+    <Content Include="wwwroot\images\SanPham\ab.PNG" />
+    <Content Include="wwwroot\images\SanPham\ac.PNG" />
+    <Content Include="wwwroot\images\SanPham\ad.PNG" />
+    <Content Include="wwwroot\images\SanPham\ae.PNG" />
+    <Content Include="wwwroot\images\SanPham\af.PNG" />
+    <Content Include="wwwroot\images\SanPham\ag.PNG" />
+    <Content Include="wwwroot\images\SanPham\ah.PNG" />
+    <Content Include="wwwroot\images\SanPham\ai.PNG" />
     <Content Include="wwwroot\images\SanPham\anhhung.PNG" />
     <Content Include="wwwroot\images\SanPham\another.PNG" />
+    <Content Include="wwwroot\images\SanPham\b.PNG" />
     <Content Include="wwwroot\images\SanPham\ba-nguoi-thay-vi-dai.jpg" />
+    <Content Include="wwwroot\images\SanPham\c.PNG" />
     <Content Include="wwwroot\images\SanPham\ca-phe-cung-tony.jpg" />
     <Content Include="wwwroot\images\SanPham\cogaivanchuong.PNG" />
     <Content Include="wwwroot\images\SanPham\cogaivanchuong1.jpg" />
     <Content Include="wwwroot\images\SanPham\cogaivanchuong1.PNG" />
     <Content Include="wwwroot\images\SanPham\cuongyeu.jpg" />
+    <Content Include="wwwroot\images\SanPham\d.PNG" />
     <Content Include="wwwroot\images\SanPham\dac-nhan-tam.jpg" />
     <Content Include="wwwroot\images\SanPham\di-tim-le-song.jpg" />
     <Content Include="wwwroot\images\SanPham\doi-ngan-dung-ngu-dai.jpg" />
+    <Content Include="wwwroot\images\SanPham\e.PNG" />
+    <Content Include="wwwroot\images\SanPham\f.PNG" />
+    <Content Include="wwwroot\images\SanPham\g.PNG" />
+    <Content Include="wwwroot\images\SanPham\h.PNG" />
     <Content Include="wwwroot\images\SanPham\habermas.jpg" />
     <Content Include="wwwroot\images\SanPham\hanhtrinh.jpg" />
     <Content Include="wwwroot\images\SanPham\hcm.jpg" />
     <Content Include="wwwroot\images\SanPham\hieu-ve-trai-tim.jpg" />
+    <Content Include="wwwroot\images\SanPham\i.PNG" />
+    <Content Include="wwwroot\images\SanPham\j.PNG" />
+    <Content Include="wwwroot\images\SanPham\k.PNG" />
     <Content Include="wwwroot\images\SanPham\Kheo-an-kheo-noi-se-co-duoc-thien-ha.jpg" />
     <Content Include="wwwroot\images\SanPham\khuvuonngontu.PNG" />
     <Content Include="wwwroot\images\SanPham\khuvuonngontu1.jpg" />
     <Content Include="wwwroot\images\SanPham\khuvuonngontu1.PNG" />
+    <Content Include="wwwroot\images\SanPham\l.PNG" />
     <Content Include="wwwroot\images\SanPham\lsth.jpg" />
+    <Content Include="wwwroot\images\SanPham\m.PNG" />
     <Content Include="wwwroot\images\SanPham\mot-doi-nhu-ke-tim-duong.jpg" />
+    <Content Include="wwwroot\images\SanPham\n.PNG" />
     <Content Include="wwwroot\images\SanPham\nghe-thuat-hung-bien.jpg" />
     <Content Include="wwwroot\images\SanPham\nha-gia-kim.jpg" />
     <Content Include="wwwroot\images\SanPham\nhung-quy-luat-ban-chat-cua-con-nguoi.jpg" />
@@ -2189,15 +2285,19 @@
     <Content Include="wwwroot\images\SanPham\tren-duong-bang.jpg" />
     <Content Include="wwwroot\images\SanPham\tri-tue-do-thai.jpg" />
     <Content Include="wwwroot\images\SanPham\tu-duy-nhanh-va-cham.jpg" />
+    <Content Include="wwwroot\images\SanPham\v.PNG" />
     <Content Include="wwwroot\images\SanPham\vng.jpg" />
+    <Content Include="wwwroot\images\SanPham\x.PNG" />
     <Content Include="wwwroot\images\SanPham\yourname.PNG" />
     <Content Include="wwwroot\images\SanPham\yourname1.jpg" />
     <Content Include="wwwroot\images\SanPham\yourname1.PNG" />
     <Content Include="wwwroot\images\SanPham\ytuong.jpg" />
+    <Content Include="wwwroot\images\SanPham\z.PNG" />
     <Content Include="wwwroot\images\ship.PNG" />
     <Content Include="wwwroot\images\slide1.png" />
     <Content Include="wwwroot\images\slide2.jpg" />
     <Content Include="wwwroot\images\slide3.jpg" />
+    <Content Include="wwwroot\images\TaiKhoan\149071.png" />
     <Content Include="wwwroot\images\TaiKhoan\thanh.jpg" />
     <Content Include="wwwroot\images\TaiKhoan\vinh.jpg" />
     <Content Include="wwwroot\images\TaiKhoan\linh.jpg" />
@@ -2217,15 +2317,19 @@
     <Content Include="wwwroot\images\ThanhToan\anh7.png" />
     <Content Include="wwwroot\images\ThanhToan\anh8.png" />
     <Content Include="wwwroot\images\ThanhToan\anh9.png" />
+    <Content Include="wwwroot\images\ThanhToan\imagebackground.PNG" />
     <Content Include="wwwroot\images\toituduy.jpg" />
+    <Content Include="wwwroot\images\tải xuống.png" />
     <Content Include="wwwroot\images\vng.jpg" />
+    <Content Include="wwwroot\images\x.jpg" />
+    <Content Include="wwwroot\images\x.png" />
+    <Content Include="wwwroot\images\xx.PNG" />
     <Content Include="wwwroot\images\ytuong.jpg" />
     <Content Include="wwwroot\js\bootstrap.js" />
     <Content Include="wwwroot\js\bootstrap.min.js" />
     <Content Include="Views\Home\_Nav.cshtml" />
     <Content Include="Views\SanPham\XemSanPhamTheoDanhMuc.cshtml" />
     <Content Include="Views\SanPham\SanPham.cshtml" />
-    <Content Include="Views\Home\_Footer.cshtml" />
     <Content Include="Views\ChinhSach\DieuKhoan.cshtml" />
     <Content Include="Views\ChinhSach\BaoMat.cshtml" />
     <Content Include="Views\ChinhSach\GioiThieu.cshtml" />
@@ -2268,9 +2372,7 @@
     <Content Include="Views\GioHang\ThanhToan.cshtml" />
     <Content Include="Views\GioHang\ChiTiet.cshtml" />
     <Content Include="Views\GioHang\XemHoaDon.cshtml" />
-    <Content Include="Views\GioHang\XacNhanThanhToan.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />
     <Content Include="Areas\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js.map" />
@@ -2404,6 +2506,37 @@
     <Content Include="Areas\dist\js\.eslintrc.json" />
     <Content Include="Areas\dist\js\adminlte.js.map" />
     <Content Include="Areas\dist\js\adminlte.min.js.map" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\dist\vendors\.DS_Store" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Areas\dist\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\DangNhap\DangNhap.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSPs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="wwwroot\js\jquery-3.4.1.intellisense.js" />
     <Content Include="wwwroot\js\jquery-3.4.1.js" />
     <Content Include="wwwroot\js\jquery-3.4.1.min.js" />
@@ -2434,10 +2567,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\DanhMucSP\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="wwwroot\css\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="wwwroot\font\" />
   </ItemGroup>
   <ItemGroup>
@@ -2451,11 +2581,15 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

@@ -3,6 +3,7 @@
 @{ ViewBag.Title = "XemHoaDon";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
+<title>Xem Hóa Đơn</title>
 @if (ViewBag.ThongBao != null)
 {
     @ViewBag.ThongBao;
@@ -16,17 +17,17 @@ else
                 <div class="card-body">
                     <div class="page-title-inner flex-row  medium-flex-wrap container">
                         <div class="flex-col flex-grow medium-text-center">
-                            <h4 class="card-title">
+                            <h1 class="card-title">
                                 Danh sách hóa đơn
-                            </h4>
+                            </h1>
                         </div>
                         <div class="flex-col medium-text-center">
                             <p class="woocommerce-result-count hide-for-medium">
-                                Lọc theo
+                                <h2>Lọc theo</h2>
                             </p>
 
                             <form class="woocommerce-ordering" method="post" enctype='multipart/form-data' action="@Url.Action("XemHoaDon","GioHang")">
-                                <select name="tinhtrang" class="orderby" aria-label="Đơn hàng của cửa hàng">
+                                <select name="tinhtrang" class="orderby" aria-label="Đơn hàng của cửa hàng" style="width:15%">
                                     <option name="tinhtrang" value="macdinh" selected="selected">Thứ tự mặc định</option>
                                     @if (ViewBag.tinhtrang == "Đang chờ")
                                     {
@@ -66,7 +67,7 @@ else
 
                     </div>
                     <div class="table-responsive pt-3">
-                        <table id="recent-purchases-listing" class="table table-bordered" border="1" cellpadding="10px" cellspacing="0px" >
+                        <table id="recent-purchases-listing" class="table table-bordered" border="1" cellpadding="0px" cellspacing="0px">
                             <thead>
                                 <tr>
                                     <th>
@@ -105,7 +106,7 @@ else
                                         </td>
 
                                         <td style="display: flex; flex-direction: row;">
-                                            <div class="d-flex justify-content-center" style="padding:10px;margin-left:30px">
+                                            <div class="d-flex justify-content-center" style="padding:10px;text-align:center">
                                                 @if (item.TinhTrang == "Đang giao")
                                                 {
                                                     <a class="nav-link" href="@Url.Action("XacNhanHang", "GioHang", new { id = item.MaHD })">
@@ -116,7 +117,7 @@ else
                                                     <a class="nav-link" href="@Url.Action("HuyDonHang", "GioHang", new { id = item.MaHD })">
                                                         <span class="menu-title btn btn-wd btn-danger pl-3 pr-3 pt-2 pb-2">Hủy đơn hàng</span>
                                                     </a>}
-                                                <a class="nav-link" href="@Url.Action("ChiTiet", "GioHang", new { id = item.MaHD })"  style="text-decoration:none">
+                                                <a class="nav-link" href="@Url.Action("ChiTiet", "GioHang", new { id = item.MaHD })" style="text-decoration:none">
                                                     <span class="menu-title btn btn-wd btn-info pl-3 pr-3 pt-2 pb-2">Xem chi tiết</span>
                                                 </a>
                                             </div>
@@ -125,47 +126,50 @@ else
                                 }
                             </tbody>
                         </table>
-                        @Html.PagedListPager(Model, page => Url.Action("XemHoaDon", new { page, tinhtrang = ViewBag.tinhtrang }), new PagedListRenderOptions()
-                   {
-                       LiElementClasses = new string[] { "page-number" },
-                       UlElementClasses = new string[] { "page-numbers", "nav-pagination", "links", "text-center" }
-                   })
+                        <div class="phantrang">
+                            @Html.PagedListPager(Model, page => Url.Action("XemHoaDon", new { page, tinhtrang = ViewBag.tinhtrang }), new PagedListRenderOptions()
+                                            {
+                                                LiElementClasses = new string[] { "page-number" },
+                                                UlElementClasses = new string[] { "page-numbers", "nav-pagination", "links", "text-center" }
+                                            })
+                        </div>
+
                     </div>
                 </div>
             </div>
 
         </div>
-        <div >
+        <div>
             @{ string link = "/TaiKhoan/ThongTinTaiKhoan/" + Session["idUser"]; }
-            <a class="nav-link top" href="@Url.Content(link)" style="background-color:orange;color:white;text-decoration:none;padding:5px">
-                <span class="menu-title btn btn-primary btn-fw ">Quay lại</span>
+            <a class="nav-link top" href="@Url.Content(link)" style="margin-left:40px">
+                <span class="menu-title btn btn-primary btn-fw " style="background-color:orange;color:white">Quay lại</span>
             </a>
         </div>
     </main>}
-<div style="margin-left:140px">
-    @{
-        Html.RenderAction("_Footer", "Home");
-    }
-</div>
+
 
 <style>
     th {
         text-transform: none !important;
     }
+
+    .col-main {
+        background-color: gainsboro
+    }
+
+    body, .container, bg-header-con, .ma-menu .container {
+        background-color: white
+    }
+
+    th {
+        text-align: center;
+    }
+
+    td {
+        text-align: center
+    }
 </style>
 <style>
-
-    .pagination-container ul li a {
-        display: flex;
-        border: medium;
-        border-color: gainsboro;
-        text-decoration: none;
-        color: blue;
-        font-size: 25px;
-        padding-left: 18px;
-        margin: 0px;
-        padding-right: 0px;
-    }
 
     .pagination-container ul {
         text-align: center;
@@ -174,23 +178,46 @@ else
 
         .pagination-container ul li {
             text-align: center;
-            width: 50px;
-            border-color: gainsboro;
+            width: 38px;
+            border-color: orangered !important;
             margin: 0px;
-            padding: 0px;
+            padding: 2px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 25px;
+            border: medium;
+            margin-left: 10px;
+            background-color: none;
+            border: solid
         }
 
-            .pagination-container ul li:hover {
-                background-color: orange;
+            .pagination-container ul li a {
+                color: red;
             }
 
-    .active a {
-        background-color: cornflowerblue;
-        color: white;
-        margin: 100px;
+    @*.pagination-container ul li a:hover {
+        background-color: orange;
+        color: blue
     }
 
+    *@
+
+    .pagination-container ul li:hover {
+        background-color: orange;
+    }
+
+    .active {
+        background-color: yellow;
+    }
     .product:hover {
         background-color: whitesmoke;
     }
 </style>
+@*Lọc*@
+<script src="~/Areas/dist/js/woocommerce.min287d.js"></script>
+<script src="~/Areas/dist/js/dashboard.js"></script>
+<script src="~/Areas/dist/js/data-table.js"></script>
+<script src="~/Areas/dist/js/dataTables.bootstrap4.js"></script>
+<script src="~/Areas/dist/js/jquery.dataTables.js"></script>
+
+<script src="~/Areas/dist/js/pages/dashboard.js"></script>

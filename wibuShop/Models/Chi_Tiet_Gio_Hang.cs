@@ -1,8 +1,7 @@
-﻿namespace wibuShop.Models
+namespace wibuShop.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -12,7 +11,6 @@
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [DisplayName("Mã giỏ hàng")]
         public int MaGioHang { get; set; }
 
         [Key]
@@ -26,5 +24,7 @@
         public decimal GiaSP { get; set; }
 
         public virtual GioHang GioHang { get; set; }
+
+        public virtual SanPham SanPham { get; set; }
     }
 }

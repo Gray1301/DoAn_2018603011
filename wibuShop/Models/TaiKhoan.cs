@@ -16,39 +16,40 @@
             GioHangs = new HashSet<GioHang>();
         }
 
+
         [Key]
         [DisplayName("Mã tài khoản")]
         public int MaTK { get; set; }
 
-
-        [Required(ErrorMessage = "Bạn chưa nhập email")]
+        [Required(ErrorMessage = "Bạn chưa nhập Email")]
         [StringLength(50)]
         [DisplayName("Email")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Bạn chưa nhập mật khẩu")]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "Độ dài mật khẩu ít nhất 6 ký tự")]
+        [Required(ErrorMessage = "Bạn chưa nhập Mật Khẩu")]
+        [StringLength(50, MinimumLength = 6, ErrorMessage = "Độ dài mật khẩu ít nhất 6 ký tự")]
         [DataType(DataType.Password)]
         [DisplayName("Mật khẩu")]
         public string MatKhau { get; set; }
 
+        [Required(ErrorMessage = "Bạn chưa nhập Họ tên")]
         [StringLength(50)]
-        [Required(ErrorMessage = "Bạn chưa nhập họ tên")]
+        [DisplayName("Họ và tên")]
         public string HoTen { get; set; }
 
+        [Required(ErrorMessage = "Bạn chưa nhập địa chỉ")]
         [Column(TypeName = "ntext")]
         [DisplayName("Địa chỉ")]
-        [Required(ErrorMessage = "Bạn chưa nhập địa chỉ")]
         public string DiaChi { get; set; }
-
+        [Required(ErrorMessage = "Bạn chưa nhập SĐT")]
         [StringLength(10)]
         [DisplayName("Số điện thoại")]
-        [Required(ErrorMessage = "Bạn chưa nhập SĐT")]
         public string SoDienThoai { get; set; }
 
         [StringLength(50)]
         [DisplayName("Ảnh")]
         public string Anh { get; set; }
+
         [UIHint("Boolean")]
         [DisplayName("Tình trạng")]
         public bool TinhTrang { get; set; }

@@ -64,36 +64,37 @@ namespace wibuShop.Controllers
             tinhs2.Sort();
             return tinhs2;
         }
-        public ActionResult XemSanPhamTheoDanhMuc(string id, int? page, string loc, int cost = 0, string sort = "")
+        public List<string> NXB1(int id)
         {
-            ViewBag.tacgia = tacgia();
-            ViewBag.nxb = NXB();
+            List<string> tinhs2 = new List<string>();
+            var nxb = db.SanPhams.Where(e => e.MaDM == id).Select(e => new { e.NhaXuatBan }).Distinct().ToList();
+            foreach (var item in nxb)
+            {
+                tinhs2.Add(item.NhaXuatBan);
+            }
+            tinhs2.Sort();
+            return tinhs2;
+        }
+        
+    
+        public ActionResult XemSanPhamTheoDanhMuc(string id, int? page, string loc, int cost = 0)
+        {
+            //ViewBag.tacgia = tacgia();
+            //ViewBag.nxb = NXB();
             ViewBag.MaDM = id;
+            ViewBag.cost = cost;          
             bool abc = false;
             bool abc1 = false;
             bool abc2 = false;
             bool abc3 = false;
             var sanpham = db.SanPhams.Where(s => s.MaDM.ToString().Equals(id)).Select(s => s);
-            
-            if (loc != null)
-            {
-                if (loc.Equals("tang"))
-                {
-                    sanpham = sanpham.OrderBy(s => s.Gia);
-                    ViewBag.Loc = loc;
-                }
-                else if (loc.Equals("giam"))
-                {
-                    sanpham = sanpham.OrderByDescending(s => s.Gia);
-                    ViewBag.Loc = loc;
-                }
-            }
-            if(cost == 100000)
+            if (cost == 100000)
             {
                 decimal a = Convert.ToDecimal(cost);
                 sanpham = sanpham.Where(s => s.Gia <= a).Select(s => s);
-                abc = true;                
+                abc = true;
             }
+           
             else if (cost == 200000)
             {
                 decimal a = Convert.ToDecimal(cost);
@@ -106,9 +107,8 @@ namespace wibuShop.Controllers
                 decimal a = Convert.ToDecimal(cost);
                 sanpham = sanpham.Where(s => s.Gia > 200000 && s.Gia <= a).Select(s => s);
                 abc2 = true;
-
             }
-            else if(cost == 300001)
+            else if (cost == 300001)
             {
                 decimal a = Convert.ToDecimal(cost);
                 sanpham = sanpham.Where(s => s.Gia > a).Select(s => s);
@@ -116,14 +116,6 @@ namespace wibuShop.Controllers
 
             }
 
-            if(sort == "asc")
-            {
-                sanpham = sanpham.OrderBy(s => s.Gia);
-            }
-            else if(sort == "desc")
-            {
-                sanpham = sanpham.OrderByDescending(s => s.Gia);
-            }
             int madm = int.Parse(id);
             List<DanhMucSP> s1 = new List<DanhMucSP>();
             s1 = db.DanhMucSPs.Where(h => h.MaDM == madm).ToList();
@@ -131,7 +123,7 @@ namespace wibuShop.Controllers
             ViewBag.CanhBao = abc;
             ViewBag.CanhBao1 = abc1;
             ViewBag.CanhBao2 = abc2;
-            ViewBag.CanhBao3 = abc3;
+            ViewBag.CanhBao3 = abc3;           
             int pageSize = 8;
             int pageNumber = (page ?? 1);               
             return View(sanpham.ToList().ToPagedList(pageNumber, pageSize));

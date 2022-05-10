@@ -10,13 +10,17 @@
     [Table("SanPham")]
     public partial class SanPham
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SanPham()
+        {
+            Chi_Tiet_Gio_Hang = new HashSet<Chi_Tiet_Gio_Hang>();
+        }
 
         [Key]
         [DisplayName("Mã sản phẩm")]
         public int MaSP { get; set; }
 
         [Required(ErrorMessage = "Tên sản phẩm không được để trống!")]
-
         [DisplayName("Tên sản phẩm")]
         public string TenSP { get; set; }
 
@@ -34,21 +38,26 @@
         public int SoLuongTon { get; set; }
 
         [StringLength(80)]
-
+        [DisplayName("Tác giả")]
         public string TacGia { get; set; }
-        [DisplayName("Giới thiệu")]
+
         [StringLength(4000)]
+        [DisplayName("Giới thiệu")]
         public string GioiThieu { get; set; }
 
         [DisplayName("Giảm giá")]
         public double? GiamGia { get; set; }
-        [Required(ErrorMessage = "Mã danh mục không được để trống!")]
+
         [DisplayName("Mã danh mục")]
         public int MaDM { get; set; }
 
+        [Required]
         [StringLength(100)]
-        [DisplayName("Ảnh")]
+        [DisplayName("Ảnh sản phẩm")]
         public string AnhSP { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chi_Tiet_Gio_Hang> Chi_Tiet_Gio_Hang { get; set; }
 
         public virtual DanhMucSP DanhMucSP { get; set; }
     }

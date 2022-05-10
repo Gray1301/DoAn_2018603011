@@ -1,98 +1,57 @@
 ﻿
 @model IEnumerable<wibuShop.Models.DanhMucSP>
+@{
+    List<string> tacgia = ViewBag.tacgia as List<string>;
+    List<string> nxb = ViewBag.nxb as List<string>;
+}
+@foreach (var item in Model)
+{
+    <ul class="nav navbar-nav verticalmenu">
+        <li class=" parent dropdown aligned-left  ">
 
-<div class="body">
-    <div class="menu1">
-        <div id="mega-menu-title">
-            <b>DANH MỤC SẢN PHẨM</b>
-        </div>
-        <ul class="listCategory">
-            @foreach (var item in Model)
-            {
-                <li class="categoryItem" style="align-content:center;vertical-align:middle">
-                    <a class="categorycustom" style="text-decoration:none;text-transform:capitalize" href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = item.MaDM })">
-                        @item.TenDM
-                    </a>
-                    @*<ul class="listMiniCategory">
-                            <li class="categoryMiniItem"><a href="#">@item.MaDM</a></li>
-                        </ul>*@
-                </li>
-            }
-        </ul>
-    </div>
-</div>
+            <span class="open-child hidden-md hidden-lg">(open)</span><a href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = item.MaDM })" class="dropdown-toggle" title="Sách Trong Nước" data-toggle="dropdown" data-clickable="1"><i class="ico_sachtrongnuoc"></i><span class="menu-title">@item.TenDM</span><b class="caret"></b></a><div class="dropdown-menu" style="width:840px">
+                <div class="dropdown-menu-inner">
+                    <div class="row">
+                        <div class="mega-col col-sm-3 " data-widgets="wid-98" data-colwidth="3">
+                            <div class="mega-col-inner">
+                                <div class="ves-widget" data-id="wid-98">
+                                    <div class="widget-html">
+                                        <div class="widget-inner">
+                                            <h3><span style="color: #333333;"><strong><a style="font-weight: bold; font-size: 13px;" href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = item.MaDM })"><span style="color: #333333;">NHÀ XUẤT BẢN</span></a></strong></span></h3>
+                                            <ul class="nav-links">
 
-<style>
-    #mega-menu-title {
-        width: 120%;
-        height: 40px;
-        color: white;
-        background-color: orange;
-        text-align: center;
-        padding-top: 7px;
-        margin-left:20px;
-    }
+                                                @for(int i=0;i<10;i++)
+                                                {                                                    
+                                                        <li><a href="#">@nxb[i]</a></li>                                                  
+                                                }
+                                                <li style="color: #2489f4;"><span style="color: #2489f4;"><a href="@Url.Action("XemSanPhamTheoDanhMuc","SanPham",new { id = item.MaDM})"><span style="color: #2489f4;">Xem tất cả</span></a></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="mega-col col-sm-3 " data-widgets="wid-11" data-colwidth="3">
+                            <div class="mega-col-inner">
+                                <div class="ves-widget" data-id="wid-11">
+                                    <div class="widget-html">
+                                        <div class="widget-inner">
+                                            <h3><span style="color: #333333;"><strong><a style="font-weight: bold; font-size: 13px;" href="@Url.Action("XemSanPhamTheoDanhMuc", "SanPham", new { id = item.MaDM })"><span style="color: #333333;">TÁC GIẢ</span></a></strong></span></h3>
+                                            <ul class="nav-links">
+                                                @for (int i = 0; i < 10; i++)
+                                                {
+                                                    <li><a href="#">@tacgia[i]</a></li>
 
-    #mega_menu {
-        width: 120%;
-        color: white;
-        background-color: orange;
-        text-align: left;
-        
-    }
-
-    .categorycustom {
-        font-size: 20px;
-        font-family: Calibri;
-        color: black;
-        text-decoration: none;
-    }
-        .categorycustom:hover
-        {
-            background-color:navajowhite;
-        }
-        ul li {
-            width: 120%;
-            padding: 0;
-            display: block;
-            background-color: white;
-            margin-left: 20px;
-        }
-
-    ul {
-        padding: 0px;
-        display: block;
-        margin-top: 0px;
-    }
-
-        ul li a {
-            text-decoration:none;
-            margin-left: 20px;
-            width: 100%;
-        }
-
-    .menu1 {
-        margin-left: 30px;
-    }
-
-        .menu1 ul li {
-            display: block;
-        }
-
-    ul li:hover {
-       
-        color: gray;
-    }
-
-    li {
-        height: 48px;
-        margin-bottom: 0px;
-    }
-
-    .listCategory :hover {
-        background-color: navajowhite;
-    }
-    @*hover.categoryItem {
-        background-color: navajowhite;
-    }*@
-</style>
+                                                }
+                                                <li style="color: #2489f4;"><span style="color: #2489f4;"><a href="https://www.fahasa.com/sach-trong-nuoc/kinh-te-chinh-tri-phap-ly.html"><span style="color: #2489f4;">Xem tất cả</span></a></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+}

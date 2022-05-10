@@ -44,6 +44,5 @@ namespace wibuShop.Controllers
         {
             return View();
         }
-        
     }
 }
