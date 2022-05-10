@@ -105,7 +105,7 @@ function checksdt(){
 
 	if(sdt == ""){
 		validsdt = false;
-		message = "Số điện thoại không được để trông.";
+		message = "Số điện thoại không được để trống.";
 	}else{
 		if(sdt.length != 10){
 			validsdt = false;
@@ -137,7 +137,7 @@ function checkdc(){
 
 	if(dc == ""){
 		validdc = false;
-		message = "Dịa chỉ không được để trống.";
+		message = "Địa chỉ không được để trống.";
 	}else{
 		
 		}

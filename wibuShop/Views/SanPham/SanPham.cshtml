@@ -84,10 +84,10 @@
                             <form class="cart mb-2" method="post" enctype='multipart/form-data' action="@Url.Action("ThemSP", "GioHang", new { MaSP = Model.MaSP })">
                                 <div class="row pb-2" style="display:flex">
                                     <div style="margin-left:5%">Số lượng</div>
-                                    <div class="col-md-5 quantity buttons_added" style="margin-left:5%;display:flex">
-                                        <input type="button" value="-" class="minus button is-form" style="background-color: white; color: black; width: 1px; height: 30px; border-right: none; border-color: orange;border-radius:0px;font-size:20px">
-                                        <input type="number" id="quantity_60d19c138f0b1" class="input-text qty text" step="1" min="1" max="@Model.SoLuongTon" name="SoLuong" value="1" title="SL" size="4" placeholder="" inputmode="numeric" readonly style="height: 30px; font-size: 15px; border-left: none; border-right: none; border-color: orange; margin: 0px; padding: 0px" />
-                                        <input type="button" value="+" class="plus button is-form" style="background-color: white; color: black; width: 1px; height: 30px; border-left: none; border-color: orange; margin: 0px; margin: 0px; border-radius: 0px ">
+                                    <div class="col-md-5 quantity buttons_added" style="margin-left:5%;display:flex;border-color:red">
+                                        <input type="button" value="-" class="minus button is-form" style="background-color: white; color: black; width: 1px; height: 30px; border-right: none; border-color: red;border-radius:0px;font-size:20px">
+                                        <input type="number" id="quantity_60d19c138f0b1" class="input-text qty text" step="1" min="1" max="@Model.SoLuongTon" name="SoLuong" value="1" title="SL" size="4" placeholder="" inputmode="numeric" readonly style="height: 30px; font-size: 15px; border-left: none; border-right: none; border-color: red; margin: 0px; padding: 0px" />
+                                        <input type="button" value="+" class="plus button is-form" style="background-color: white; color: black; width: 1px; height: 30px; border-left: none; border-color: red; margin: 0px; margin: 0px; border-radius: 0px ">
                                     </div>
                                 </div>
                                 <button type="submit" name="add-to-cart" value="6932" class="single_add_to_cart_button button alt" style="border-color: orange; color: white; border-radius: 10px; background-color: orangered; width: 250px; height: 40px; font-size: 16px; font-weight: bold; margin-top: 20px; margin-bottom: 20px; font-size: 16px">THÊM VÀO GIỎ</button><hr />
@@ -99,7 +99,7 @@
                                 <div id="col-1076857932" class="col div-cam-ket small-12 large-12">
                                     <div class="col-inner">
                                         <aside id="custom_html-13" class="widget_text widget widget_custom_html">
-                                            <div style="height:50px;background-color:orange;width:320px;border-radius:10px;padding-left:30px">
+                                            <div style="height:50px;background-color:orange;width:320px;border-radius:10px;padding-left:30px;margin-bottom:20px">
                                                 <p style="color:white;text-align:center;padding-top:13px;font-weight:bold;padding-left:-10px">CAM KẾT MUA HÀNG</p>
                                             </div>
                                             <div class="is-divider small"></div>

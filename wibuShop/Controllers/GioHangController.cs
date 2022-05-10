@@ -99,7 +99,7 @@ namespace wibuShop.Controllers
                 Session["GioHang"] = list;
             }
             UpdateSL();
-            String thongbao = "Đã thêm " + sanpham.TenSP + " số lượng " + SoLuong + " vào giỏ hàng !";
+            string thongbao = "Đã thêm " + sanpham.TenSP + " số lượng " + SoLuong + " vào giỏ hàng !";
             return RedirectToAction("SanPham", "SanPham", new { id = MaSP, ThongBao = thongbao });
         }
 
@@ -301,6 +301,7 @@ namespace wibuShop.Controllers
             ViewBag.HoaDon = hoaDon;
             var HoaDon = db.HoaDons.Where(s => s.MaGioHang == hoaDon.MaGioHang).FirstOrDefault();
             int mahd = HoaDon.MaHD;
+
             //Gửi mail về thông báo đơn hàng
             var chiTiet = db.Chi_Tiet_Gio_Hang.Where(s => s.MaGioHang == hoaDon.MaGioHang).Select(s => s).ToList();
             MailMessage mail = new MailMessage();
@@ -309,7 +310,7 @@ namespace wibuShop.Controllers
             mail.To.Add("xuanthanh13012000@gmail.com");
             mail.Subject = "Đơn hàng mới";
             mail.IsBodyHtml = true;
-            mail.Body = HoTen;
+            mail.Body = "Tên khách: " + HoTen + "<br />" + "Sản phẩm đặt hàng:";
             foreach (var x in chiTiet)
             {
                 mail.Body += "<br />" + x.SanPham.TenSP + " x " + x.SoLuongMua;

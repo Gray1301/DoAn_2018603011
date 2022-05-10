@@ -32,22 +32,22 @@ namespace wibuShop.Controllers
             ViewBag.nxb = NXB();
             var danhmuc = db.DanhMucSPs.Select(h => h);
             List<SanPham> Sp = new List<SanPham>();
-            Sp = db.SanPhams.Where(h => h.MaDM.Equals(1)).OrderByDescending(h => h.Gia).ToList();
+            Sp = db.SanPhams.Where(h => h.MaDM.Equals(1)).OrderByDescending(h => h.Gia).Take(10).ToList();
             ViewBag.sp = Sp;
             List<SanPham> Sp1 = new List<SanPham>();
-            Sp1 = db.SanPhams.Where(h => h.MaDM.Equals(3)).OrderByDescending(h => h.Gia).ToList();
+            Sp1 = db.SanPhams.Where(h => h.MaDM.Equals(3)).OrderByDescending(h => h.Gia).Take(10).ToList();
             ViewBag.sp1 = Sp1;
             List<SanPham> Sp2 = new List<SanPham>();
-            Sp2 = db.SanPhams.Where(h => h.MaDM.Equals(4)).OrderByDescending(h => h.Gia).ToList();
+            Sp2 = db.SanPhams.Where(h => h.MaDM.Equals(4)).OrderByDescending(h => h.Gia).Take(10).ToList();
             ViewBag.sp2 = Sp2;
             List<SanPham> Sp3 = new List<SanPham>();
-            Sp3 = db.SanPhams.Where(h => h.MaDM.Equals(5)).OrderByDescending(h => h.Gia).ToList();
+            Sp3 = db.SanPhams.Where(h => h.MaDM.Equals(5)).OrderByDescending(h => h.Gia).Take(10).ToList();
             ViewBag.sp3 = Sp3;
             List<SanPham> Sp4 = new List<SanPham>();
-            Sp4 = db.SanPhams.Where(h => h.MaDM.Equals(6)).OrderByDescending(h => h.Gia).ToList();
+            Sp4 = db.SanPhams.Where(h => h.MaDM.Equals(6)).OrderByDescending(h => h.Gia).Take(10).ToList();
             ViewBag.sp4 = Sp4;
             List<SanPham> Sp5 = new List<SanPham>();
-            Sp5 = db.SanPhams.Where(h => h.MaDM.Equals(7)).OrderByDescending(h => h.Gia).ToList();
+            Sp5 = db.SanPhams.Where(h => h.MaDM.Equals(7)).OrderByDescending(h => h.Gia).Take(10).ToList();
             ViewBag.sp5 = Sp5;
             return View(XuatIndex);
         }
